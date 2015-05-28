@@ -35,3 +35,8 @@ Pods/
 # Carthage/Checkouts
 
 Carthage/Build
+
+# JS stuff
+.yo-rc.json
+node_modules/
+caravel/js/caravel.js
