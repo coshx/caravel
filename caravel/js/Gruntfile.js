@@ -1,79 +1,63 @@
 module.exports = function (grunt) {
     'use strict';
+
+    var version = '1.0.0';
+
     // Project configuration
     grunt.initConfig({
-        // Metadata
-        pkg: grunt.file.readJSON('package.json'),
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-            '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-            '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-            ' Licensed <%= props.license %> */\n',
-        // Task configuration
-        concat: {
-            options: {
-                banner: '<%= banner %>',
-                stripBanners: true
-            },
+        coffee: {
             dist: {
-                src: ['lib/js.js'],
-                dest: 'dist/js.js'
+                options: {
+                    bare: true,
+                    sourceMap: true
+                },
+                files: {
+                    'caravel.js': 'caravel.coffee'
+                }
+            }
+        },
+        coffeelint: {
+            dist: {
+                options: {
+
+                },
+                files: {
+                    src: [ 'caravel.coffee' ]
+                }
             }
         },
         uglify: {
-            options: {
-                banner: '<%= banner %>'
-            },
             dist: {
-                src: '<%= concat.dist.dest %>',
-                dest: 'dist/js.min.js'
+                options: {
+                    mangle: false,
+                    compression: true,
+                    preserveComments: false,
+                    banner: '/** Caravel ' + version + ' - https://github.com/coshx/caravel */\n'
+                },
+                files: {
+                    'caravel.min.js': 'caravel.js'
+                }
             }
-        },
-        jshint: {
-            options: {
-                node: true,
-                curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                undef: true,
-                unused: true,
-                eqnull: true,
-                boss: true
-            },
-            gruntfile: {
-                src: 'gruntfile.js'
-            },
-            lib_test: {
-                src: ['lib/**/*.js', 'test/**/*.js']
-            }
-        },
-        nodeunit: {
-            files: ['test/**/*_test.js']
         },
         watch: {
-            gruntfile: {
-                files: '<%= jshint.gruntfile.src %>',
-                tasks: ['jshint:gruntfile']
-            },
-            lib_test: {
-                files: '<%= jshint.lib_test.src %>',
-                tasks: ['jshint:lib_test', 'nodeunit']
+            coffee: {
+                options: {
+                    atBegin: true,
+                    interrupt: true
+                },
+                files: '*.coffee'
             }
         }
     });
 
     // These plugins provide necessary tasks
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
+    grunt.loadNpmTasks('grunt-coffeelint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Default task
-    grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
+    grunt.registerTask('default', ['coffeelint', 'coffee']);
+    grunt.registerTask('release', ['default', 'uglify']);
 };
 

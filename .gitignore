@@ -40,3 +40,7 @@ Carthage/Build
 .yo-rc.json
 node_modules/
 caravel/js/caravel.js
+
+caravel/js/caravel.js.map
+
+caravel/js/caravel.min.js
