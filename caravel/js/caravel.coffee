@@ -1,3 +1,5 @@
+# @class Caravel
+# @brief Caravel JS bus
 class Caravel
   @default = null
   @buses = []
@@ -6,9 +8,12 @@ class Caravel
     @name = name
     @subscribers = []
 
+    # JS bus is ready, notify Swift counterpart
     @_post "CaravelInit", null
 
+  # Internal method for posting
   _post: (eventName, data) ->
+    # TODO: Improve that code using an AJAX request
     iframe = document.createElement 'iframe'
     src = "caravel@#{@name}@#{eventName}"
     src += "@#{data}" if data?
@@ -25,8 +30,10 @@ class Caravel
   register: (name, callback) ->
     @subscribers.push { name: name, callback: callback }
 
+  # Internal method only. Called by iOS part for triggering events on the bus
   raise: (name, data) ->
     if data instanceof Array or data instanceof Object
+      # Data are already parsed, nothing to do
       parsedData = data
     else
       parsedData = JSON.parse data
