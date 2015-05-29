@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kl-ns-6b9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Caravel" id="V48-55-vYl"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04R-Op-c0p">
+                                <rect key="frame" x="37" y="84" width="108" height="30"/>
+                                <state key="normal" title="Basic triggering">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Rtf-Ag-OU6" kind="show" id="WZd-KT-65Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDv-1q-FKP">
+                                <rect key="frame" x="196" y="84" width="63" height="30"/>
+                                <state key="normal" title="Init event">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Tqw-xu-ikm" kind="showDetail" id="u1l-r9-9sk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7kl-ns-6b9" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="DEQ-2e-blU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7kl-ns-6b9" secondAttribute="trailing" constant="-16" id="Hld-VH-a5L"/>
+                            <constraint firstItem="7kl-ns-6b9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="PUA-4N-E2G"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40" y="228"/>
+        </scene>
+        <!--Initialization Controller-->
+        <scene sceneID="gwb-lI-Hdz">
+            <objects>
+                <viewController id="Tqw-xu-ikm" customClass="InitializationController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l0G-O6-XfN"/>
+                        <viewControllerLayoutGuide type="bottom" id="EJk-3f-dGi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vXY-ga-wAr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="244-hk-fjG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="zq2-Tk-TKc">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="hxq-0Y-Tfa">
+                                            <connections>
+                                                <segue destination="xhC-pK-8CV" kind="unwind" unwindAction="unwind:" id="v0B-OW-3XP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxx-Zm-Kcd">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="244-hk-fjG" secondAttribute="trailing" constant="-16" id="RE2-EF-SEY"/>
+                            <constraint firstItem="Dxx-Zm-Kcd" firstAttribute="leading" secondItem="vXY-ga-wAr" secondAttribute="leadingMargin" constant="-16" id="VmW-iy-dSG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dxx-Zm-Kcd" secondAttribute="trailing" constant="-16" id="Y6v-O5-Uh7"/>
+                            <constraint firstItem="EJk-3f-dGi" firstAttribute="top" secondItem="Dxx-Zm-Kcd" secondAttribute="bottom" id="ZWs-nR-zeB"/>
+                            <constraint firstItem="244-hk-fjG" firstAttribute="top" secondItem="vXY-ga-wAr" secondAttribute="topMargin" id="ght-C2-DCw"/>
+                            <constraint firstItem="Dxx-Zm-Kcd" firstAttribute="top" secondItem="244-hk-fjG" secondAttribute="bottom" id="rQd-gt-xzW"/>
+                            <constraint firstItem="244-hk-fjG" firstAttribute="leading" secondItem="vXY-ga-wAr" secondAttribute="leadingMargin" constant="-16" id="vY1-Nd-awm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="Dxx-Zm-Kcd" id="y8f-GD-31m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sgJ-XM-d4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xhC-pK-8CV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="717"/>
+        </scene>
+        <!--Basic Triggering Controller-->
+        <scene sceneID="B7P-jf-kp0">
+            <objects>
+                <viewController id="Rtf-Ag-OU6" customClass="BasicTriggeringController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xf4-dC-l9B"/>
+                        <viewControllerLayoutGuide type="bottom" id="xxf-uy-QRI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eim-Zh-7Xg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAI-w0-w4F">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="kRh-RY-d3A">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="3Zu-BV-1hi">
+                                            <connections>
+                                                <segue destination="gaY-MF-K2P" kind="unwind" unwindAction="unwind:" id="Ox5-ZC-Gu6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAh-uD-Fjl">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nAh-uD-Fjl" firstAttribute="top" secondItem="zAI-w0-w4F" secondAttribute="bottom" id="40l-Lu-hdT"/>
+                            <constraint firstItem="zAI-w0-w4F" firstAttribute="top" secondItem="eim-Zh-7Xg" secondAttribute="topMargin" id="CEw-Ud-8kJ"/>
+                            <constraint firstItem="nAh-uD-Fjl" firstAttribute="leading" secondItem="eim-Zh-7Xg" secondAttribute="leadingMargin" constant="-16" id="CFE-Lu-Ppb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zAI-w0-w4F" secondAttribute="trailing" constant="-16" id="KjV-Eh-Hns"/>
+                            <constraint firstItem="zAI-w0-w4F" firstAttribute="leading" secondItem="eim-Zh-7Xg" secondAttribute="leadingMargin" constant="-16" id="WPI-af-glP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nAh-uD-Fjl" secondAttribute="trailing" constant="-16" id="q1B-vV-LTw"/>
+                            <constraint firstItem="xxf-uy-QRI" firstAttribute="top" secondItem="nAh-uD-Fjl" secondAttribute="bottom" id="t3F-xI-DrB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="nAh-uD-Fjl" id="kCB-dn-u6W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VRo-xx-F0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gaY-MF-K2P" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="-118"/>
+        </scene>
+    </scenes>
+</document>
