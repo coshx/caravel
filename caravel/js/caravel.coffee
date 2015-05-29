@@ -8,9 +8,6 @@ class Caravel
     @name = name
     @subscribers = []
 
-    # JS bus is ready, notify Swift counterpart
-    @_post "CaravelInit", null
-
   # Internal method for posting
   _post: (eventName, data) ->
     # TODO: Improve that code using an AJAX request
@@ -41,7 +38,9 @@ class Caravel
       e.callback(name, parsedData) if e.name == name
 
   @getDefault: ->
-    Caravel.default = new Caravel("default") unless Caravel.default?
+    if not Caravel.default?
+      Caravel.default = new Caravel("default")
+      Caravel.default.post "CaravelInit"
     Caravel.default
 
   @get: (name) ->
@@ -49,6 +48,7 @@ class Caravel
       if b.getName() == name
         return b
 
-      b = new Caravel(name)
-      Caravel.buses.push b
-      return b
+    b = new Caravel name
+    Caravel.buses.push b
+    b.post "CaravelInit"
+    return b

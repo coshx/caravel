@@ -34,7 +34,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
     * Tells if bus has received the init event from JS
     */
     private var _isInitialized: Bool
-    private static var _initializationLock = NSObject()
+    private var _initializationLock = NSObject()
     
     /**
      * Pending initialization subscribers
@@ -72,7 +72,9 @@ public class Caravel: NSObject, UIWebViewDelegate {
             toRun = "Caravel.get(\"\(_name)\").raise(\"\(eventName)\", \(data!))"
         }
         
-        self._webView.stringByEvaluatingJavaScriptFromString(toRun!)
+        dispatch_async(dispatch_get_main_queue()) {
+            self._webView.stringByEvaluatingJavaScriptFromString(toRun!)            
+        }
     }
     
     public var name: String {
@@ -99,7 +101,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 // are potential receivers
                 if _name == busName {
                     if eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
-                        objc_sync_enter(Caravel._initializationLock)
+                        objc_sync_enter(_initializationLock)
                         _isInitialized = true
                         
                         for i in _initializers {
@@ -108,7 +110,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                             }
                         }
                         
-                        objc_sync_exit(Caravel._initializationLock)
+                        objc_sync_exit(_initializationLock)
                     } else {
                         var eventData: AnyObject? = nil
                         
@@ -140,13 +142,13 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Returns the current bus when its JS counterpart is ready
      */
     public func whenReady(callback: (Caravel) -> Void) {
-        objc_sync_enter(Caravel._initializationLock)
+        objc_sync_enter(_initializationLock)
         if _isInitialized {
-            objc_sync_exit(Caravel._initializationLock) // Release lock before running callback, to avoid delays
+            objc_sync_exit(_initializationLock) // Release lock before running callback, to avoid delays
             callback(self)
         } else {
             _initializers.append(callback)
-            objc_sync_exit(Caravel._initializationLock)
+            objc_sync_exit(_initializationLock)
         }
     }
     

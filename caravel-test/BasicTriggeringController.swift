@@ -16,6 +16,7 @@ public class BasicTriggeringController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         Caravel.getDefault(_webView).whenReady() { bus in
             bus.register("From JS") { name, data in
                 bus.post("From iOS")
