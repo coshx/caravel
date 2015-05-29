@@ -8,7 +8,11 @@
 
 import Foundation
 
-internal class CaravelSubscriber {
+/**
+ * @class Subscriber
+ * @brief Internal class storing bus subscribers
+ */
+internal class Subscriber {
     var name: String
     var callback: (String, AnyObject?) -> Void
     
