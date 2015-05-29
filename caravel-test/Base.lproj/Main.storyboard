@@ -50,6 +50,15 @@
                                     <segue destination="8DD-E6-dp9" kind="showDetail" id="LIv-VE-lU8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-H8-izy">
+                                <rect key="frame" x="206" y="135" width="77" height="30"/>
+                                <state key="normal" title="Two events">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zY9-RZ-kyf" kind="showDetail" id="NTj-sO-qfx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -110,7 +119,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2v-iD-5yN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bzb-zR-YuT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="937" y="429"/>
+            <point key="canvasLocation" x="971" y="181"/>
+        </scene>
+        <!--Two Event Controller-->
+        <scene sceneID="PpM-Vf-bCh">
+            <objects>
+                <viewController id="zY9-RZ-kyf" customClass="TwoEventController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mEh-g1-k2v"/>
+                        <viewControllerLayoutGuide type="bottom" id="drP-N7-wiD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sdT-oi-8wn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBr-xA-zVS">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="fru-zb-Qh2">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="6xK-y8-VTd">
+                                            <connections>
+                                                <segue destination="f0T-jy-chR" kind="unwind" unwindAction="unwind:" id="pVl-pt-BdY"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wd1-zm-6CH">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dBr-xA-zVS" firstAttribute="leading" secondItem="sdT-oi-8wn" secondAttribute="leadingMargin" constant="-16" id="75N-W0-O42"/>
+                            <constraint firstItem="drP-N7-wiD" firstAttribute="top" secondItem="Wd1-zm-6CH" secondAttribute="bottom" id="9bP-fg-P8O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wd1-zm-6CH" secondAttribute="trailing" constant="-16" id="AjG-qg-gtg"/>
+                            <constraint firstItem="Wd1-zm-6CH" firstAttribute="top" secondItem="dBr-xA-zVS" secondAttribute="bottom" id="M01-X5-QGi"/>
+                            <constraint firstItem="dBr-xA-zVS" firstAttribute="top" secondItem="sdT-oi-8wn" secondAttribute="topMargin" id="f20-bb-9i8"/>
+                            <constraint firstItem="Wd1-zm-6CH" firstAttribute="leading" secondItem="sdT-oi-8wn" secondAttribute="leadingMargin" constant="-16" id="h60-Qh-w5J"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dBr-xA-zVS" secondAttribute="trailing" constant="-16" id="p2N-FB-JU2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="Wd1-zm-6CH" id="XAo-hv-vfB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YPI-Uw-BsQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="f0T-jy-chR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="332" y="958"/>
         </scene>
         <!--Initialization Controller-->
         <scene sceneID="gwb-lI-Hdz">
