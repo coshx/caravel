@@ -41,6 +41,15 @@
                                     <segue destination="Tqw-xu-ikm" kind="showDetail" id="u1l-r9-9sk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guj-sM-4VH">
+                                <rect key="frame" x="22" y="135" width="139" height="30"/>
+                                <state key="normal" title="Multiple subscribers">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="8DD-E6-dp9" kind="showDetail" id="LIv-VE-lU8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,6 +62,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40" y="228"/>
+        </scene>
+        <!--Multiple Subscriber Controller-->
+        <scene sceneID="YFf-fi-Tbz">
+            <objects>
+                <viewController id="8DD-E6-dp9" customClass="MultipleSubscriberController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qEk-cU-8vP"/>
+                        <viewControllerLayoutGuide type="bottom" id="b22-OM-A4E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b5p-BI-nyw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erI-Vk-Bfj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="cdX-eV-bPb">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="nUG-FM-njx">
+                                            <connections>
+                                                <segue destination="bzb-zR-YuT" kind="unwind" unwindAction="unwind:" id="ge0-lw-WUQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgf-nd-Q5d">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="erI-Vk-Bfj" firstAttribute="top" secondItem="b5p-BI-nyw" secondAttribute="topMargin" id="DPf-Ll-N7u"/>
+                            <constraint firstItem="sgf-nd-Q5d" firstAttribute="leading" secondItem="b5p-BI-nyw" secondAttribute="leadingMargin" constant="-16" id="KbV-dp-HJr"/>
+                            <constraint firstItem="erI-Vk-Bfj" firstAttribute="leading" secondItem="b5p-BI-nyw" secondAttribute="leadingMargin" constant="-16" id="NmD-zl-nnG"/>
+                            <constraint firstItem="sgf-nd-Q5d" firstAttribute="top" secondItem="erI-Vk-Bfj" secondAttribute="bottom" id="TlG-Mo-sxN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="erI-Vk-Bfj" secondAttribute="trailing" constant="-16" id="VXw-k9-do3"/>
+                            <constraint firstItem="b22-OM-A4E" firstAttribute="top" secondItem="sgf-nd-Q5d" secondAttribute="bottom" id="Z2k-qT-sSD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sgf-nd-Q5d" secondAttribute="trailing" constant="-16" id="nyF-f2-88m"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="sgf-nd-Q5d" id="FXQ-VF-FaD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2v-iD-5yN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bzb-zR-YuT" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="429"/>
         </scene>
         <!--Initialization Controller-->
         <scene sceneID="gwb-lI-Hdz">
@@ -101,7 +159,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgJ-XM-d4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xhC-pK-8CV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="819" y="717"/>
+            <point key="canvasLocation" x="1285" y="-552"/>
         </scene>
         <!--Basic Triggering Controller-->
         <scene sceneID="B7P-jf-kp0">
@@ -150,7 +208,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRo-xx-F0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gaY-MF-K2P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="767" y="-118"/>
+            <point key="canvasLocation" x="551" y="-552"/>
         </scene>
     </scenes>
 </document>

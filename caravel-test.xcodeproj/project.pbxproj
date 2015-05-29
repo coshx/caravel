@@ -10,6 +10,9 @@
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
+		A75AD3FB1B19169200404C06 /* MultipleSubscriberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3FA1B19169200404C06 /* MultipleSubscriberController.swift */; };
+		A75AD3FD1B1917BE00404C06 /* multiple_subscribers.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */; };
+		A75AD3FF1B1917C300404C06 /* multiple_subscribers.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */; };
 		A7C868FB1B18CDCA0070AF5A /* caravel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C868FA1B18CDCA0070AF5A /* caravel.min.js */; };
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
@@ -37,6 +40,9 @@
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
+		A75AD3FA1B19169200404C06 /* MultipleSubscriberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleSubscriberController.swift; sourceTree = "<group>"; };
+		A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = multiple_subscribers.html; path = html/multiple_subscribers.html; sourceTree = "<group>"; };
+		A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = multiple_subscribers.js; path = js/multiple_subscribers.js; sourceTree = "<group>"; };
 		A7C868FA1B18CDCA0070AF5A /* caravel.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = caravel.min.js; path = js/caravel.min.js; sourceTree = "<group>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
@@ -76,6 +82,7 @@
 		A7C868F81B18CC8D0070AF5A /* html */ = {
 			isa = PBXGroup;
 			children = (
+				A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */,
 				A75AD3F81B19150200404C06 /* initialization.html */,
 				A7C869051B18CEF30070AF5A /* basic_triggering.html */,
 			);
@@ -87,6 +94,7 @@
 			children = (
 				A7C868FA1B18CDCA0070AF5A /* caravel.min.js */,
 				A7C869071B18CF450070AF5A /* basic_triggering.js */,
+				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
 				A75AD3F61B1914FA00404C06 /* initialization.js */,
 			);
 			name = js;
@@ -124,6 +132,7 @@
 				A7F1DE261B18045C001E9B94 /* Supporting Files */,
 				A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */,
 				A75AD3F41B1913B600404C06 /* InitializationController.swift */,
+				A75AD3FA1B19169200404C06 /* MultipleSubscriberController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -235,11 +244,13 @@
 			files = (
 				A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */,
 				A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */,
+				A75AD3FD1B1917BE00404C06 /* multiple_subscribers.html in Resources */,
 				A7C868FB1B18CDCA0070AF5A /* caravel.min.js in Resources */,
 				A7F1DE331B18045C001E9B94 /* LaunchScreen.xib in Resources */,
 				A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */,
 				A75AD3F71B1914FB00404C06 /* initialization.js in Resources */,
 				A75AD3F91B19150200404C06 /* initialization.html in Resources */,
+				A75AD3FF1B1917C300404C06 /* multiple_subscribers.js in Resources */,
 				A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A75AD3FB1B19169200404C06 /* MultipleSubscriberController.swift in Sources */,
 				A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */,
 				A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */,
 				A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */,
