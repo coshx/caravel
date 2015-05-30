@@ -50,7 +50,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
         
         super.init()
         
-        UIWebViewDelegateMediator(webView: self._webView, secondDelegate: self)
+        UIWebViewDelegateMediator.subscribe(self._webView, subscriber: self)
     }
 
     /**
