@@ -23,7 +23,7 @@ Caravel.getDefault().register("Int", function(name, data) {
 });
 
 Caravel.getDefault().register("Float", function(name, data) {
-    if (data == 19.92) {
+    if (data.toFixed(2) == 19.92) {
         ok(name);
     } else {
         fail(name, data);
@@ -39,7 +39,7 @@ Caravel.getDefault().register("Double", function(name, data) {
 });
 
 Caravel.getDefault().register("Array", function(name, data) {
-    if (data == [1, 2, 3, 5]) {
+    if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
         ok(name);
     } else {
         fail(name, data);
@@ -47,7 +47,7 @@ Caravel.getDefault().register("Array", function(name, data) {
 });
 
 Caravel.getDefault().register("Dictionary", function(name, data) {
-    if (data == { foo: 45, bar: 89 }) {
+    if (JSON.stringify(data) == JSON.stringify({ foo: 45, bar: 89 })) {
         ok(name);
     } else {
         fail(name, data);
