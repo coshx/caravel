@@ -22,6 +22,9 @@
 		A797628D1B198B98006D94CB /* event_name.html in Resources */ = {isa = PBXBuildFile; fileRef = A797628C1B198B98006D94CB /* event_name.html */; };
 		A797628F1B198B9F006D94CB /* event_name.js in Resources */ = {isa = PBXBuildFile; fileRef = A797628E1B198B9F006D94CB /* event_name.js */; };
 		A79762911B198BA7006D94CB /* EventNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79762901B198BA7006D94CB /* EventNameController.swift */; };
+		A79762931B19904C006D94CB /* EventDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79762921B19904C006D94CB /* EventDataController.swift */; };
+		A79762951B199541006D94CB /* event_data.js in Resources */ = {isa = PBXBuildFile; fileRef = A79762941B199541006D94CB /* event_data.js */; };
+		A79762971B19954A006D94CB /* event_data.html in Resources */ = {isa = PBXBuildFile; fileRef = A79762961B19954A006D94CB /* event_data.html */; };
 		A7C868FB1B18CDCA0070AF5A /* caravel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C868FA1B18CDCA0070AF5A /* caravel.min.js */; };
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
@@ -61,6 +64,9 @@
 		A797628C1B198B98006D94CB /* event_name.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = event_name.html; path = html/event_name.html; sourceTree = "<group>"; };
 		A797628E1B198B9F006D94CB /* event_name.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = event_name.js; path = js/event_name.js; sourceTree = "<group>"; };
 		A79762901B198BA7006D94CB /* EventNameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNameController.swift; sourceTree = "<group>"; };
+		A79762921B19904C006D94CB /* EventDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDataController.swift; sourceTree = "<group>"; };
+		A79762941B199541006D94CB /* event_data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = event_data.js; path = js/event_data.js; sourceTree = "<group>"; };
+		A79762961B19954A006D94CB /* event_data.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = event_data.html; path = html/event_data.html; sourceTree = "<group>"; };
 		A7C868FA1B18CDCA0070AF5A /* caravel.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = caravel.min.js; path = js/caravel.min.js; sourceTree = "<group>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 		A7C868F81B18CC8D0070AF5A /* html */ = {
 			isa = PBXGroup;
 			children = (
+				A79762961B19954A006D94CB /* event_data.html */,
 				A797628C1B198B98006D94CB /* event_name.html */,
 				A75AD40A1B191C8000404C06 /* two_buses.html */,
 				A75AD4041B191A1800404C06 /* two_events.html */,
@@ -113,6 +120,7 @@
 		A7C868F91B18CDC20070AF5A /* js */ = {
 			isa = PBXGroup;
 			children = (
+				A79762941B199541006D94CB /* event_data.js */,
 				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A797628E1B198B9F006D94CB /* event_name.js */,
 				A7C868FA1B18CDCA0070AF5A /* caravel.min.js */,
@@ -160,6 +168,7 @@
 				A75AD4001B19182F00404C06 /* TwoEventController.swift */,
 				A75AD4061B191ADF00404C06 /* TwoBusController.swift */,
 				A79762901B198BA7006D94CB /* EventNameController.swift */,
+				A79762921B19904C006D94CB /* EventDataController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -270,11 +279,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75AD40B1B191C8000404C06 /* two_buses.html in Resources */,
+				A79762951B199541006D94CB /* event_data.js in Resources */,
 				A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */,
 				A797628D1B198B98006D94CB /* event_name.html in Resources */,
 				A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */,
 				A75AD3FD1B1917BE00404C06 /* multiple_subscribers.html in Resources */,
 				A7C868FB1B18CDCA0070AF5A /* caravel.min.js in Resources */,
+				A79762971B19954A006D94CB /* event_data.html in Resources */,
 				A75AD4051B191A1800404C06 /* two_events.html in Resources */,
 				A7F1DE331B18045C001E9B94 /* LaunchScreen.xib in Resources */,
 				A75AD4031B191A1400404C06 /* two_events.js in Resources */,
@@ -307,6 +318,7 @@
 				A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */,
 				A79762911B198BA7006D94CB /* EventNameController.swift in Sources */,
 				A75AD4071B191ADF00404C06 /* TwoBusController.swift in Sources */,
+				A79762931B19904C006D94CB /* EventDataController.swift in Sources */,
 				A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */,
 				A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */,
 				A75AD4011B19182F00404C06 /* TwoEventController.swift in Sources */,

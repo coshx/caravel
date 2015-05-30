@@ -5,6 +5,55 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Event Data Controller-->
+        <scene sceneID="RG4-wY-QtO">
+            <objects>
+                <viewController id="Qsc-En-kEA" customClass="EventDataController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qv8-DX-PRx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kqi-5X-dnc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Jt-n9-wJt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2az-Tz-uuL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="MnO-hR-aMC">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="mW9-8i-Ukk">
+                                            <connections>
+                                                <segue destination="h11-Jr-oMe" kind="unwind" unwindAction="unwind:" id="hjs-Tb-rA3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqB-Ih-kah">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2az-Tz-uuL" firstAttribute="leading" secondItem="6Jt-n9-wJt" secondAttribute="leadingMargin" constant="-16" id="DZh-dY-jxk"/>
+                            <constraint firstItem="2az-Tz-uuL" firstAttribute="top" secondItem="6Jt-n9-wJt" secondAttribute="topMargin" id="O7B-B9-Dtv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2az-Tz-uuL" secondAttribute="trailing" constant="-16" id="OHR-st-dyF"/>
+                            <constraint firstItem="Kqi-5X-dnc" firstAttribute="top" secondItem="nqB-Ih-kah" secondAttribute="bottom" id="T0U-KL-a26"/>
+                            <constraint firstItem="nqB-Ih-kah" firstAttribute="leading" secondItem="6Jt-n9-wJt" secondAttribute="leadingMargin" constant="-16" id="e0s-CO-5Tg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nqB-Ih-kah" secondAttribute="trailing" constant="-16" id="l0h-L1-U9v"/>
+                            <constraint firstItem="nqB-Ih-kah" firstAttribute="top" secondItem="2az-Tz-uuL" secondAttribute="bottom" id="q5q-zX-0Kg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="nqB-Ih-kah" id="ecc-la-tXT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="05f-9A-d0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="h11-Jr-oMe" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-239" y="-480"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -75,6 +124,15 @@
                                 </state>
                                 <connections>
                                     <segue destination="lqk-PC-cHu" kind="showDetail" id="3qT-Xl-1Wc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-E7-ydu">
+                                <rect key="frame" x="55" y="242" width="74" height="30"/>
+                                <state key="normal" title="Event data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Qsc-En-kEA" kind="showDetail" id="Hcu-hi-9B7"/>
                                 </connections>
                             </button>
                         </subviews>
