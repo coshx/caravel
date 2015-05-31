@@ -99,7 +99,7 @@ func post(eventName: String)
 func post(eventName: String, data: AnyObject)
 ```
 
-**NB:** Caravel is smart enough for serializing nested objects. However, this works only if they belong to the supported types.
+**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary). However, this serialization only works if nested types are belong the supported ones.
 
 ```swift
 /**
