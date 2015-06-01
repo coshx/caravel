@@ -1,5 +1,7 @@
 # Caravel
 
+[![CocoaPods](https://img.shields.io/cocoapods/v/AFNetworking.svg?style=flat-square)](https://cocoapods.org/pods/Caravel)
+
 **An event bus for sending messages between UIWebView and embedded JS. Made with pure Swift.**
 
 ## Features
