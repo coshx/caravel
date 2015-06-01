@@ -6,7 +6,7 @@
 
 * Easy event bus system
 * Supports `Bool`, `Int`, `Float`, `Double`, `String`, `NSArray` and `NSDictionary` data from iOS
-* Supports integer, float, double and string data from Javascript
+* Supports integer, float, double and string data from JavaScript
 * Multiple bus support
 * `When Ready` event: do not miss any event from your lovely Swift controller!
 
@@ -99,7 +99,7 @@ func post(eventName: String)
 func post(eventName: String, data: AnyObject)
 ```
 
-**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary). However, this serialization only works if nested types are belong the supported ones.
+**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary). However, this serialization only works if nested types are supported ones.
 
 ```swift
 /**
