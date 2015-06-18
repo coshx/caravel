@@ -29,7 +29,7 @@ class Caravel
 
   # Internal method only. Called by iOS part for triggering events on the bus
   raise: (name, data) ->
-    if data instanceof Array or data instanceof Object
+    if data instanceof Array or data instanceof Object or (typeof data == "string" or data instanceof String)
       # Data are already parsed, nothing to do
       parsedData = data
     else

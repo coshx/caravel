@@ -184,7 +184,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
     * Posts event with an extra float
     */
     public func post(eventName: String, aFloat: Float) {
-        _post(eventName, eventData: aFloat, type: .Double)
+        _post(eventName, eventData: aFloat, type: .Float)
+    }
+    
+    /**
+    * Posts event with an extra string
+    */
+    public func post(eventName: String, aString: String) {
+        _post(eventName, eventData: aString, type: .String)
     }
     
     /**

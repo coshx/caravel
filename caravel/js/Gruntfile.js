@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var version = '0.1.1';
+    var version = '0.2.0';
 
     // Project configuration
     grunt.initConfig({
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         coffeelint: {
             dist: {
                 options: {
-
+                    configFile: 'config/coffeelint-config.json'
                 },
                 files: {
                     src: [ 'caravel.coffee' ]

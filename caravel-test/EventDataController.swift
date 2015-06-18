@@ -22,6 +22,7 @@ public class EventDataController: UIViewController {
             bus.post("Int", anInt: 42)
             bus.post("Float", aFloat: 19.92)
             bus.post("Double", aDouble: 20.15)
+            bus.post("String", aString: "Churchill")
             bus.post("Array", anArray: [1, 2, 3, 5])
             bus.post("Dictionary", aDictionary: ["foo": 45, "bar": 89])
             bus.post("ComplexArray", anArray: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
