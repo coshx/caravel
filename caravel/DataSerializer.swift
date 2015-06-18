@@ -32,6 +32,8 @@ internal class DataSerializer {
             output = "\(f)"
         case .String:
             var s = input as! String
+            s = s.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions(), range: nil)
+            s = s.stringByReplacingOccurrencesOfString("'", withString: "\'", options: NSStringCompareOptions(), range: nil)
             output = "\"\(s)\""
         case .Array, .Dictionary:
             // Array and Dictionary are serialized to JSON.

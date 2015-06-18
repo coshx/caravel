@@ -46,6 +46,14 @@ Caravel.getDefault().register("String", function(name, data) {
     }
 });
 
+Caravel.getDefault().register("HazardousString", function(name, data) {
+    if (data == "There is a \" and a '") {
+        ok(name);
+    } else {
+        fail(name, data);
+    }
+});
+
 Caravel.getDefault().register("Array", function(name, data) {
     if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
         ok(name);
