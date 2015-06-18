@@ -38,6 +38,14 @@ Caravel.getDefault().register("Double", function(name, data) {
     }
 });
 
+Caravel.getDefault().register("String", function(name, data) {
+    if (data == "Churchill") {
+        ok(name);
+    } else {
+        fail(name, data);
+    }
+});
+
 Caravel.getDefault().register("Array", function(name, data) {
     if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
         ok(name);
@@ -53,3 +61,8 @@ Caravel.getDefault().register("Dictionary", function(name, data) {
         fail(name, data);
     }
 });
+
+Caravel.getDefault().post("Int", 987);
+Caravel.getDefault().post("Float", 19.89);
+Caravel.getDefault().post("Double", 15.15);
+Caravel.getDefault().post("String", "Napoleon");
