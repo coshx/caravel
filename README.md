@@ -7,10 +7,22 @@
 ## Features
 
 * Easy event bus system
-* Supports `Bool`, `Int`, `Float`, `Double`, `String`, `NSArray` and `NSDictionary` data from iOS
-* Supports integer, float, double and string data from JavaScript
 * Multiple bus support
 * `When Ready` event: do not miss any event from your lovely Swift controller!
+* iOS ~> JavaScript supported types:
+  - `Bool`
+  - `Int`
+  - `Float`
+  - `Double`
+  - `String`
+  - `NSArray`
+  - `NSDictionary`
+* JavaScript ~> iOS supported types:
+  - `Int`
+  - `Double`
+  - `String`
+  - `Array`
+  - `Object`
 
 ## Installation
 
@@ -98,10 +110,10 @@ func post(eventName: String)
 /**
  * Posts event with extra data
  */
-func post(eventName: String, data: AnyObject)
+func post(eventName: String, anObject: AnyObject)
 ```
 
-**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary). However, this serialization only works if nested types are supported ones.
+**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary) when posting an event. However, this serialization only works if nested types are supported ones.
 
 ```swift
 /**
@@ -109,6 +121,8 @@ func post(eventName: String, data: AnyObject)
  */
 func register(eventName: String, callback: (String, AnyObject?) -> Void)
 ```
+
+When receiving an event, you have to cast your data to the type you except. This cast is safe.
 
 ### JS - Caravel class
 

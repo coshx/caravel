@@ -13,7 +13,11 @@ class Caravel
     # TODO: Improve that code using an AJAX request
     iframe = document.createElement 'iframe'
     src = "caravel@#{@name}@#{eventName}"
-    src += "@#{data}" if data?
+    if data?
+      if data instanceof Array or data instanceof Object
+        src += "@#{JSON.stringify(data)}"
+      else
+        src += "@#{data}"
     iframe.setAttribute 'src', src
     document.documentElement.appendChild iframe
     iframe.parentNode.removeChild iframe

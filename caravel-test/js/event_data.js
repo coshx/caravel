@@ -74,3 +74,5 @@ Caravel.getDefault().post("Int", 987);
 Caravel.getDefault().post("Float", 19.89);
 Caravel.getDefault().post("Double", 15.15);
 Caravel.getDefault().post("String", "Napoleon");
+Caravel.getDefault().post("Array", [3, 1, 4]);
+Caravel.getDefault().post("Dictionary", { "movie": "Once upon a time in the West", "actor": "Charles Bronson" });

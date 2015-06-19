@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "Caravel"
-  s.version      = "0.2.1"
+  s.version      = "0.3.0"
   s.summary      = "A Swift event bus for UIWebView and JS"
 
   s.description  = <<-DESC
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/coshx/caravel.git", :tag => "v0.2.1" }
+  s.source       = { :git => "https://github.com/coshx/caravel.git", :tag => "v0.3.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

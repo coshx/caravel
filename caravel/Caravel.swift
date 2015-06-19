@@ -61,7 +61,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
         var data: String?
         
         if let d: AnyObject = eventData {
-            data = DataSerializer.run(d, type: type!)
+            data = DataSerializer.serialize(d, type: type!)
         } else {
             data = "null"
         }
@@ -115,7 +115,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                         var eventData: AnyObject? = nil
                         
                         if args.count > 3 { // Arg is optional
-                            eventData = args[3]
+                            eventData = DataSerializer.deserialize(args[3])
                         }
                         
                         for s in _subscribers {
