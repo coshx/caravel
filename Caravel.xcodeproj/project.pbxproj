@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC9F271B3493EB0041EB0B /* StringExtension.swift */; };
 		A7F1DD981B17D957001E9B94 /* caravel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F1DD971B17D957001E9B94 /* caravel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F1DD9E1B17D958001E9B94 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1DD921B17D957001E9B94 /* Caravel.framework */; };
 		A7F1DDA51B17D958001E9B94 /* caravelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDA41B17D958001E9B94 /* caravelTests.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7AC9F271B3493EB0041EB0B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = utils/StringExtension.swift; sourceTree = "<group>"; };
 		A7F1DD921B17D957001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DD961B17D957001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DD971B17D957001E9B94 /* caravel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = caravel.h; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7AC9F261B3493CA0041EB0B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				A7AC9F271B3493EB0041EB0B /* StringExtension.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		A7F1DD881B17D957001E9B94 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 		A7F1DD941B17D957001E9B94 /* caravel */ = {
 			isa = PBXGroup;
 			children = (
+				A7AC9F261B3493CA0041EB0B /* utils */,
 				A7F1DDAE1B17D989001E9B94 /* Caravel.swift */,
 				A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */,
 				A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */,
@@ -228,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7F1DDB31B17D989001E9B94 /* Subscriber.swift in Sources */,
+				A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */,
 				A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateMediator.swift in Sources */,
 				A7F1DDBA1B17E6F5001E9B94 /* SupportedType.swift in Sources */,
 				A7F1DDB81B17E5F8001E9B94 /* DataSerializer.swift in Sources */,

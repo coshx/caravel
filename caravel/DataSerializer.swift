@@ -14,7 +14,7 @@ import Foundation
  */
 internal class DataSerializer {
     
-    internal static func run(input: AnyObject, type: SupportedType) -> String {
+    internal static func serialize(input: AnyObject, type: SupportedType) -> String {
         var output: String?
         
         switch (type) {
@@ -44,5 +44,26 @@ internal class DataSerializer {
         }
         
         return output!
+    }
+    
+    internal static func deserialize(input: String) -> AnyObject {
+        if count(input) > 0 {
+            if input[0] == "[" || input[0] == "{" {
+                var json = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+                return NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions(), error: NSErrorPointer())!
+            }
+            
+            // To investigate if the input is a number (int or double),
+            // we check if the first char is a digit or no
+            if let isANumber = input[0].toInt() {
+                if let i = input.toInt() {
+                    return i
+                } else {
+                    return (input as NSString).doubleValue
+                }
+            }
+        }
+        
+        return input
     }
 }
