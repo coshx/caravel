@@ -22,7 +22,7 @@ internal class ArgumentParser {
             var keyValue = p.componentsSeparatedByString("=")
             if keyValue[0] == "busName" {
                 outcome.busName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-            } else if keyValue[1] == "eventName" {
+            } else if keyValue[0] == "eventName" {
                 outcome.eventName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             } else {
                 outcome.eventData = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
