@@ -52,7 +52,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05f-9A-d0q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="h11-Jr-oMe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-239" y="-480"/>
+            <point key="canvasLocation" x="-319" y="-1056"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -135,6 +135,15 @@
                                     <segue destination="Qsc-En-kEA" kind="showDetail" id="Hcu-hi-9B7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ha8-yX-1Hb">
+                                <rect key="frame" x="181" y="242" width="109" height="30"/>
+                                <state key="normal" title="Hazardous data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hBq-wc-NIK" kind="showDetail" id="Hfl-em-4N5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -195,7 +204,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2v-iD-5yN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="bzb-zR-YuT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="971" y="181"/>
+            <point key="canvasLocation" x="1579" y="453"/>
         </scene>
         <!--Two Bus Controller-->
         <scene sceneID="WCS-7T-EvD">
@@ -244,7 +253,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWr-Z7-F2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fzN-nE-3KF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="538" y="1036"/>
+            <point key="canvasLocation" x="-86" y="1684"/>
         </scene>
         <!--Event Name Controller-->
         <scene sceneID="ESZ-7I-jb3">
@@ -293,7 +302,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjb-5n-d2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Qfq-Te-Aqy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="946"/>
+            <point key="canvasLocation" x="1560" y="1818"/>
+        </scene>
+        <!--Hazardous Data Controller-->
+        <scene sceneID="Gjo-zd-yvc">
+            <objects>
+                <viewController id="hBq-wc-NIK" customClass="HazardousDataController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F9r-Zu-rUw"/>
+                        <viewControllerLayoutGuide type="bottom" id="r65-bV-fmp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gff-Ns-WEd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPW-0W-xy9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="EL8-kB-Vo7">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="sQj-tL-8WG">
+                                            <connections>
+                                                <segue destination="AoS-0h-QiE" kind="unwind" unwindAction="unwind:" id="F3Y-xT-dfG"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBO-Qp-dcZ">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r65-bV-fmp" firstAttribute="top" secondItem="NBO-Qp-dcZ" secondAttribute="bottom" id="5GB-4J-PaA"/>
+                            <constraint firstItem="uPW-0W-xy9" firstAttribute="top" secondItem="gff-Ns-WEd" secondAttribute="topMargin" id="FXi-6d-dH4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uPW-0W-xy9" secondAttribute="trailing" constant="-16" id="JFz-3K-3LC"/>
+                            <constraint firstItem="NBO-Qp-dcZ" firstAttribute="top" secondItem="uPW-0W-xy9" secondAttribute="bottom" id="Zwl-G0-Ubd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NBO-Qp-dcZ" secondAttribute="trailing" constant="-16" id="iVB-dp-1XZ"/>
+                            <constraint firstItem="NBO-Qp-dcZ" firstAttribute="leading" secondItem="gff-Ns-WEd" secondAttribute="leadingMargin" constant="-16" id="knt-NI-xnH"/>
+                            <constraint firstItem="uPW-0W-xy9" firstAttribute="leading" secondItem="gff-Ns-WEd" secondAttribute="leadingMargin" constant="-16" id="wJQ-xx-ocH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="_webView" destination="NBO-Qp-dcZ" id="5q5-Ec-Hbl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xlp-fk-QV9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AoS-0h-QiE" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1373" y="-656"/>
         </scene>
         <!--Two Event Controller-->
         <scene sceneID="PpM-Vf-bCh">
@@ -342,7 +400,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPI-Uw-BsQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="f0T-jy-chR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-166" y="1130"/>
+            <point key="canvasLocation" x="-1390" y="1722"/>
         </scene>
         <!--Initialization Controller-->
         <scene sceneID="gwb-lI-Hdz">
@@ -391,7 +449,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgJ-XM-d4b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xhC-pK-8CV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1285" y="-552"/>
+            <point key="canvasLocation" x="1829" y="-1104"/>
         </scene>
         <!--Basic Triggering Controller-->
         <scene sceneID="B7P-jf-kp0">
@@ -440,7 +498,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRo-xx-F0v" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gaY-MF-K2P" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="551" y="-552"/>
+            <point key="canvasLocation" x="575" y="-1128"/>
         </scene>
     </scenes>
 </document>

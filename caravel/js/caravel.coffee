@@ -12,12 +12,12 @@ class Caravel
   _post: (eventName, data) ->
     # TODO: Improve that code using an AJAX request
     iframe = document.createElement 'iframe'
-    src = "caravel@#{@name}@#{eventName}"
+    src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
     if data?
       if data instanceof Array or data instanceof Object
-        src += "@#{JSON.stringify(data)}"
+        src += "&eventData=#{encodeURIComponent(JSON.stringify(data))}"
       else
-        src += "@#{data}"
+        src += "&eventData=#{encodeURIComponent(data)}"
     iframe.setAttribute 'src', src
     document.documentElement.appendChild iframe
     iframe.parentNode.removeChild iframe

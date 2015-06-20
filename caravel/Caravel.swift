@@ -89,18 +89,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * int, float, double, string
      */
     public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let lastPathComponent: String = request.URL?.lastPathComponent {
-            
-            // The last path of the URL needs to contains at least the "caravel" word
-            if count(lastPathComponent) > count("caravel") && (lastPathComponent as NSString).substringToIndex(count("caravel")) == "caravel" {
-                var args = ArgumentParser.parse(lastPathComponent)
-                var busName = args[1]
-                var eventName = args[2]
+        if let scheme: String = request.URL?.scheme {
+            if scheme == "caravel" {
+                var args = ArgumentParser.parse(request.URL!.query!)
                 
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
-                if _name == busName {
-                    if eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
+                if _name == args.busName {
+                    if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
                         objc_sync_enter(_initializationLock)
                         _isInitialized = true
                         
@@ -114,14 +110,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
                     } else {
                         var eventData: AnyObject? = nil
                         
-                        if args.count > 3 { // Arg is optional
-                            eventData = DataSerializer.deserialize(args[3])
+                        if let d = args.eventData { // Data are optional
+                            eventData = DataSerializer.deserialize(d)
                         }
                         
                         for s in _subscribers {
-                            if s.name == eventName {
+                            if s.name == args.eventName {
                                 dispatch_async(dispatch_get_main_queue()) {
-                                    s.callback(eventName, eventData)
+                                    s.callback(args.eventName, eventData)
                                 }
                             }
                         }
