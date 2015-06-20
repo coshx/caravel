@@ -3,6 +3,9 @@ function ok(name) {
 }
 
 function fail(name, data) {
+    if ((data instanceof Array) || (data instanceof Object)) {
+        data = JSON.stringify(data);
+    }
     $('body').append('<p>Failed for ' + name + ': received ' + data + '</p>');
 }
 
@@ -56,6 +59,22 @@ Caravel.getDefault().register("HazardousString", function(name, data) {
 
 Caravel.getDefault().register("Array", function(name, data) {
     if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
+        ok(name);
+    } else {
+        fail(name, data);
+    }
+});
+
+Caravel.getDefault().register("ComplexArray", function(name, data) {
+    if (JSON.stringify(data) == JSON.stringify([{name: "Alice", age: 24}, {name: "Bob", age: 23}])) {
+        ok(name);
+    } else {
+        fail(name, data);
+    }
+});
+
+Caravel.getDefault().register("ComplexDictionary", function(name, data) {
+    if (JSON.stringify(data) == JSON.stringify({name: "Cesar", address: { street: "Parrot", city: "Perigueux" }, games: ["Fifa", "Star Wars"]})) {
         ok(name);
     } else {
         fail(name, data);
