@@ -22,10 +22,10 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     /**
      * All the subscribers. They are sorted by webview's hash
      */
-    private lazy var _webViews: [Int: [UIWebViewDelegate]] = [Int: [UIWebViewDelegate]]()
+    private lazy var _webViewSubscribers: [Int: [UIWebViewDelegate]] = [Int: [UIWebViewDelegate]]()
     
     private func iterateOverDelegates(webView: UIWebView, callback: (UIWebViewDelegate) -> Void) {
-        var array = UIWebViewDelegateMediator._singleton._webViews[webView.hash]!
+        var array = UIWebViewDelegateMediator._singleton._webViewSubscribers[webView.hash]!
         
         for e in array {
             callback(e)
@@ -38,16 +38,16 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
             var delegates = [UIWebViewDelegate]()
             
             delegates.append(webView.delegate!)
-            _singleton._webViews[webView.hash] = delegates
+            _singleton._webViewSubscribers[webView.hash] = delegates
             
             webView.delegate = _singleton
         } else if webView.delegate == nil {
             // No delegate, just initialize
-            _singleton._webViews[webView.hash] = [UIWebViewDelegate]()
+            _singleton._webViewSubscribers[webView.hash] = [UIWebViewDelegate]()
             webView.delegate = _singleton
         }
         
-        _singleton._webViews[webView.hash]!.append(subscriber)
+        _singleton._webViewSubscribers[webView.hash]!.append(subscriber)
     }
     
     // About methods below:

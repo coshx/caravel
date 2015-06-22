@@ -83,7 +83,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
     
     /**
      * Caravel expects the following pattern:
-     * caravel@bus_name@event_name@extra_arg
+     * caravel://host.com?busName=*&eventName=*&eventData=*
      *
      * Followed argument types are supported:
      * int, float, double, string
