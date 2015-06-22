@@ -65,27 +65,53 @@ Caravel.getDefault().register("Array", function(name, data) {
     }
 });
 
-Caravel.getDefault().register("ComplexArray", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify([{name: "Alice", age: 24}, {name: "Bob", age: 23}])) {
-        ok(name);
-    } else {
-        fail(name, data);
-    }
-});
-
-Caravel.getDefault().register("ComplexDictionary", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify({name: "Cesar", address: { street: "Parrot", city: "Perigueux" }, games: ["Fifa", "Star Wars"]})) {
-        ok(name);
-    } else {
-        fail(name, data);
-    }
-});
-
 Caravel.getDefault().register("Dictionary", function(name, data) {
     if (JSON.stringify(data) == JSON.stringify({ foo: 45, bar: 89 })) {
         ok(name);
     } else {
         fail(name, data);
+    }
+});
+
+Caravel.getDefault().register("ComplexArray", function(name, data) {
+    var expectedData = [{name: "Alice", age: 24}, {name: "Bob", age: 23}];
+    var customFail = function() {
+        fail(name, data);
+    };
+
+    if (data.length == 2) {
+        if (data[0].name == expectedData[0].name && data[0].age == expectedData[0].age) {
+            if (data[1].name == expectedData[1].name && data[1].age == expectedData[1].age) {
+                ok(name);
+            } else {
+                customFail();
+            }
+        } else {
+            customFail();
+        }
+    } else {
+        customFail();
+    }
+});
+
+Caravel.getDefault().register("ComplexDictionary", function(name, data) {
+    var expectedData = {name: "Cesar", address: { street: "Parrot", city: "Perigueux" }, games: ["Fifa", "Star Wars"]};
+    var customFail = function() {
+        fail(name, data);
+    };
+
+    if (data.name == expectedData.name) {
+        if (data.address.street == expectedData.address.street && data.address.city == expectedData.address.city) {
+            if (data.length == expectedData.length && data.games[0] == expectedData.games[0] && data.games[1] == expectedData.games[1]) {
+                ok(name);
+            } else {
+                customFail();
+            }
+        } else {
+            customFail();
+        }
+    } else {
+        customFail();
     }
 });
 
