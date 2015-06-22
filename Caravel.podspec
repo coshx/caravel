@@ -15,8 +15,10 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
+  version = "0.3.3"
+
   s.name         = "Caravel"
-  s.version      = "0.3.2"
+  s.version      = version
   s.summary      = "A Swift event bus for UIWebView and JS"
 
   s.description  = <<-DESC
@@ -73,7 +75,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/coshx/caravel.git", :tag => "v0.3.2" }
+  s.source       = { :git => "https://github.com/coshx/caravel.git", :tag => "v#{version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

@@ -107,6 +107,57 @@ public class EventDataController: UIViewController {
                     self._raise("Dictionary - bad type")
                 }
             }
+            
+            bus.register("ComplexArray") { name, data in
+                if let a = data as? NSArray {
+                    if a.count != 3 {
+                        self._raise("ComplexArray - bad length")
+                    }
+                    if a[0] as! Int != 87 {
+                        self._raise("ComplexArray - bad first element")
+                    }
+                    if let d = a[1] as? NSDictionary {
+                        if d.valueForKey("name") as! String != "Bruce Willis" {
+                            self._raise("ComplexArray - bad second element")
+                        }
+                    } else {
+                        self._raise("ComplexArray - bad typed second element")
+                    }
+                    if a[2] as! String != "left-handed" {
+                        self._raise("ComplexArray - bad third element")
+                    }
+                } else {
+                    self._raise("ComplexArray - bad type")
+                }
+            }
+            
+            bus.register("ComplexDictionary") { name, data in
+                if let d = data as? NSDictionary {
+                    if d.valueForKey("name") as! String != "John Malkovich" {
+                        self._raise("ComplexDictionary - bad first pair")
+                    }
+                    
+                    if let a = d.valueForKey("movies") as? NSArray {
+                        if a.count != 2 {
+                            self._raise("ComplexDictionary - bad length")
+                        }
+                        if a[0] as! String != "Dangerous Liaisons" {
+                            self._raise("ComplexDictionary - bad first element in array")
+                        }
+                        if a[1] as! String != "Burn after reading" {
+                            self._raise("ComplexDictionary - bad second element in array")
+                        }
+                    } else {
+                        self._raise("ComplexDictionary - bad typed second element")
+                    }
+                    
+                    if d.valueForKey("kids") as! Int != 2 {
+                        self._raise("ComplexDictionary - bad third pair")
+                    }
+                } else {
+                    self._raise("ComplexDictionary - bad type")
+                }
+            }
         }
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("event_data", withExtension: "html")!))

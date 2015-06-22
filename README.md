@@ -21,8 +21,8 @@
   - `Int`
   - `Double`
   - `String`
-  - `Array`
-  - `Object`
+  - `Array` (available as a `NSArray`)
+  - `Object` (available as a `NSDictionary`)
 
 ## Installation
 
