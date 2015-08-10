@@ -31,10 +31,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
     
     
     /**
-    * Tells if bus has received the init event from JS
-    */
+     * Denotes if the bus has received the init event from JS
+     */
     private var _isInitialized: Bool
-    private var _initializationLock = NSObject()
+    
+    // Multithreading locks
+    private final var _initializationLock = NSObject()
+    private static var _defaultInitLock = NSObject()
+    private static var _namedBusInitLock = NSObject()
     
     /**
      * Pending initialization subscribers
@@ -236,12 +240,23 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Returns the default bus
      */
     public static func getDefault(webView: UIWebView) -> Caravel {
+        let getExisting = { () -> Caravel in
+            self._default!.setWebView(webView)
+            return self._default!
+        }
+        
         if let d = _default {
-            d.setWebView(webView)
-            return d
+            return getExisting()
         } else {
-            _default = Caravel(name: "default", webView: webView)
-            return _default!
+            objc_sync_enter(Caravel._defaultInitLock)
+            if _default == nil {
+                _default = Caravel(name: "default", webView: webView)
+                objc_sync_exit(Caravel._defaultInitLock)
+                return _default!
+            } else {
+                objc_sync_exit(Caravel._defaultInitLock)
+                return getExisting()
+            }
         }
     }
     
@@ -252,18 +267,31 @@ public class Caravel: NSObject, UIWebViewDelegate {
         if name == "default" {
             return getDefault(webView)
         } else {
-            var newBus: Caravel?
-            
-            for b in _buses {
-                if b.name == name {
-                    b.setWebView(webView)
-                    return b
+            let getExisting = { () -> Caravel? in
+                for b in self._buses {
+                    if b.name == name {
+                        b.setWebView(webView)
+                        return b
+                    }
                 }
+                
+                return nil
             }
             
-            newBus = Caravel(name: name, webView: webView)
-            _buses.append(newBus!)
-            return newBus!
+            if let bus = getExisting() {
+                return bus
+            } else {
+                objc_sync_enter(Caravel._namedBusInitLock)
+                if let bus = getExisting() {
+                    objc_sync_exit(Caravel._namedBusInitLock)
+                    return bus
+                } else {
+                    var newBus = Caravel(name: name, webView: webView)
+                    _buses.append(newBus)
+                    objc_sync_exit(Caravel._namedBusInitLock)
+                    return newBus
+                }
+            }
         }
     }
 }
