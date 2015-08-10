@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var version = '0.3.3';
+    var version = '0.3.4';
 
     // Project configuration
     grunt.initConfig({
@@ -45,6 +45,7 @@ module.exports = function (grunt) {
                     atBegin: true,
                     interrupt: true
                 },
+                tasks: ['coffee'],
                 files: '*.coffee'
             }
         }

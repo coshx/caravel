@@ -10,7 +10,8 @@ class Caravel
 
   # Internal method for posting
   _post: (eventName, data) ->
-    # TODO: Improve that code using an AJAX request
+    # shouldLoadRequest is only triggered when a new content is required
+    # Ajax requests are useless
     iframe = document.createElement 'iframe'
     src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
     if data?

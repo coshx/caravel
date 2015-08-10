@@ -24,7 +24,7 @@ internal class ArgumentParser {
                 outcome.busName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
             } else if keyValue[0] == "eventName" {
                 outcome.eventName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-            } else {
+            } else if keyValue[0] == "eventData" {
                 outcome.eventData = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
             }
         }
