@@ -127,7 +127,6 @@ public class Caravel: NSObject, UIWebViewDelegate {
                                         i(self)
                                     }
                                 }
-                                _initializers = Array<(Caravel) -> Void>()
                             }
                             
                             objc_sync_exit(_initializationLock)
