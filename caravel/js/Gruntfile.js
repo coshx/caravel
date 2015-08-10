@@ -45,6 +45,7 @@ module.exports = function (grunt) {
                     atBegin: true,
                     interrupt: true
                 },
+                tasks: ['coffee'],
                 files: '*.coffee'
             }
         }
