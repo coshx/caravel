@@ -77,6 +77,21 @@ public class Caravel: NSObject, UIWebViewDelegate {
         }
     }
     
+    /**
+     * If the controller is resumed, the webView may have changed.
+     * Caravel has to watch this new component again
+     */
+    internal func setWebView(webView: UIWebView) {
+        if (webView.hash == _webView.hash) {
+            return
+        }
+        // whenReady() should be triggered only after a CaravelInit event
+        // has been raised (aka wait for JS before calling whenReady)
+        _isInitialized = false
+        _webView = webView
+        UIWebViewDelegateMediator.subscribe(_webView, subscriber: self)
+    }
+    
     public var name: String {
         return _name
     }
@@ -216,6 +231,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
      */
     public static func getDefault(webView: UIWebView) -> Caravel {
         if let d = _default {
+            d.setWebView(webView)
             return d
         } else {
             _default = Caravel(name: "default", webView: webView)
@@ -234,6 +250,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
             
             for b in _buses {
                 if b.name == name {
+                    b.setWebView(webView)
                     return b
                 }
             }
