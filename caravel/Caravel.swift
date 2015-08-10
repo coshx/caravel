@@ -111,17 +111,23 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
                 if _name == args.busName {
-                    if args.eventName == "CaravelInit" && !_isInitialized { // Reserved event name. Triggers whenReady
-                        objc_sync_enter(_initializationLock)
-                        _isInitialized = true
-                        
-                        for i in _initializers {
-                            dispatch_async(dispatch_get_main_queue()) {
-                                i(self)
+                    if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
+                        if (!_isInitialized) {
+                            objc_sync_enter(_initializationLock)
+                            
+                            if (!_isInitialized) {
+                                _isInitialized = true
+                                
+                                for i in _initializers {
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        i(self)
+                                    }
+                                }
+                                _initializers = Array<(Caravel) -> Void>()
                             }
+                            
+                            objc_sync_exit(_initializationLock)
                         }
-                        
-                        objc_sync_exit(_initializationLock)
                     } else {
                         var eventData: AnyObject? = nil
                         
