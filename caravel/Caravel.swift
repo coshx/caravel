@@ -96,7 +96,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
                 if _name == args.busName {
-                    if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
+                    if args.eventName == "CaravelInit" && !_isInitialized { // Reserved event name. Triggers whenReady
                         objc_sync_enter(_initializationLock)
                         _isInitialized = true
                         
