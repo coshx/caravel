@@ -122,7 +122,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
     public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if let scheme: String = request.URL?.scheme {
             if scheme == "caravel" {
-                var args = ArgumentParser.parse(request.URL!.query!)
+                let args = ArgumentParser.parse(request.URL!.query!)
                 
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
@@ -134,7 +134,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                                     self._isInitialized = true
                                 
                                     for i in self._initializers {
-                                        var index = self._onGoingInitializersId
+                                        let index = self._onGoingInitializersId
                                         
                                         self._onGoingInitializers[index] = i
                                         self._onGoingInitializersId++
@@ -315,7 +315,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                     objc_sync_exit(Caravel._namedBusInitLock)
                     return bus
                 } else {
-                    var newBus = Caravel(name: name, webView: webView)
+                    let newBus = Caravel(name: name, webView: webView)
                     _buses.append(newBus)
                     objc_sync_exit(Caravel._namedBusInitLock)
                     return newBus

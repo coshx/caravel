@@ -25,7 +25,7 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     private lazy var _webViewSubscribers: [Int: [UIWebViewDelegate]] = [Int: [UIWebViewDelegate]]()
     
     private func iterateOverDelegates(webView: UIWebView, callback: (UIWebViewDelegate) -> Void) {
-        var array = UIWebViewDelegateMediator._singleton._webViewSubscribers[webView.hash]!
+        let array = UIWebViewDelegateMediator._singleton._webViewSubscribers[webView.hash]!
         
         for e in array {
             callback(e)
@@ -53,7 +53,7 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     // About methods below:
     // All calls use safe unwrapper for those method implementations are optional
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         iterateOverDelegates(webView) { e in
             e.webView?(webView, didFailLoadWithError: error)
         }
@@ -64,7 +64,7 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
         // If any subscriber woud like t
         
         iterateOverDelegates(webView) { e in
-            var b = e.webView?(webView, shouldStartLoadWithRequest: request, navigationType: navigationType)
+            let b = e.webView?(webView, shouldStartLoadWithRequest: request, navigationType: navigationType)
             
             // If any subscriber would like to run that URL, DO NOT prevent it to do it
             shouldLoad = (b == nil) ? shouldLoad : (shouldLoad || b!)

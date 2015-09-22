@@ -242,6 +242,8 @@
 		A7F1DE1B1B18045C001E9B94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Coshx Labs";
 				TargetAttributes = {
@@ -453,6 +455,7 @@
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -467,6 +470,7 @@
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

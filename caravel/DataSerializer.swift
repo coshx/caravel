@@ -19,16 +19,16 @@ internal class DataSerializer {
         
         switch (type) {
         case .Bool:
-            var b = input as! Bool
+            let b = input as! Bool
             output = b ? "true" : "false"
         case .Int:
-            var i = input as! Int
+            let i = input as! Int
             output = "\(i)"
         case .Double:
-            var d = input as! Double
+            let d = input as! Double
             output = "\(d)"
         case .Float:
-            var f = input as! Float
+            let f = input as! Float
             output = "\(f)"
         case .String:
             var s = input as! String
@@ -39,8 +39,8 @@ internal class DataSerializer {
         case .Array, .Dictionary:
             // Array and Dictionary are serialized to JSON.
             // They should wrap only "basic" data (same types than supported ones)
-            var json = NSJSONSerialization.dataWithJSONObject(input, options: NSJSONWritingOptions(), error: NSErrorPointer())!
-            var s = NSString(data: json, encoding: NSUTF8StringEncoding)!
+            let json = try! NSJSONSerialization.dataWithJSONObject(input, options: NSJSONWritingOptions())
+            let s = NSString(data: json, encoding: NSUTF8StringEncoding)!
             output = s as String
         }
         
@@ -48,16 +48,16 @@ internal class DataSerializer {
     }
     
     internal static func deserialize(input: String) -> AnyObject {
-        if count(input) > 0 {
+        if input.characters.count > 0 {
             if input[0] == "[" || input[0] == "{" { // Array or Dictionary, matching JSON format
-                var json = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-                return NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions(), error: NSErrorPointer())!
+                let json = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+                return try! NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions())
             }
             
             // To investigate if the input is a number (int or double),
             // we check if the first char is a digit or no
-            if let isANumber = input[0].toInt() {
-                if let i = input.toInt() {
+            if let isANumber = Int(input[0]) {
+                if let i = Int(input) {
                     return i
                 } else {
                     return (input as NSString).doubleValue
