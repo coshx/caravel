@@ -15,7 +15,7 @@ import Foundation
 internal class ArgumentParser {
     
     internal class func parse(input: String) -> (busName: String, eventName: String, eventData: String?) {
-        var queryPairs = input.componentsSeparatedByString("&")
+        let queryPairs = input.componentsSeparatedByString("&")
         var outcome: (busName: String, eventName: String, eventData: String?) = (busName: "", eventName: "", eventData: nil)
         
         for p in queryPairs {
