@@ -65,23 +65,25 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Sends event to JS
      */
     private func _post(eventName: String, eventData: AnyObject?, type: SupportedType?) {
-        var toRun: String?
-        var data: String?
-        
-        if let d: AnyObject = eventData {
-            data = DataSerializer.serialize(d, type: type!)
-        } else {
-            data = "null"
-        }
-        
-        if _name == "default" {
-            toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
-        } else {
-            toRun = "Caravel.get(\"\(_name)\").raise(\"\(eventName)\", \(data!))"
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self._webView.stringByEvaluatingJavaScriptFromString(toRun!)            
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            var toRun: String?
+            var data: String?
+            
+            if let d: AnyObject = eventData {
+                data = DataSerializer.serialize(d, type: type!)
+            } else {
+                data = "null"
+            }
+            
+            if self._name == "default" {
+                toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
+            } else {
+                toRun = "Caravel.get(\"\(self._name)\").raise(\"\(eventName)\", \(data!))"
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self._webView.stringByEvaluatingJavaScriptFromString(toRun!)
+            }
         }
     }
     
@@ -129,7 +131,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 if _name == args.busName {
                     if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
                         if !_isInitialized {
-                            synchronized() {
+                            synchronized {
                                 if !self._isInitialized {
                                     self._isInitialized = true
                                 
