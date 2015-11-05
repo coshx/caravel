@@ -75,10 +75,10 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 data = "null"
             }
             
-            if self.name == "default" {
+            if self.secretName == Caravel.DEFAULT_BUS_NAME {
                 toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
             } else {
-                toRun = "Caravel.get(\"\(self.name)\").raise(\"\(eventName)\", \(data!))"
+                toRun = "Caravel.get(\"\(self.secretName)\").raise(\"\(eventName)\", \(data!))"
             }
             
             dispatch_async(dispatch_get_main_queue()) {
@@ -103,7 +103,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
     }
     
     internal func synchronized(action: () -> Void) {
-        let lock = (self.name == Caravel.DEFAULT_BUS_NAME) ? Caravel.defaultInitLock : Caravel.namedBusInitLock
+        let lock = (self.secretName == Caravel.DEFAULT_BUS_NAME) ? Caravel.defaultInitLock : Caravel.namedBusInitLock
         
         objc_sync_enter(lock)
         action()
@@ -128,10 +128,10 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
-                if self.name == args.busName {
+                if self.secretName == args.busName {
                     if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
-                        if self.isInitialized {
-                            synchronized {
+                        if !self.isInitialized {
+                            self.synchronized {
                                 if !self.isInitialized {
                                     self.isInitialized = true
                                 
@@ -186,7 +186,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 callback(self)
             }
         } else {
-            synchronized {
+            self.synchronized {
                 if self.self.isInitialized {
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(self)
