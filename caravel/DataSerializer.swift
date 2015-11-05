@@ -56,7 +56,7 @@ internal class DataSerializer {
             
             // To investigate if the input is a number (int or double),
             // we check if the first char is a digit or no
-            if let isANumber = Int(input[0]) {
+            if let _ = Int(input[0]) {
                 if let i = Int(input) {
                     return i
                 } else {

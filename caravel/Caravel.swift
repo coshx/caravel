@@ -20,68 +20,70 @@ public class Caravel: NSObject, UIWebViewDelegate {
     /**
      * Default Bus
      */
-    private static var _default: Caravel?
-    private static var _buses: [Caravel] = [Caravel]()
+    private static var defaultBus: Caravel?
+    private static var buses: [Caravel] = [Caravel]()
     
-    private var _name: String
+    private var secretName: String
     
     /**
      * Bus subscribers
      */
-    private lazy var _subscribers: [Subscriber] = [Subscriber]()
+    private lazy var subscribers: [Subscriber] = [Subscriber]()
     
     
     /**
      * Denotes if the bus has received the init event from JS
      */
-    private var _isInitialized: Bool
+    private var isInitialized: Bool
     
     // Multithreading locks
-    private static var _defaultInitLock = NSObject()
-    private static var _namedBusInitLock = NSObject()
+    private static var defaultInitLock = NSObject()
+    private static var namedBusInitLock = NSObject()
     
     /**
      * Pending initialization subscribers
      */
-    private lazy var _initializers: [(Caravel) -> Void] = []
+    private lazy var initializers: [(Caravel) -> Void] = []
     // Initializers are temporary saved in order to prevent them to be garbage
     // collected
-    private lazy var _onGoingInitializers: [Int: ((Caravel) -> Void)] = [:]
-    private lazy var _onGoingInitializersId = 0
+    private lazy var onGoingInitializers: [Int: ((Caravel) -> Void)] = [:]
+    private lazy var onGoingInitializersId = 0
     
-    private var _webView: UIWebView
+    private var webView: UIWebView
     
     private init(name: String, webView: UIWebView) {
-        self._name = name
-        self._isInitialized = false
-        self._webView = webView
+        self.secretName = name
+        self.isInitialized = false
+        self.webView = webView
         
         super.init()
         
-        UIWebViewDelegateMediator.subscribe(self._webView, subscriber: self)
+        UIWebViewDelegateMediator.subscribe(self.webView, subscriber: self)
     }
 
     /**
      * Sends event to JS
      */
-    private func _post(eventName: String, eventData: AnyObject?, type: SupportedType?) {
-        var toRun: String?
-        var data: String?
-        
-        if let d: AnyObject = eventData {
-            data = DataSerializer.serialize(d, type: type!)
-        } else {
-            data = "null"
-        }
-        
-        if _name == "default" {
-            toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
-        } else {
-            toRun = "Caravel.get(\"\(_name)\").raise(\"\(eventName)\", \(data!))"
-        }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self._webView.stringByEvaluatingJavaScriptFromString(toRun!)            
+    private func post(eventName: String, eventData: AnyObject?, type: SupportedType?) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            var toRun: String?
+            var data: String?
+            
+            if let d: AnyObject = eventData {
+                data = DataSerializer.serialize(d, type: type!)
+            } else {
+                data = "null"
+            }
+            
+            if self.secretName == Caravel.DEFAULT_BUS_NAME {
+                toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
+            } else {
+                toRun = "Caravel.get(\"\(self.secretName)\").raise(\"\(eventName)\", \(data!))"
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.webView.stringByEvaluatingJavaScriptFromString(toRun!)
+            }
         }
     }
     
@@ -90,18 +92,18 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Caravel has to watch this new component again
      */
     internal func setWebView(webView: UIWebView) {
-        if webView.hash == _webView.hash {
+        if webView.hash == self.webView.hash {
             return
         }
         // whenReady() should be triggered only after a CaravelInit event
         // has been raised (aka wait for JS before calling whenReady)
-        _isInitialized = false
-        _webView = webView
-        UIWebViewDelegateMediator.subscribe(_webView, subscriber: self)
+        self.isInitialized = false
+        self.webView = webView
+        UIWebViewDelegateMediator.subscribe(self.webView, subscriber: self)
     }
     
     internal func synchronized(action: () -> Void) {
-        let lock = (_name == Caravel.DEFAULT_BUS_NAME) ? Caravel._defaultInitLock : Caravel._namedBusInitLock
+        let lock = (self.secretName == Caravel.DEFAULT_BUS_NAME) ? Caravel.defaultInitLock : Caravel.namedBusInitLock
         
         objc_sync_enter(lock)
         action()
@@ -109,7 +111,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
     }
     
     public var name: String {
-        return _name
+        return self.secretName
     }
     
     /**
@@ -126,25 +128,25 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
-                if _name == args.busName {
+                if self.secretName == args.busName {
                     if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
-                        if !_isInitialized {
-                            synchronized() {
-                                if !self._isInitialized {
-                                    self._isInitialized = true
+                        if !self.isInitialized {
+                            self.synchronized {
+                                if !self.isInitialized {
+                                    self.isInitialized = true
                                 
-                                    for i in self._initializers {
-                                        let index = self._onGoingInitializersId
+                                    for i in self.initializers {
+                                        let index = self.onGoingInitializersId
                                         
-                                        self._onGoingInitializers[index] = i
-                                        self._onGoingInitializersId++
+                                        self.onGoingInitializers[index] = i
+                                        self.onGoingInitializersId++
                                         
                                         dispatch_async(dispatch_get_main_queue()) {
                                             i(self)
-                                            self._onGoingInitializers.removeValueForKey(index)
+                                            self.onGoingInitializers.removeValueForKey(index)
                                         }
                                     }
-                                    self._initializers = Array<(Caravel) -> Void>()
+                                    self.initializers = Array<(Caravel) -> Void>()
                                 }
                             }
                         }
@@ -155,7 +157,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                             eventData = DataSerializer.deserialize(d)
                         }
                         
-                        for s in _subscribers {
+                        for s in self.subscribers {
                             if s.name == args.eventName {
                                 dispatch_async(dispatch_get_main_queue()) {
                                     s.callback(args.eventName, eventData)
@@ -179,18 +181,18 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Returns the current bus when its JS counterpart is ready
      */
     public func whenReady(callback: (Caravel) -> Void) {
-        if _isInitialized {
+        if self.isInitialized {
             dispatch_async(dispatch_get_main_queue()) {
                 callback(self)
             }
         } else {
-            synchronized() {
-                if self._isInitialized {
+            self.synchronized {
+                if self.self.isInitialized {
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(self)
                     }
                 } else {
-                    self._initializers.append(callback)
+                    self.initializers.append(callback)
                 }
             }
         }
@@ -200,63 +202,63 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Posts event without any argument
      */
     public func post(eventName: String) {
-        _post(eventName, eventData: nil, type: nil)
+        self.post(eventName, eventData: nil, type: nil)
     }
     
     /**
     * Posts event with an extra int
     */
     public func post(eventName: String, anInt: Int) {
-        _post(eventName, eventData: anInt, type: .Int)
+        self.post(eventName, eventData: anInt, type: .Int)
     }
     
     /**
     * Posts event with an extra bool
     */
     public func post(eventName: String, aBool: Bool) {
-        _post(eventName, eventData: aBool, type: .Bool)
+        self.post(eventName, eventData: aBool, type: .Bool)
     }
     
     /**
     * Posts event with an extra double
     */
     public func post(eventName: String, aDouble: Double) {
-        _post(eventName, eventData: aDouble, type: .Double)
+        self.post(eventName, eventData: aDouble, type: .Double)
     }
     
     /**
     * Posts event with an extra float
     */
     public func post(eventName: String, aFloat: Float) {
-        _post(eventName, eventData: aFloat, type: .Float)
+        self.post(eventName, eventData: aFloat, type: .Float)
     }
     
     /**
     * Posts event with an extra string
     */
     public func post(eventName: String, aString: String) {
-        _post(eventName, eventData: aString, type: .String)
+        self.post(eventName, eventData: aString, type: .String)
     }
     
     /**
     * Posts event with an extra array
     */
     public func post(eventName: String, anArray: NSArray) {
-        _post(eventName, eventData: anArray, type: .Array)
+        self.post(eventName, eventData: anArray, type: .Array)
     }
     
     /**
     * Posts event with an extra dictionary
     */
     public func post(eventName: String, aDictionary: NSDictionary) {
-        _post(eventName, eventData: aDictionary, type: .Dictionary)
+        self.post(eventName, eventData: aDictionary, type: .Dictionary)
     }
     
     /**
      * Subscribes to provided event. Callback is run with the event's name and extra data
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
-        _subscribers.append(Subscriber(name: eventName, callback: callback))
+        self.subscribers.append(Subscriber(name: eventName, callback: callback))
     }
     
     /**
@@ -264,7 +266,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
      */
     public static func getDefault(webView: UIWebView) -> Caravel {
         let getExisting = { () -> Caravel? in
-            if let b = Caravel._default {
+            if let b = Caravel.defaultBus {
                 b.setWebView(webView)
                 return b
             } else {
@@ -276,14 +278,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
             return bus
         } else {
             // setWebView must be run within a synchronized block
-            objc_sync_enter(Caravel._defaultInitLock)
+            objc_sync_enter(Caravel.defaultInitLock)
             if let bus = getExisting() {
-                objc_sync_exit(Caravel._defaultInitLock)
+                objc_sync_exit(Caravel.defaultInitLock)
                 return bus
             } else {
-                _default = Caravel(name: Caravel.DEFAULT_BUS_NAME, webView: webView)
-                objc_sync_exit(Caravel._defaultInitLock)
-                return _default!
+                self.defaultBus = Caravel(name: Caravel.DEFAULT_BUS_NAME, webView: webView)
+                objc_sync_exit(Caravel.defaultInitLock)
+                return self.defaultBus!
             }
         }
     }
@@ -296,7 +298,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
             return getDefault(webView)
         } else {
             let getExisting = { () -> Caravel? in
-                for b in self._buses {
+                for b in self.buses {
                     if b.name == name {
                         b.setWebView(webView)
                         return b
@@ -310,14 +312,14 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 return bus
             } else {
                 // setWebView must be run within a synchronized block
-                objc_sync_enter(Caravel._namedBusInitLock)
+                objc_sync_enter(Caravel.namedBusInitLock)
                 if let bus = getExisting() {
-                    objc_sync_exit(Caravel._namedBusInitLock)
+                    objc_sync_exit(Caravel.namedBusInitLock)
                     return bus
                 } else {
                     let newBus = Caravel(name: name, webView: webView)
-                    _buses.append(newBus)
-                    objc_sync_exit(Caravel._namedBusInitLock)
+                    self.buses.append(newBus)
+                    objc_sync_exit(Caravel.namedBusInitLock)
                     return newBus
                 }
             }
