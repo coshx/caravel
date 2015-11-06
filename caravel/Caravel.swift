@@ -99,6 +99,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
         // has been raised (aka wait for JS before calling whenReady)
         self.isInitialized = false
         self.webView = webView
+        self.subscribers = []
         UIWebViewDelegateMediator.subscribe(self.webView, subscriber: self)
     }
     
