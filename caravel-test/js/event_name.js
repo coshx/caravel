@@ -1,5 +1,3 @@
-$('body').find(".js").remove();
-
 Caravel.getDefault().register("Foo", function(name, data) {
     if (name == "Foo") {
         $('body').append('<p class="js">You should see me</p>');

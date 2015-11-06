@@ -1,5 +1,3 @@
-$('body').find(".js").remove();
-
 function ok(name) {
     $('body').append('<p class="js">' + name + ' ok</p>');
 }

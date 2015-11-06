@@ -1,5 +1,3 @@
-$('body').find(".js").remove();
-
 Caravel.getDefault().register("AnEvent", function(name, data) {
     $('body').append('<p class="js">First!</p>');
 });

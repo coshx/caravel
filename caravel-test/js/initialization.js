@@ -1,5 +1,3 @@
-$('body').find(".js").remove();
-
 Caravel.getDefault().register("Before", function(name, data) {
     $('body').append('<p class="js">Before</p>');
 });

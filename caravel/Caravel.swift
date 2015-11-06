@@ -30,7 +30,6 @@ public class Caravel: NSObject, UIWebViewDelegate {
      */
     private lazy var subscribers: [Subscriber] = [Subscriber]()
     
-    
     /**
      * Denotes if the bus has received the init event from JS
      */
