@@ -12,16 +12,18 @@ class Caravel
   _post: (eventName, data) ->
     # shouldLoadRequest is only triggered when a new content is required
     # Ajax requests are useless
-    iframe = document.createElement 'iframe'
-    src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
-    if data?
-      if data instanceof Array or data instanceof Object
-        src += "&eventData=#{encodeURIComponent(JSON.stringify(data))}"
-      else
-        src += "&eventData=#{encodeURIComponent(data)}"
-    iframe.setAttribute 'src', src
-    document.documentElement.appendChild iframe
-    iframe.parentNode.removeChild iframe
+    setTimeout (() =>
+      iframe = document.createElement 'iframe'
+      src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
+      if data?
+        if data instanceof Array or data instanceof Object
+          src += "&eventData=#{encodeURIComponent(JSON.stringify(data))}"
+        else
+          src += "&eventData=#{encodeURIComponent(data)}"
+      iframe.setAttribute 'src', src
+      document.documentElement.appendChild iframe
+      iframe.parentNode.removeChild iframe
+    ), 0
 
   getName: () ->
     @name
