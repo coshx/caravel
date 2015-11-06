@@ -1,12 +1,14 @@
+$('body').find(".js").remove();
+
 function ok(name) {
-    $('body').append('<p>' + name + ' ok</p>');
+    $('body').append('<p class="js">' + name + ' ok</p>');
 }
 
 function fail(name, data) {
     if ((data instanceof Array) || (data instanceof Object)) {
         data = JSON.stringify(data);
     }
-    $('body').append('<p>Failed for ' + name + ': received ' + data + '</p>');
+    $('body').append('<p class="js">Failed for ' + name + ': received ' + data + '</p>');
 }
 
 Caravel.getDefault().register("Bool", function(name, data) {
