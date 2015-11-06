@@ -29,13 +29,14 @@
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
 		A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */; };
+		A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; };
+		A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE281B18045C001E9B94 /* AppDelegate.swift */; };
 		A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* ViewController.swift */; };
 		A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2C1B18045C001E9B94 /* Main.storyboard */; };
 		A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2F1B18045C001E9B94 /* Images.xcassets */; };
 		A7F1DE331B18045C001E9B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */; };
 		A7F1DE3F1B18045C001E9B94 /* caravel_testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE3E1B18045C001E9B94 /* caravel_testTests.swift */; };
-		A7F1DE4B1B18067F001E9B94 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1DE4A1B18067F001E9B94 /* Caravel.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,20 @@
 			remoteInfo = "caravel-test";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A7EE0BA91BEC423E00D0925C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
@@ -71,6 +86,7 @@
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
 		A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTriggeringController.swift; sourceTree = "<group>"; };
+		A7EE0BA61BEC423E00D0925C /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-gxizvdjjntycpgaiopgmjthvbutx/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7F1DE231B18045C001E9B94 /* caravel-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "caravel-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE271B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DE281B18045C001E9B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +97,6 @@
 		A7F1DE381B18045C001E9B94 /* caravel-testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "caravel-testTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE3D1B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DE3E1B18045C001E9B94 /* caravel_testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caravel_testTests.swift; sourceTree = "<group>"; };
-		A7F1DE4A1B18067F001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Caravel.framework; path = "../build/Debug-iphoneos/Caravel.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7F1DE4B1B18067F001E9B94 /* Caravel.framework in Frameworks */,
+				A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +150,7 @@
 		A7F1DE1A1B18045C001E9B94 = {
 			isa = PBXGroup;
 			children = (
-				A7F1DE4A1B18067F001E9B94 /* Caravel.framework */,
+				A7EE0BA61BEC423E00D0925C /* Caravel.framework */,
 				A7F1DE251B18045C001E9B94 /* caravel-test */,
 				A7F1DE3B1B18045C001E9B94 /* caravel-testTests */,
 				A7F1DE241B18045C001E9B94 /* Products */,
@@ -208,6 +223,7 @@
 				A7F1DE1F1B18045C001E9B94 /* Sources */,
 				A7F1DE201B18045C001E9B94 /* Frameworks */,
 				A7F1DE211B18045C001E9B94 /* Resources */,
+				A7EE0BA91BEC423E00D0925C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

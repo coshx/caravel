@@ -30,7 +30,6 @@ public class Caravel: NSObject, UIWebViewDelegate {
      */
     private lazy var subscribers: [Subscriber] = [Subscriber]()
     
-    
     /**
      * Denotes if the bus has received the init event from JS
      */
@@ -99,6 +98,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
         // has been raised (aka wait for JS before calling whenReady)
         self.isInitialized = false
         self.webView = webView
+        self.subscribers = []
         UIWebViewDelegateMediator.subscribe(self.webView, subscriber: self)
     }
     
@@ -131,24 +131,20 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 if self.secretName == args.busName {
                     if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
                         if !self.isInitialized {
-                            self.synchronized {
-                                if !self.isInitialized {
-                                    self.isInitialized = true
+                            self.isInitialized = true
+                            
+                            for i in self.initializers {
+                                let index = self.onGoingInitializersId
                                 
-                                    for i in self.initializers {
-                                        let index = self.onGoingInitializersId
-                                        
-                                        self.onGoingInitializers[index] = i
-                                        self.onGoingInitializersId++
-                                        
-                                        dispatch_async(dispatch_get_main_queue()) {
-                                            i(self)
-                                            self.onGoingInitializers.removeValueForKey(index)
-                                        }
-                                    }
-                                    self.initializers = Array<(Caravel) -> Void>()
+                                self.onGoingInitializers[index] = i
+                                self.onGoingInitializersId++
+                                
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    i(self)
+                                    self.onGoingInitializers.removeValueForKey(index)
                                 }
                             }
+                            self.initializers = Array<(Caravel) -> Void>()
                         }
                     } else {
                         var eventData: AnyObject? = nil
@@ -187,7 +183,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
             }
         } else {
             self.synchronized {
-                if self.self.isInitialized {
+                if self.isInitialized {
                     dispatch_async(dispatch_get_main_queue()) {
                         callback(self)
                     }
