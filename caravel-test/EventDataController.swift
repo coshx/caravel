@@ -73,6 +73,16 @@ public class EventDataController: UIViewController {
                 }
             }
             
+            bus.register("UUID") { name, data in
+                if let s = data as? String {
+                    if s != "9658ae60-9e0d-4da7-a63d-46fe75ff1db1" {
+                        self._raise("UUID - bad value")
+                    }
+                } else {
+                    self._raise("UUID - bad type")
+                }
+            }
+            
             bus.register("Array") { name, data in
                 if let a = data as? NSArray {
                     if a.count != 3 {
