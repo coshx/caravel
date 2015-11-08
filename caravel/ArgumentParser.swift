@@ -21,11 +21,11 @@ internal class ArgumentParser {
         for p in queryPairs {
             var keyValue = p.componentsSeparatedByString("=")
             if keyValue[0] == "busName" {
-                outcome.busName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                outcome.busName = keyValue[1].stringByRemovingPercentEncoding!
             } else if keyValue[0] == "eventName" {
-                outcome.eventName = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+                outcome.eventName = keyValue[1].stringByRemovingPercentEncoding!
             } else if keyValue[0] == "eventData" {
-                outcome.eventData = keyValue[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+                outcome.eventData = keyValue[1].stringByRemovingPercentEncoding
             }
         }
         
