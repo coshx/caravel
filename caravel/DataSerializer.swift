@@ -54,9 +54,17 @@ internal class DataSerializer {
                 return try! NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions())
             }
             
-            // To investigate if the input is a number (int or double),
-            // we check if the first char is a digit or no
-            if let _ = Int(input[0]) {
+            var isNumber = true
+            for i in 0..<input.characters.count {
+                if Int(input[i]) != nil || input[i] == "." || input[i] == "," {
+                   // Do nothing
+                } else {
+                    isNumber = false
+                    break
+                }
+            }
+            
+            if isNumber {
                 if let i = Int(input) {
                     return i
                 } else {
