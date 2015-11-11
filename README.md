@@ -18,6 +18,7 @@
   - `NSArray`
   - `NSDictionary`
 * JavaScript ~> iOS supported types:
+  - `Bool`
   - `Int`
   - `Double`
   - `String`
