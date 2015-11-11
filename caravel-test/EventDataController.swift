@@ -33,6 +33,26 @@ public class EventDataController: UIViewController {
             bus.post("ComplexArray", anArray: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
             bus.post("ComplexDictionary", aDictionary: ["name": "Cesar", "address": ["street": "Parrot", "city": "Perigueux"], "games": ["Fifa", "Star Wars"]])
             
+            bus.register("True") { name, data in
+                if let b = data as? Bool {
+                    if b != true {
+                        self._raise("True - bad value")
+                    }
+                } else {
+                    self._raise("True - bad type")
+                }
+            }
+            
+            bus.register("False") { name, data in
+                if let b = data as? Bool {
+                    if b != false {
+                        self._raise("False - bad value")
+                    }
+                } else {
+                    self._raise("False - bad type")
+                }
+            }
+            
             bus.register("Int") { name, data in
                 if let i = data as? Int {
                     if i != 987 {

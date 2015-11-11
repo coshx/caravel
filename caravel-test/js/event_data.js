@@ -115,6 +115,8 @@ Caravel.getDefault().register("ComplexDictionary", function(name, data) {
     }
 });
 
+Caravel.getDefault().post("True", true);
+Caravel.getDefault().post("False", false);
 Caravel.getDefault().post("Int", 987);
 Caravel.getDefault().post("Float", 19.89);
 Caravel.getDefault().post("Double", 15.15);

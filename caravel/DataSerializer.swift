@@ -54,6 +54,12 @@ internal class DataSerializer {
                 return try! NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions())
             }
             
+            if input == "true" {
+                return true
+            } else if input == "false" {
+                return false
+            }
+            
             var isNumber = true
             for i in 0..<input.characters.count {
                 if Int(input[i]) != nil || input[i] == "." || input[i] == "," {
