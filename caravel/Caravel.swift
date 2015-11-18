@@ -38,8 +38,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Pending initialization subscribers
      */
     private lazy var initializers: [(callback: (Caravel) -> Void, inBackground: Bool)] = []
-    // Initializers are temporary saved in order to prevent them to be garbage
-    // collected
+    // Initializers are temporary saved in order to prevent them from being garbage collected
     private lazy var onGoingInitializers: [Int: (callback: (Caravel) -> Void, inBackground: Bool)] = [:]
     private lazy var onGoingInitializersId = 0
     
@@ -232,15 +231,15 @@ public class Caravel: NSObject, UIWebViewDelegate {
     /**
      * Subscribes to provided event. Callback is run with the event's name and extra data
      */
-    public func register(subscriber: AnyObject, eventName: String, callback: (String, AnyObject?) -> Void) {
+    public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
         ThreadingHelper.background {
-            self.subscribers.append(Subscriber(reference: subscriber, name: eventName, callback: callback, inBackground: true))
+            self.subscribers.append(Subscriber(name: eventName, callback: callback, inBackground: true))
         }
     }
     
-    public func registerOnMain(subscriber: AnyObject, eventName: String, callback: (String, AnyObject?) -> Void) {
+    public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
         ThreadingHelper.background {
-            self.subscribers.append(Subscriber(reference: subscriber, name: eventName, callback: callback, inBackground: false))
+            self.subscribers.append(Subscriber(name: eventName, callback: callback, inBackground: false))
         }
     }
     
