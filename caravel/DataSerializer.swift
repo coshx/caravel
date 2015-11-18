@@ -14,34 +14,32 @@ import Foundation
  */
 internal class DataSerializer {
     
-    internal static func serialize(input: AnyObject, type: SupportedType) -> String {
+    internal static func serialize<T>(input: T) throws -> String  {
         var output: String?
         
-        switch (type) {
-        case .Bool:
-            let b = input as! Bool
+        if let b = input as? Bool {
             output = b ? "true" : "false"
-        case .Int:
-            let i = input as! Int
+        } else if let i = input as? Int {
             output = "\(i)"
-        case .Double:
-            let d = input as! Double
-            output = "\(d)"
-        case .Float:
-            let f = input as! Float
+        } else if let f = input as? Float {
             output = "\(f)"
-        case .String:
-            var s = input as! String
-            // As string is going to be unwrapped from quotes, when passed to JS, all quotes need to be escaped
+        } else if let d = input as? Double {
+            output = "\(d)"
+        } else if var s = input as? String {
+            // As this string is going to be unwrapped from quotes, when passed to JS, all quotes need to be escaped
             s = s.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions(), range: nil)
             s = s.stringByReplacingOccurrencesOfString("'", withString: "\'", options: NSStringCompareOptions(), range: nil)
             output = "\"\(s)\""
-        case .Array, .Dictionary:
+        } else if let a = input as? NSArray {
             // Array and Dictionary are serialized to JSON.
             // They should wrap only "basic" data (same types than supported ones)
-            let json = try! NSJSONSerialization.dataWithJSONObject(input, options: NSJSONWritingOptions())
-            let s = NSString(data: json, encoding: NSUTF8StringEncoding)!
-            output = s as String
+            let json = try! NSJSONSerialization.dataWithJSONObject(a, options: NSJSONWritingOptions())
+            output = NSString(data: json, encoding: NSUTF8StringEncoding)! as String
+        } else if let d = input as? NSDictionary {
+            let json = try! NSJSONSerialization.dataWithJSONObject(d, options: NSJSONWritingOptions())
+            output = NSString(data: json, encoding: NSUTF8StringEncoding)! as String
+        } else {
+            throw CaravelError.UnsupportedData
         }
         
         return output!
