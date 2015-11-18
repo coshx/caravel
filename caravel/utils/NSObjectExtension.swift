@@ -1,4 +1,4 @@
-extension NSObject {
+internal extension NSObject {
     static func synchronized(lock: AnyObject, action: () -> Void) {
         objc_sync_enter(lock)
         action()

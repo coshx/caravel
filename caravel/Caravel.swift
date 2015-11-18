@@ -59,7 +59,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Sends event to JS
      */
     private func secretPost<T>(eventName: String, eventData: T?) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        ThreadingHelper.background {
             var data: String?
             var toRun: String?
             
@@ -75,7 +75,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 toRun = "Caravel.get(\"\(self.secretName)\").raise(\"\(eventName)\", \(data!))"
             }
             
-            dispatch_async(dispatch_get_main_queue()) {
+            ThreadingHelper.main {
                 self.webView.stringByEvaluatingJavaScriptFromString(toRun!)
             }
         }
@@ -127,12 +127,12 @@ public class Caravel: NSObject, UIWebViewDelegate {
                                 self.onGoingInitializers[index] = i
                                 self.onGoingInitializersId++
                                 
-                                dispatch_async(dispatch_get_main_queue()) {
+                                ThreadingHelper.main {
                                     i(self)
                                     self.onGoingInitializers.removeValueForKey(index)
                                 }
                             }
-                            self.initializers = Array<(Caravel) -> Void>()
+                            self.initializers = []
                         }
                     } else {
                         var eventData: AnyObject? = nil
@@ -165,18 +165,20 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Returns the current bus when its JS counterpart is ready
      */
     public func whenReady(callback: (Caravel) -> Void) {
-        if self.isInitialized {
-            dispatch_async(dispatch_get_main_queue()) {
-                callback(self)
-            }
-        } else {
-            synchronized(Caravel.initializationLock) {
-                if self.isInitialized {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        callback(self)
+        ThreadingHelper.background {
+            if self.isInitialized {
+                ThreadingHelper.main {
+                    callback(self)
+                }
+            } else {
+                self.synchronized(Caravel.initializationLock) {
+                    if self.isInitialized {
+                        ThreadingHelper.main {
+                            callback(self)
+                        }
+                    } else {
+                        self.initializers.append(callback)
                     }
-                } else {
-                    self.initializers.append(callback)
                 }
             }
         }
@@ -200,7 +202,9 @@ public class Caravel: NSObject, UIWebViewDelegate {
      * Subscribes to provided event. Callback is run with the event's name and extra data
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
-        self.subscribers.append(Subscriber(name: eventName, callback: callback))
+        ThreadingHelper.background {
+            self.subscribers.append(Subscriber(name: eventName, callback: callback))
+        }
     }
     
     /**
