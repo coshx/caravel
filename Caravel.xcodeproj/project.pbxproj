@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		A7199EE91BFC038D00757E4F /* CaravelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaravelError.swift; sourceTree = "<group>"; };
-		A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaravelFactory.swift; sourceTree = "<group>"; };
+		A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaravelFactory.swift; path = internal/CaravelFactory.swift; sourceTree = "<group>"; };
 		A7199EED1BFC11E000757E4F /* NSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSObjectExtension.swift; path = utils/NSObjectExtension.swift; sourceTree = "<group>"; };
 		A7199EEF1BFC134B00757E4F /* ThreadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadingHelper.swift; path = utils/ThreadingHelper.swift; sourceTree = "<group>"; };
 		A7AC9F271B3493EB0041EB0B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = utils/StringExtension.swift; sourceTree = "<group>"; };
@@ -45,10 +45,10 @@
 		A7F1DDA31B17D958001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DDA41B17D958001E9B94 /* caravelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caravelTests.swift; sourceTree = "<group>"; };
 		A7F1DDAE1B17D989001E9B94 /* Caravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caravel.swift; sourceTree = "<group>"; };
-		A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscriber.swift; sourceTree = "<group>"; };
-		A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWebViewDelegateMediator.swift; sourceTree = "<group>"; };
-		A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSerializer.swift; sourceTree = "<group>"; };
-		A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
+		A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscriber.swift; path = internal/Subscriber.swift; sourceTree = "<group>"; };
+		A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewDelegateMediator.swift; path = internal/UIWebViewDelegateMediator.swift; sourceTree = "<group>"; };
+		A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSerializer.swift; path = internal/DataSerializer.swift; sourceTree = "<group>"; };
+		A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArgumentParser.swift; path = internal/ArgumentParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +70,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7199EF11BFC1EBE00757E4F /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */,
+				A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */,
+				A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */,
+				A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */,
+				A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */,
+			);
+			name = internal;
+			sourceTree = "<group>";
+		};
 		A7AC9F261B3493CA0041EB0B /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,16 +113,12 @@
 		A7F1DD941B17D957001E9B94 /* caravel */ = {
 			isa = PBXGroup;
 			children = (
+				A7199EF11BFC1EBE00757E4F /* internal */,
 				A7AC9F261B3493CA0041EB0B /* utils */,
 				A7F1DDAE1B17D989001E9B94 /* Caravel.swift */,
-				A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */,
-				A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */,
 				A7F1DD971B17D957001E9B94 /* caravel.h */,
 				A7F1DD951B17D957001E9B94 /* Supporting Files */,
-				A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */,
-				A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */,
 				A7199EE91BFC038D00757E4F /* CaravelError.swift */,
-				A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */,
 			);
 			path = caravel;
 			sourceTree = "<group>";
