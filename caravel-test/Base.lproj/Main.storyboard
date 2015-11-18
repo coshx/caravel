@@ -58,6 +58,58 @@
             </objects>
             <point key="canvasLocation" x="-982" y="-295"/>
         </scene>
+        <!--Unregistration Controller-->
+        <scene sceneID="kOC-G6-Z3y">
+            <objects>
+                <viewController id="zbV-fF-zaZ" customClass="UnregistrationController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6ck-fk-JmJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Ba-hZ-lF8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wtr-Ua-Hdc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DxV-gg-Cl8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem title="Unregistration" id="QJb-ad-JKe">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="lgv-ZD-gFu">
+                                            <connections>
+                                                <segue destination="srE-1G-KVt" kind="unwind" unwindAction="unwind:" id="j1s-jJ-g7E"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnd-jC-1lf">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rnd-jC-1lf" secondAttribute="trailing" constant="-20" id="1lP-af-kDz"/>
+                            <constraint firstItem="Rnd-jC-1lf" firstAttribute="leading" secondItem="Wtr-Ua-Hdc" secondAttribute="leadingMargin" constant="-20" id="FiE-j5-u5j"/>
+                            <constraint firstItem="DxV-gg-Cl8" firstAttribute="leading" secondItem="Wtr-Ua-Hdc" secondAttribute="leadingMargin" constant="-20" id="H5R-MA-eon"/>
+                            <constraint firstItem="DxV-gg-Cl8" firstAttribute="top" secondItem="Wtr-Ua-Hdc" secondAttribute="topMargin" id="JNA-hb-PeS"/>
+                            <constraint firstItem="7Ba-hZ-lF8" firstAttribute="top" secondItem="Rnd-jC-1lf" secondAttribute="bottom" id="K5k-DC-9wq"/>
+                            <constraint firstItem="Rnd-jC-1lf" firstAttribute="top" secondItem="DxV-gg-Cl8" secondAttribute="bottom" id="WeR-UD-N6K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DxV-gg-Cl8" secondAttribute="trailing" constant="-20" id="bNJ-C4-Un1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Rnd-jC-1lf" id="hbT-Wp-qwv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BaP-7v-avq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="srE-1G-KVt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1240" y="484"/>
+        </scene>
         <!--Event Data Controller-->
         <scene sceneID="RG4-wY-QtO">
             <objects>
@@ -205,6 +257,14 @@
                                 <state key="normal" title="Threading"/>
                                 <connections>
                                     <segue destination="T94-wa-1Vw" kind="show" id="Sve-cC-anv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTf-Ka-AZZ">
+                                <rect key="frame" x="60" y="295" width="98" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Unregistration"/>
+                                <connections>
+                                    <segue destination="zbV-fF-zaZ" kind="show" id="SvK-lC-Poh"/>
                                 </connections>
                             </button>
                         </subviews>
