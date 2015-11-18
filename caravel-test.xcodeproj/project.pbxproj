@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */; };
+		A71E82931BFD13300078C5A0 /* threading.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82921BFD13300078C5A0 /* threading.js */; };
+		A71E82951BFD14490078C5A0 /* threading.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82941BFD14490078C5A0 /* threading.html */; };
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
@@ -64,6 +67,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadingController.swift; sourceTree = "<group>"; };
+		A71E82921BFD13300078C5A0 /* threading.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = threading.js; path = js/threading.js; sourceTree = "<group>"; };
+		A71E82941BFD14490078C5A0 /* threading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = threading.html; path = html/threading.html; sourceTree = "<group>"; };
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
@@ -121,13 +127,14 @@
 		A7C868F81B18CC8D0070AF5A /* html */ = {
 			isa = PBXGroup;
 			children = (
+				A7C869051B18CEF30070AF5A /* basic_triggering.html */,
 				A79762961B19954A006D94CB /* event_data.html */,
 				A797628C1B198B98006D94CB /* event_name.html */,
+				A75AD3F81B19150200404C06 /* initialization.html */,
+				A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */,
+				A71E82941BFD14490078C5A0 /* threading.html */,
 				A75AD40A1B191C8000404C06 /* two_buses.html */,
 				A75AD4041B191A1800404C06 /* two_events.html */,
-				A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */,
-				A75AD3F81B19150200404C06 /* initialization.html */,
-				A7C869051B18CEF30070AF5A /* basic_triggering.html */,
 			);
 			name = html;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 				A797628E1B198B9F006D94CB /* event_name.js */,
 				A75AD3F61B1914FA00404C06 /* initialization.js */,
 				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
+				A71E82921BFD13300078C5A0 /* threading.js */,
 				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A75AD4021B191A1400404C06 /* two_events.js */,
 			);
@@ -184,6 +192,7 @@
 				A75AD4061B191ADF00404C06 /* TwoBusController.swift */,
 				A79762901B198BA7006D94CB /* EventNameController.swift */,
 				A79762921B19904C006D94CB /* EventDataController.swift */,
+				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 			files = (
 				A75AD40B1B191C8000404C06 /* two_buses.html in Resources */,
 				A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */,
+				A71E82931BFD13300078C5A0 /* threading.js in Resources */,
 				A79762951B199541006D94CB /* event_data.js in Resources */,
 				A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */,
 				A797628D1B198B98006D94CB /* event_name.html in Resources */,
@@ -314,6 +324,7 @@
 				A75AD3F91B19150200404C06 /* initialization.html in Resources */,
 				A75AD3FF1B1917C300404C06 /* multiple_subscribers.js in Resources */,
 				A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */,
+				A71E82951BFD14490078C5A0 /* threading.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +350,7 @@
 				A79762931B19904C006D94CB /* EventDataController.swift in Sources */,
 				A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */,
 				A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */,
+				A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */,
 				A75AD4011B19182F00404C06 /* TwoEventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
