@@ -11,12 +11,13 @@
 		A7199EEC1BFC0EC700757E4F /* CaravelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */; };
 		A7199EEE1BFC11E000757E4F /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7199EED1BFC11E000757E4F /* NSObjectExtension.swift */; };
 		A7199EF01BFC134B00757E4F /* ThreadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7199EEF1BFC134B00757E4F /* ThreadingHelper.swift */; };
+		A7199EF31BFC1F4400757E4F /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7199EF21BFC1F4400757E4F /* EventBus.swift */; };
 		A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC9F271B3493EB0041EB0B /* StringExtension.swift */; };
 		A7F1DD981B17D957001E9B94 /* caravel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F1DD971B17D957001E9B94 /* caravel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F1DD9E1B17D958001E9B94 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1DD921B17D957001E9B94 /* Caravel.framework */; };
 		A7F1DDA51B17D958001E9B94 /* caravelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDA41B17D958001E9B94 /* caravelTests.swift */; };
 		A7F1DDB21B17D989001E9B94 /* Caravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDAE1B17D989001E9B94 /* Caravel.swift */; };
-		A7F1DDB31B17D989001E9B94 /* Subscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */; };
+		A7F1DDB31B17D989001E9B94 /* EventSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDAF1B17D989001E9B94 /* EventSubscriber.swift */; };
 		A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */; };
 		A7F1DDB81B17E5F8001E9B94 /* DataSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */; };
 		A7F1DDBC1B17EF24001E9B94 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */; };
@@ -37,6 +38,7 @@
 		A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaravelFactory.swift; path = internal/CaravelFactory.swift; sourceTree = "<group>"; };
 		A7199EED1BFC11E000757E4F /* NSObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSObjectExtension.swift; path = utils/NSObjectExtension.swift; sourceTree = "<group>"; };
 		A7199EEF1BFC134B00757E4F /* ThreadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadingHelper.swift; path = utils/ThreadingHelper.swift; sourceTree = "<group>"; };
+		A7199EF21BFC1F4400757E4F /* EventBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
 		A7AC9F271B3493EB0041EB0B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = utils/StringExtension.swift; sourceTree = "<group>"; };
 		A7F1DD921B17D957001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DD961B17D957001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +47,7 @@
 		A7F1DDA31B17D958001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DDA41B17D958001E9B94 /* caravelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caravelTests.swift; sourceTree = "<group>"; };
 		A7F1DDAE1B17D989001E9B94 /* Caravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caravel.swift; sourceTree = "<group>"; };
-		A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscriber.swift; path = internal/Subscriber.swift; sourceTree = "<group>"; };
+		A7F1DDAF1B17D989001E9B94 /* EventSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventSubscriber.swift; path = internal/EventSubscriber.swift; sourceTree = "<group>"; };
 		A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewDelegateMediator.swift; path = internal/UIWebViewDelegateMediator.swift; sourceTree = "<group>"; };
 		A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataSerializer.swift; path = internal/DataSerializer.swift; sourceTree = "<group>"; };
 		A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArgumentParser.swift; path = internal/ArgumentParser.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 				A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */,
 				A7199EEB1BFC0EC700757E4F /* CaravelFactory.swift */,
 				A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */,
-				A7F1DDAF1B17D989001E9B94 /* Subscriber.swift */,
+				A7F1DDAF1B17D989001E9B94 /* EventSubscriber.swift */,
 				A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateMediator.swift */,
 			);
 			name = internal;
@@ -113,6 +115,7 @@
 		A7F1DD941B17D957001E9B94 /* caravel */ = {
 			isa = PBXGroup;
 			children = (
+				A7199EF21BFC1F4400757E4F /* EventBus.swift */,
 				A7199EF11BFC1EBE00757E4F /* internal */,
 				A7AC9F261B3493CA0041EB0B /* utils */,
 				A7F1DDAE1B17D989001E9B94 /* Caravel.swift */,
@@ -257,7 +260,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7F1DDB31B17D989001E9B94 /* Subscriber.swift in Sources */,
+				A7F1DDB31B17D989001E9B94 /* EventSubscriber.swift in Sources */,
+				A7199EF31BFC1F4400757E4F /* EventBus.swift in Sources */,
 				A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */,
 				A7199EF01BFC134B00757E4F /* ThreadingHelper.swift in Sources */,
 				A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateMediator.swift in Sources */,

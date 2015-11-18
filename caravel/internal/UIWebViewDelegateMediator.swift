@@ -12,9 +12,11 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     private static var singleton: UIWebViewDelegateMediator = UIWebViewDelegateMediator()
     
     /**
-     * All the subscribers. They are sorted by webview's hash
+     * All the subscribers. They are grouped by webview's hash
      */
-    private lazy var webViewSubscribers: [Int: [UIWebViewDelegate]] = [Int: [UIWebViewDelegate]]()
+    private lazy var webViewSubscribers: [Int: [UIWebViewDelegate]] = [:]
+    
+    private override init() { super.init() }
     
     private func iterateOverDelegates(webView: UIWebView, callback: (UIWebViewDelegate) -> Void) {
         let array = UIWebViewDelegateMediator.singleton.webViewSubscribers[webView.hash]!
@@ -40,6 +42,25 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
         }
         
         singleton.webViewSubscribers[webView.hash]!.append(subscriber)
+    }
+    
+    internal static func unsubscribe(webView: UIWebView, subscriber: UIWebViewDelegate) {
+        for (key, delegates) in singleton.webViewSubscribers {
+            if key == webView.hash {
+                var i = 0
+                for d in delegates {
+                    if d.hash == subscriber.hash {
+                        var a = singleton.webViewSubscribers[key]!
+                        a.removeAtIndex(i)
+                        if a.count == 0 {
+                            singleton.webViewSubscribers.removeValueForKey(key)
+                        }
+                        return
+                    }
+                    i++
+                }
+            }
+        }
     }
     
     // About methods below:

@@ -23,10 +23,9 @@ internal class CaravelFactory {
         }
     }
     
-    internal static func getDefault(webView: UIWebView) -> Caravel {
+    internal static func getDefault() -> Caravel {
         let getExisting = { () -> Caravel? in
             if let b = defaultBus {
-                b.setWebView(webView)
                 return b
             } else {
                 return nil
@@ -42,20 +41,19 @@ internal class CaravelFactory {
                 objc_sync_exit(defaultBusLock)
                 return bus
             } else {
-                self.defaultBus = Caravel(name: Caravel.DEFAULT_BUS_NAME, webView: webView)
+                self.defaultBus = Caravel(name: Caravel.DEFAULT_BUS_NAME)
                 objc_sync_exit(defaultBusLock)
                 return self.defaultBus!
             }
         }
     }
     
-    internal static func get(name: String, webView: UIWebView) -> Caravel {
+    internal static func get(name: String) -> Caravel {
         if name == Caravel.DEFAULT_BUS_NAME {
-            return getDefault(webView)
+            return getDefault()
         } else {
             let getExisting = { () -> Caravel? in
                 if let b = buses[name] {
-                    b.setWebView(webView)
                     return b
                 } else {
                     return nil
@@ -71,7 +69,7 @@ internal class CaravelFactory {
                     objc_sync_exit(getLock(name))
                     return bus
                 } else {
-                    let newBus = Caravel(name: name, webView: webView)
+                    let newBus = Caravel(name: name)
                     self.buses[name] = newBus
                     objc_sync_exit(getLock(name))
                     return newBus
