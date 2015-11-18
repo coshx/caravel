@@ -58,19 +58,28 @@ Caravel.getDefault().register("HazardousString", function(name, data) {
 });
 
 Caravel.getDefault().register("Array", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
-        ok(name);
-    } else {
-        fail(name, data);
+    var expected = [1, 2, 3, 5];
+    for (var i = 0, s = data.length; i < s; i++) {
+        if (data[i] != expected[i]) {
+            fail(name, data);
+            return
+        }
     }
+
+    ok(name);
 });
 
 Caravel.getDefault().register("Dictionary", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify({ foo: 45, bar: 89 })) {
-        ok(name);
-    } else {
-        fail(name, data);
+    var expected = { foo: 45, bar: 89 };
+
+    for (var key in expected) {
+        if (!data.hasOwnKeyProperty(key) || data[key] != expected[key]) {
+            fail(name, data);
+            return;
+        }
     }
+
+    ok(name);
 });
 
 Caravel.getDefault().register("ComplexArray", function(name, data) {

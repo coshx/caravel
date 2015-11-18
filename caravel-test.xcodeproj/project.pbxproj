@@ -135,13 +135,13 @@
 		A7C868F91B18CDC20070AF5A /* js */ = {
 			isa = PBXGroup;
 			children = (
+				A7C869071B18CF450070AF5A /* basic_triggering.js */,
 				A7AC9F291B349BB40041EB0B /* caravel.min.js */,
 				A79762941B199541006D94CB /* event_data.js */,
-				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A797628E1B198B9F006D94CB /* event_name.js */,
-				A7C869071B18CF450070AF5A /* basic_triggering.js */,
-				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
 				A75AD3F61B1914FA00404C06 /* initialization.js */,
+				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
+				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A75AD4021B191A1400404C06 /* two_events.js */,
 			);
 			name = js;
@@ -260,7 +260,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Coshx Labs";
 				TargetAttributes = {
 					A7F1DE221B18045C001E9B94 = {
@@ -402,6 +402,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -473,6 +474,7 @@
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -488,6 +490,7 @@
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -506,6 +509,7 @@
 				);
 				INFOPLIST_FILE = "caravel-testTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};
@@ -521,6 +525,7 @@
 				);
 				INFOPLIST_FILE = "caravel-testTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};

@@ -39,7 +39,7 @@ internal class DataSerializer {
             let json = try! NSJSONSerialization.dataWithJSONObject(d, options: NSJSONWritingOptions())
             output = NSString(data: json, encoding: NSUTF8StringEncoding)! as String
         } else {
-            throw CaravelError.UnsupportedData
+            throw CaravelError.SerializationUnsupportedData
         }
         
         return output!

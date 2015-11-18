@@ -1,3 +1,3 @@
 public enum CaravelError: ErrorType {
-    case UnsupportedData
+    case SerializationUnsupportedData
 }
