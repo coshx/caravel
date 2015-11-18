@@ -13,6 +13,9 @@
 		A71E82971BFD19580078C5A0 /* UnregistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82961BFD19580078C5A0 /* UnregistrationController.swift */; };
 		A71E82991BFD1CFD0078C5A0 /* unregistration.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82981BFD1CFD0078C5A0 /* unregistration.js */; };
 		A71E829B1BFD1D0E0078C5A0 /* unregistration.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E829A1BFD1D0E0078C5A0 /* unregistration.html */; };
+		A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */; };
+		A71E829F1BFD3BEB0078C5A0 /* benchmark.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E829E1BFD3BEB0078C5A0 /* benchmark.js */; };
+		A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A01BFD3BFE0078C5A0 /* benchmark.html */; };
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
@@ -76,6 +79,9 @@
 		A71E82961BFD19580078C5A0 /* UnregistrationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnregistrationController.swift; sourceTree = "<group>"; };
 		A71E82981BFD1CFD0078C5A0 /* unregistration.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = unregistration.js; path = js/unregistration.js; sourceTree = "<group>"; };
 		A71E829A1BFD1D0E0078C5A0 /* unregistration.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = unregistration.html; path = html/unregistration.html; sourceTree = "<group>"; };
+		A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkController.swift; sourceTree = "<group>"; };
+		A71E829E1BFD3BEB0078C5A0 /* benchmark.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = benchmark.js; path = js/benchmark.js; sourceTree = "<group>"; };
+		A71E82A01BFD3BFE0078C5A0 /* benchmark.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = benchmark.html; path = html/benchmark.html; sourceTree = "<group>"; };
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				A75AD40A1B191C8000404C06 /* two_buses.html */,
 				A75AD4041B191A1800404C06 /* two_events.html */,
 				A71E829A1BFD1D0E0078C5A0 /* unregistration.html */,
+				A71E82A01BFD3BFE0078C5A0 /* benchmark.html */,
 			);
 			name = html;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A75AD4021B191A1400404C06 /* two_events.js */,
 				A71E82981BFD1CFD0078C5A0 /* unregistration.js */,
+				A71E829E1BFD3BEB0078C5A0 /* benchmark.js */,
 			);
 			name = js;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 				A79762921B19904C006D94CB /* EventDataController.swift */,
 				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
 				A71E82961BFD19580078C5A0 /* UnregistrationController.swift */,
+				A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -318,6 +327,7 @@
 				A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */,
 				A71E82931BFD13300078C5A0 /* threading.js in Resources */,
 				A79762951B199541006D94CB /* event_data.js in Resources */,
+				A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */,
 				A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */,
 				A797628D1B198B98006D94CB /* event_name.html in Resources */,
 				A71E82991BFD1CFD0078C5A0 /* unregistration.js in Resources */,
@@ -330,6 +340,7 @@
 				A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */,
 				A797628F1B198B9F006D94CB /* event_name.js in Resources */,
 				A75AD3F71B1914FB00404C06 /* initialization.js in Resources */,
+				A71E829F1BFD3BEB0078C5A0 /* benchmark.js in Resources */,
 				A75AD4091B191C7A00404C06 /* two_buses.js in Resources */,
 				A75AD3F91B19150200404C06 /* initialization.html in Resources */,
 				A71E829B1BFD1D0E0078C5A0 /* unregistration.html in Resources */,
@@ -364,6 +375,7 @@
 				A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */,
 				A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */,
 				A75AD4011B19182F00404C06 /* TwoEventController.swift in Sources */,
+				A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
