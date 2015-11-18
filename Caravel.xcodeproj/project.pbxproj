@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7199EE81BFBFCC800757E4F /* ICaravelSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7199EE71BFBFCC800757E4F /* ICaravelSerializable.swift */; };
 		A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC9F271B3493EB0041EB0B /* StringExtension.swift */; };
 		A7F1DD981B17D957001E9B94 /* caravel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F1DD971B17D957001E9B94 /* caravel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F1DD9E1B17D958001E9B94 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1DD921B17D957001E9B94 /* Caravel.framework */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7199EE71BFBFCC800757E4F /* ICaravelSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICaravelSerializable.swift; sourceTree = "<group>"; };
 		A7AC9F271B3493EB0041EB0B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = utils/StringExtension.swift; sourceTree = "<group>"; };
 		A7F1DD921B17D957001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DD961B17D957001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */,
 				A7F1DDB91B17E6F5001E9B94 /* SupportedType.swift */,
 				A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */,
+				A7199EE71BFBFCC800757E4F /* ICaravelSerializable.swift */,
 			);
 			path = caravel;
 			sourceTree = "<group>";
@@ -145,9 +148,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A7F1DD911B17D957001E9B94 /* Caravel.temp_caseinsensitive_rename */ = {
+		A7F1DD911B17D957001E9B94 /* Caravel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7F1DDA81B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel.temp_caseinsensitive_rename" */;
+			buildConfigurationList = A7F1DDA81B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel" */;
 			buildPhases = (
 				A7F1DD8D1B17D957001E9B94 /* Sources */,
 				A7F1DD8E1B17D957001E9B94 /* Frameworks */,
@@ -158,14 +161,14 @@
 			);
 			dependencies = (
 			);
-			name = Caravel.temp_caseinsensitive_rename;
+			name = Caravel;
 			productName = caravel;
 			productReference = A7F1DD921B17D957001E9B94 /* Caravel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A7F1DD9C1B17D958001E9B94 /* Caravel.temp_caseinsensitive_renameTests */ = {
+		A7F1DD9C1B17D958001E9B94 /* CaravelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel.temp_caseinsensitive_renameTests" */;
+			buildConfigurationList = A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "CaravelTests" */;
 			buildPhases = (
 				A7F1DD991B17D958001E9B94 /* Sources */,
 				A7F1DD9A1B17D958001E9B94 /* Frameworks */,
@@ -176,7 +179,7 @@
 			dependencies = (
 				A7F1DDA01B17D958001E9B94 /* PBXTargetDependency */,
 			);
-			name = Caravel.temp_caseinsensitive_renameTests;
+			name = CaravelTests;
 			productName = caravelTests;
 			productReference = A7F1DD9D1B17D958001E9B94 /* CaravelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -212,8 +215,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A7F1DD911B17D957001E9B94 /* Caravel.temp_caseinsensitive_rename */,
-				A7F1DD9C1B17D958001E9B94 /* Caravel.temp_caseinsensitive_renameTests */,
+				A7F1DD911B17D957001E9B94 /* Caravel */,
+				A7F1DD9C1B17D958001E9B94 /* CaravelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,6 +246,7 @@
 				A7F1DDB31B17D989001E9B94 /* Subscriber.swift in Sources */,
 				A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */,
 				A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateMediator.swift in Sources */,
+				A7199EE81BFBFCC800757E4F /* ICaravelSerializable.swift in Sources */,
 				A7F1DDBA1B17E6F5001E9B94 /* SupportedType.swift in Sources */,
 				A7F1DDB81B17E5F8001E9B94 /* DataSerializer.swift in Sources */,
 				A7F1DDB21B17D989001E9B94 /* Caravel.swift in Sources */,
@@ -263,7 +267,7 @@
 /* Begin PBXTargetDependency section */
 		A7F1DDA01B17D958001E9B94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A7F1DD911B17D957001E9B94 /* Caravel.temp_caseinsensitive_rename */;
+			target = A7F1DD911B17D957001E9B94 /* Caravel */;
 			targetProxy = A7F1DD9F1B17D958001E9B94 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -433,7 +437,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7F1DDA81B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel.temp_caseinsensitive_rename" */ = {
+		A7F1DDA81B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7F1DDA91B17D958001E9B94 /* Debug */,
@@ -442,7 +446,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "Caravel.temp_caseinsensitive_renameTests" */ = {
+		A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "CaravelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7F1DDAC1B17D958001E9B94 /* Debug */,
