@@ -6,6 +6,8 @@ import UIKit
  * @brief Saves current webview delegate (if existing) and dispatches events to subscribers
  */
 internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
+    private static let subscriberLock = NSObject()
+    
     /**
      * This mediator is singleton for only a single delegate is allowed
      */
@@ -18,35 +20,46 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     
     private override init() { super.init() }
     
+    private static func lockSubscribers(action: () -> Void) {
+        synchronized(UIWebViewDelegateMediator.subscriberLock, action: action)
+    }
+    
     private func iterateOverDelegates(webView: UIWebView, callback: (UIWebViewDelegate) -> Void) {
-        let array = UIWebViewDelegateMediator.singleton.webViewSubscribers[webView.hash]!
-        
-        for e in array {
-            callback(e)
+        UIWebViewDelegateMediator.lockSubscribers {
+            let array = UIWebViewDelegateMediator.singleton.webViewSubscribers[webView.hash]!
+            
+            for e in array {
+                callback(e)
+            }
         }
     }
     
     internal static func subscribe(webView: UIWebView, subscriber: UIWebViewDelegate) {
-        if webView.delegate != nil && (webView.delegate! as? UIWebViewDelegateMediator == nil)  {
-            // There is already a delegate, save it before overwriting it
-            var delegates = [UIWebViewDelegate]()
+        lockSubscribers {
+            if webView.delegate != nil && (webView.delegate! as? UIWebViewDelegateMediator == nil)  {
+                // There is already a delegate, save it before overwriting it
+                var delegates = [UIWebViewDelegate]()
+                
+                delegates.append(webView.delegate!)
+                // If web view has has been reused (previous one was garbage collected), 
+                // this operation will help garbage collecting unused delegates
+                singleton.webViewSubscribers[webView.hash] = delegates
+                
+                webView.delegate = singleton
+            } else if webView.delegate == nil {
+                // No delegate, just initialize
+                singleton.webViewSubscribers[webView.hash] = [UIWebViewDelegate]()
+                webView.delegate = singleton
+            }
             
-            delegates.append(webView.delegate!)
-            singleton.webViewSubscribers[webView.hash] = delegates
-            
-            webView.delegate = singleton
-        } else if webView.delegate == nil {
-            // No delegate, just initialize
-            singleton.webViewSubscribers[webView.hash] = [UIWebViewDelegate]()
-            webView.delegate = singleton
+            singleton.webViewSubscribers[webView.hash]!.append(subscriber)
         }
-        
-        singleton.webViewSubscribers[webView.hash]!.append(subscriber)
     }
     
     internal static func unsubscribe(webView: UIWebView, subscriber: UIWebViewDelegate) {
-        for (key, delegates) in singleton.webViewSubscribers {
-            if key == webView.hash {
+        lockSubscribers {
+            let key = webView.hash
+            if let delegates = singleton.webViewSubscribers[key] {
                 var i = 0
                 for d in delegates {
                     if d.hash == subscriber.hash {

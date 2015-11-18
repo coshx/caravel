@@ -34,8 +34,12 @@ public class EventBus: NSObject, UIWebViewDelegate {
         UIWebViewDelegateMediator.subscribe(self.webView!, subscriber: self)
     }
     
-    internal func getReference() -> AnyObject {
-        return self.reference!
+    internal func getReference() -> AnyObject? {
+        return self.reference
+    }
+    
+    internal func getWebView() -> UIWebView? {
+        return self.webView
     }
     
     internal func forwardToJS(toRun: String) {
@@ -46,12 +50,14 @@ public class EventBus: NSObject, UIWebViewDelegate {
     
     internal func raise(name: String, data: AnyObject?) {
         for s in self.subscribers {
-            let action = { s.callback(name, data) }
-            
-            if s.inBackground {
-                ThreadingHelper.background(action)
-            } else {
-                ThreadingHelper.main(action)
+            if s.name == name {
+                let action = { s.callback(name, data) }
+                
+                if s.inBackground {
+                    ThreadingHelper.background(action)
+                } else {
+                    ThreadingHelper.main(action)
+                }
             }
         }
     }

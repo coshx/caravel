@@ -115,13 +115,13 @@
 		A7F1DD941B17D957001E9B94 /* caravel */ = {
 			isa = PBXGroup;
 			children = (
+				A7F1DD971B17D957001E9B94 /* caravel.h */,
+				A7F1DDAE1B17D989001E9B94 /* Caravel.swift */,
+				A7199EE91BFC038D00757E4F /* CaravelError.swift */,
 				A7199EF21BFC1F4400757E4F /* EventBus.swift */,
 				A7199EF11BFC1EBE00757E4F /* internal */,
-				A7AC9F261B3493CA0041EB0B /* utils */,
-				A7F1DDAE1B17D989001E9B94 /* Caravel.swift */,
-				A7F1DD971B17D957001E9B94 /* caravel.h */,
 				A7F1DD951B17D957001E9B94 /* Supporting Files */,
-				A7199EE91BFC038D00757E4F /* CaravelError.swift */,
+				A7AC9F261B3493CA0041EB0B /* utils */,
 			);
 			path = caravel;
 			sourceTree = "<group>";
