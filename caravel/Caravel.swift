@@ -1,10 +1,14 @@
-//
-//  Bus.swift
-//  todolist
-//
-//  Created by Adrien on 23/05/15.
-//  Copyright (c) 2015 test. All rights reserved.
-//
+//        ___           ___           ___           ___           ___           ___           ___
+//       /\  \         /\  \         /\  \         /\  \         /\__\         /\  \         /\__\
+//      /::\  \       /::\  \       /::\  \       /::\  \       /:/  /        /::\  \       /:/  /
+//     /:/\:\  \     /:/\:\  \     /:/\:\  \     /:/\:\  \     /:/  /        /:/\:\  \     /:/  /
+//    /:/  \:\  \   /::\~\:\  \   /::\~\:\  \   /::\~\:\  \   /:/__/  ___   /::\~\:\  \   /:/  /
+//   /:/__/ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/\:\ \:\__\  |:|  | /\__\ /:/\:\ \:\__\ /:/__/
+//   \:\  \  \/__/ \/__\:\/:/  / \/_|::\/:/  / \/__\:\/:/  /  |:|  |/:/  / \:\~\:\ \/__/ \:\  \
+//    \:\  \            \::/  /     |:|::/  /       \::/  /   |:|__/:/  /   \:\ \:\__\    \:\  \
+//     \:\  \           /:/  /      |:|\/__/        /:/  /     \::::/__/     \:\ \/__/     \:\  \
+//      \:\__\         /:/  /       |:|  |         /:/  /       ~~~~          \:\__\        \:\__\
+//       \/__/         \/__/         \|__|         \/__/                       \/__/         \/__/
 
 import Foundation
 import UIKit
@@ -63,13 +67,13 @@ public class Caravel: NSObject, UIWebViewDelegate {
     /**
      * Sends event to JS
      */
-    private func post(eventName: String, eventData: AnyObject?, type: SupportedType?) {
+    private func secretPost<T>(eventName: String, eventData: T?) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            var toRun: String?
             var data: String?
+            var toRun: String?
             
-            if let d: AnyObject = eventData {
-                data = DataSerializer.serialize(d, type: type!)
+            if let d = eventData {
+                try! data = DataSerializer.serialize(d)
             } else {
                 data = "null"
             }
@@ -195,59 +199,17 @@ public class Caravel: NSObject, UIWebViewDelegate {
     }
     
     /**
-     * Posts event without any argument
-     */
+      * Posts event without any argument
+      */
     public func post(eventName: String) {
-        self.post(eventName, eventData: nil, type: nil)
+        self.secretPost(eventName, eventData: nil as AnyObject?)
     }
     
     /**
-    * Posts event with an extra int
-    */
-    public func post(eventName: String, anInt: Int) {
-        self.post(eventName, eventData: anInt, type: .Int)
-    }
-    
-    /**
-    * Posts event with an extra bool
-    */
-    public func post(eventName: String, aBool: Bool) {
-        self.post(eventName, eventData: aBool, type: .Bool)
-    }
-    
-    /**
-    * Posts event with an extra double
-    */
-    public func post(eventName: String, aDouble: Double) {
-        self.post(eventName, eventData: aDouble, type: .Double)
-    }
-    
-    /**
-    * Posts event with an extra float
-    */
-    public func post(eventName: String, aFloat: Float) {
-        self.post(eventName, eventData: aFloat, type: .Float)
-    }
-    
-    /**
-    * Posts event with an extra string
-    */
-    public func post(eventName: String, aString: String) {
-        self.post(eventName, eventData: aString, type: .String)
-    }
-    
-    /**
-    * Posts event with an extra array
-    */
-    public func post(eventName: String, anArray: NSArray) {
-        self.post(eventName, eventData: anArray, type: .Array)
-    }
-    
-    /**
-    * Posts event with an extra dictionary
-    */
-    public func post(eventName: String, aDictionary: NSDictionary) {
-        self.post(eventName, eventData: aDictionary, type: .Dictionary)
+      * Posts event with extra data
+      */
+    public func post<T>(eventName: String, data: T) {
+        self.secretPost(eventName, eventData: data)
     }
     
     /**

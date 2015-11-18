@@ -22,16 +22,16 @@ public class EventDataController: UIViewController {
         super.viewDidLoad()
         
         Caravel.getDefault(_webView).whenReady() { bus in
-            bus.post("Bool", aBool: true)
-            bus.post("Int", anInt: 42)
-            bus.post("Float", aFloat: 19.92)
-            bus.post("Double", aDouble: 20.15)
-            bus.post("String", aString: "Churchill")
-            bus.post("HazardousString", aString: "There is a \" and a '")
-            bus.post("Array", anArray: [1, 2, 3, 5])
-            bus.post("Dictionary", aDictionary: ["foo": 45, "bar": 89])
-            bus.post("ComplexArray", anArray: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
-            bus.post("ComplexDictionary", aDictionary: ["name": "Cesar", "address": ["street": "Parrot", "city": "Perigueux"], "games": ["Fifa", "Star Wars"]])
+            bus.post("Bool", data: true)
+            bus.post("Int", data: 42)
+            bus.post("Float", data: 19.92)
+            bus.post("Double", data: 20.15)
+            bus.post("String", data: "Churchill")
+            bus.post("HazardousString", data: "There is a \" and a '")
+            bus.post("Array", data: [1, 2, 3, 5])
+            bus.post("Dictionary", data: ["foo": 45, "bar": 89])
+            bus.post("ComplexArray", data: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
+            bus.post("ComplexDictionary", data: ["name": "Cesar", "address": ["street": "Parrot", "city": "Perigueux"], "games": ["Fifa", "Star Wars"]])
             
             bus.register("True") { name, data in
                 if let b = data as? Bool {

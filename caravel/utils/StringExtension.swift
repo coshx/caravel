@@ -1,11 +1,3 @@
-//
-//  StringExtension.swift
-//  Caravel
-//
-//  Created by Adrien on 19/06/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 
 internal extension String {
