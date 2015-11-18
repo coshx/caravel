@@ -17,11 +17,11 @@ public class BasicTriggeringController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.register("From JS") { name, data in
                 bus.post("From iOS")
             }
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("basic_triggering", withExtension: "html")!))
     }

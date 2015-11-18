@@ -17,7 +17,7 @@ public class EventNameController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.register("Bar") { name, data in
                 if name == "Bar" {
                     bus.post("Foo")
@@ -25,7 +25,7 @@ public class EventNameController: UIViewController {
                     bus.post("Foobar")
                 }
             }
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("event_name", withExtension: "html")!))
     }

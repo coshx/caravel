@@ -17,9 +17,9 @@ public class MultipleSubscriberController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.post("AnEvent")
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("multiple_subscribers", withExtension: "html")!))
     }

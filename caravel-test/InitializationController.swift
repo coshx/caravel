@@ -17,14 +17,14 @@ public class InitializationController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.post("Before")
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("initialization", withExtension: "html")!))
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.post("After")
-        }
+        })
     }
 }
