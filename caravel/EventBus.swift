@@ -1,5 +1,5 @@
 public class EventBus: NSObject, UIWebViewDelegate {
-    private static let initializationLock = NSObject()
+    private let initializationLock = NSObject()
     
     private weak var reference: AnyObject?
     private weak var webView: UIWebView?
@@ -115,7 +115,7 @@ public class EventBus: NSObject, UIWebViewDelegate {
                     callback(self)
                 }
             } else {
-                self.synchronized(EventBus.initializationLock) {
+                self.synchronized(self.initializationLock) {
                     if self.isInitialized {
                         ThreadingHelper.background {
                             callback(self)
@@ -135,7 +135,7 @@ public class EventBus: NSObject, UIWebViewDelegate {
                     callback(self)
                 }
             } else {
-                self.synchronized(EventBus.initializationLock) {
+                self.synchronized(self.initializationLock) {
                     if self.isInitialized {
                         ThreadingHelper.main {
                             callback(self)
@@ -166,19 +166,19 @@ public class EventBus: NSObject, UIWebViewDelegate {
      * Subscribes to provided event. Callback is run with the event's name and extra data
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
-        ThreadingHelper.background {
-            self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: true))
-        }
+        self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: true))
     }
     
     public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
-        ThreadingHelper.background {
-            self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: false))
-        }
+        self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: false))
     }
     
-    public func unsubscribe(subscriber: AnyObject) {
-        self.dispatcher!.deleteBus(self)
-        UIWebViewDelegateMediator.unsubscribe(self.webView!, subscriber: self)
+    public func unregister(subscriber: AnyObject) {
+        if subscriber.hash == self.reference?.hash {
+            self.dispatcher!.deleteBus(self)
+            UIWebViewDelegateMediator.unsubscribe(self.webView!, subscriber: self)
+            self.reference = nil
+            self.webView = nil
+        }
     }
 }

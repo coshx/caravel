@@ -26,10 +26,10 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
     
     private func iterateOverDelegates(webView: UIWebView, callback: (UIWebViewDelegate) -> Void) {
         UIWebViewDelegateMediator.lockSubscribers {
-            let array = UIWebViewDelegateMediator.singleton.webViewSubscribers[webView.hash]!
-            
-            for e in array {
-                callback(e)
+            if let array = UIWebViewDelegateMediator.singleton.webViewSubscribers[webView.hash] {
+                for e in array {
+                    callback(e)
+                }
             }
         }
     }
