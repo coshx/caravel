@@ -37,10 +37,10 @@ public class Caravel: NSObject, UIWebViewDelegate {
     /**
      * Pending initialization subscribers
      */
-    private lazy var initializers: [(Caravel) -> Void] = []
+    private lazy var initializers: [(callback: (Caravel) -> Void, inBackground: Bool)] = []
     // Initializers are temporary saved in order to prevent them to be garbage
     // collected
-    private lazy var onGoingInitializers: [Int: ((Caravel) -> Void)] = [:]
+    private lazy var onGoingInitializers: [Int: (callback: (Caravel) -> Void, inBackground: Bool)] = [:]
     private lazy var onGoingInitializersId = 0
     
     private var webView: UIWebView
@@ -117,41 +117,52 @@ public class Caravel: NSObject, UIWebViewDelegate {
                 // All buses are notified about that incoming event. Then, they need to investigate first if they
                 // are potential receivers
                 if self.secretName == args.busName {
-                    if args.eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
-                        if !self.isInitialized {
-                            self.isInitialized = true
-                            
-                            for i in self.initializers {
-                                let index = self.onGoingInitializersId
-                                
-                                self.onGoingInitializers[index] = i
-                                self.onGoingInitializersId++
-                                
-                                ThreadingHelper.main {
-                                    i(self)
-                                    self.onGoingInitializers.removeValueForKey(index)
-                                }
+                    if args.eventName == "CaravelInit" && !self.isInitialized { // Reserved event name. Triggers whenReady
+                        // Initialization must be run on the main thread. Otherwise, some events would be triggered before onReady
+                        // has been run and hence be lost.
+                        self.isInitialized = true
+                        
+                        for pair in self.initializers {
+                            let index = self.onGoingInitializersId
+                            let action: ((Caravel) -> Void, Int) -> Void = { initializer, id in
+                                initializer(self)
+                                self.onGoingInitializers.removeValueForKey(id)
                             }
-                            self.initializers = []
+                            
+                            self.onGoingInitializers[index] = pair
+                            self.onGoingInitializersId++
+                            
+                            if pair.inBackground {
+                                ThreadingHelper.background { action(pair.callback, index) }
+                            } else {
+                                ThreadingHelper.main { action(pair.callback, index) }
+                            }
                         }
+                        
+                        self.initializers = []
                     } else {
-                        var eventData: AnyObject? = nil
-                        
-                        if let d = args.eventData { // Data are optional
-                            eventData = DataSerializer.deserialize(d)
-                        }
-                        
-                        for s in self.subscribers {
-                            if s.name == args.eventName {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    s.callback(args.eventName, eventData)
+                        ThreadingHelper.background {
+                            var eventData: AnyObject? = nil
+                            
+                            if let d = args.eventData { // Data are optional
+                                eventData = DataSerializer.deserialize(d)
+                            }
+                            
+                            for s in self.subscribers {
+                                if s.name == args.eventName {
+                                    let action = { s.callback(args.eventName, eventData) }
+                                    if s.inBackground {
+                                        ThreadingHelper.background(action)
+                                    } else {
+                                        ThreadingHelper.main(action)
+                                    }
                                 }
                             }
                         }
                     }
                 }
                 
-                // As it is a custom URL, we need to prevent the webview to run it
+                // As it is a custom URL, we need to prevent the webview from running it
                 return false
             }
             
@@ -167,6 +178,26 @@ public class Caravel: NSObject, UIWebViewDelegate {
     public func whenReady(callback: (Caravel) -> Void) {
         ThreadingHelper.background {
             if self.isInitialized {
+                ThreadingHelper.background {
+                    callback(self)
+                }
+            } else {
+                self.synchronized(Caravel.initializationLock) {
+                    if self.isInitialized {
+                        ThreadingHelper.background {
+                            callback(self)
+                        }
+                    } else {
+                        self.initializers.append((callback, true))
+                    }
+                }
+            }
+        }
+    }
+    
+    public func whenReadyOnMain(callback: (Caravel) -> Void) {
+        ThreadingHelper.background {
+            if self.isInitialized {
                 ThreadingHelper.main {
                     callback(self)
                 }
@@ -177,7 +208,7 @@ public class Caravel: NSObject, UIWebViewDelegate {
                             callback(self)
                         }
                     } else {
-                        self.initializers.append(callback)
+                        self.initializers.append((callback, false))
                     }
                 }
             }
@@ -201,9 +232,15 @@ public class Caravel: NSObject, UIWebViewDelegate {
     /**
      * Subscribes to provided event. Callback is run with the event's name and extra data
      */
-    public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
+    public func register(subscriber: AnyObject, eventName: String, callback: (String, AnyObject?) -> Void) {
         ThreadingHelper.background {
-            self.subscribers.append(Subscriber(name: eventName, callback: callback))
+            self.subscribers.append(Subscriber(reference: subscriber, name: eventName, callback: callback, inBackground: true))
+        }
+    }
+    
+    public func registerOnMain(subscriber: AnyObject, eventName: String, callback: (String, AnyObject?) -> Void) {
+        ThreadingHelper.background {
+            self.subscribers.append(Subscriber(reference: subscriber, name: eventName, callback: callback, inBackground: false))
         }
     }
     
