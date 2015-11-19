@@ -1,10 +1,8 @@
-import Foundation
-
 /**
- * @class Subscriber
+ * @class EventSubscriber
  * @brief Internal class storing bus subscribers
  */
-internal class Subscriber {
+internal class EventSubscriber {
     var name: String
     var callback: (String, AnyObject?) -> Void
     var inBackground: Bool

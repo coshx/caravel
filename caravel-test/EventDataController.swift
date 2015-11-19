@@ -21,7 +21,7 @@ public class EventDataController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(_webView).whenReady() { bus in
+        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
             bus.post("Bool", data: true)
             bus.post("Int", data: 42)
             bus.post("Float", data: 19.92)
@@ -188,7 +188,7 @@ public class EventDataController: UIViewController {
                     self._raise("ComplexDictionary - bad type")
                 }
             }
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("event_data", withExtension: "html")!))
     }
