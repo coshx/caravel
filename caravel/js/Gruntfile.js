@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var version = '0.4.4';
+    var version = '1.0.0-alpha.1';
 
     // Project configuration
     grunt.initConfig({
