@@ -39,7 +39,8 @@ internal class DataSerializer {
     
     internal static func deserialize(input: String) -> AnyObject {
         if input.characters.count > 0 {
-            if input[0] == "[" || input[0] == "{" { // Array or Dictionary, matching JSON format
+            if (input.first == "[" && input.last == "]") || (input.first == "{" && input.last == "}") {
+                // Array or Dictionary, matching JSON format
                 let json = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
                 return try! NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions())
             }
