@@ -6,19 +6,19 @@
 
 ## Features
 
-* Easy event bus system
+* Easy, fast and reliable event bus system
 * Multiple bus support
-* `When Ready` event: do not miss any event from your lovely Swift controller!
+* Multithreading support
 * iOS ~> JavaScript supported types:
   - `Bool`
   - `Int`
   - `Float`
   - `Double`
   - `String`
-  - `NSArray`
-  - `NSDictionary`
+  - Any array (using types in this list)
+  - Any dictionary (using types in this list)
 * JavaScript ~> iOS supported types:
-  - `Bool`
+  - `Boolean`
   - `Int`
   - `Double`
   - `String`
@@ -41,6 +41,10 @@ Once done, you should find a `caravel.min.js` file in either the Pod or the subm
 <script type="text/javascript" src="caravel.min.js"></script>
 ```
 
+## Migrate from 0.* to 1.*
+
+[Please glance at this blog post]().
+
 ## Get started
 
 Caravel allows developers to communicate between their `UIWebView` and the embedded JS. You can send any kind of message between those two folks.
@@ -48,19 +52,22 @@ Caravel allows developers to communicate between their `UIWebView` and the embed
 Have a glance at this super simple sample. Let's start with the iOS part:
 
 ```swift
-import Caravel
-
 class MyController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
     func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault().whenReady() { bus in
-            bus.post("AnEvent", anArray: [1, 2, 3])
-        }
+        // Prepare your bus before loading your web view's content
+        Caravel.getDefault(self, webView: webView, whenReady: { bus in
+            // The JS endpoint is ready to handle any event.
+            // Register and post your events in this scope
+            bus.post("MyEvent", data: [1, 2, 3])
+            
+            self.bus = bus // You can save your bus for firing events later
+        })
         
-        // Load web view content below
+        // ... Load web view content below
     }
 }
 ```
@@ -75,95 +82,17 @@ Caravel.getDefault().register("AnEvent", function(name, data) {
 
 And voilà!
 
-## API
-
-### Swift - Caravel class
-
-```swift
-/**
- * Returns the default bus
- */
-static func getDefault(webView: UIWebView) -> Caravel
-```
-
-```swift
-/**
- * Returns custom bus
- */
-static func get(name: String, webView: UIWebView) -> Caravel
-```
-
-```swift
-/**
- * Returns the current bus when its JS counterpart is ready
- */
-func whenReady(callback: (Caravel) -> Void)
-```
-
-```swift
-/**
- * Posts event without any argument
- */
-func post(eventName: String)
-```
-
-```swift
-/**
- * Posts event with extra data
- */
-func post(eventName: String, anObject: AnyObject)
-```
-
-**NB:** Caravel is smart enough for serializing nested objects (eg. an array wrapped into a dictionary) when posting an event. However, this serialization only works if nested types are supported ones.
-
-```swift
-/**
- * Subscribes to provided event. Callback is run with the event's name and extra data
- */
-func register(eventName: String, callback: (String, AnyObject?) -> Void)
-```
-
-When receiving an event, you have to cast your data to the type you except. This cast is safe.
-
-### JS - Caravel class
-
-```js
-/**
- * Returns default bus
- */
-static function getDefault()
-```
-
-```js
-/**
- * Returns custom bus
- */
-static function get(name)
-```
-
-```js
-/**
- * Subscribes to provided event. Callback is called with event name first, then extra data if any
- */
-static function register(name, callback)
-```
-
-```js
-/**
- * Posts event. Data are optional
- */
-static function post(name, data)
-```
-
 ## Troubleshooting
 
-### I have my custom UIWebViewDelegate. What should I do?
+### I want to use my custom UIWebViewDelegate. What should I do?
 
-Caravel saves the current delegate, if any, before setting its own. So, if you would like to use your custom one, you have to set it before any call to Caravel.
+To raise iOS events, Caravel must be the delegate of the provided `UIWebView`. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it before any call to Caravel.
 
 ### Reserved names
 
 `CaravelInit` is an internal event, sent by the JS part for triggering the `whenReady` method.
 
-Also, the default bus is named `default`. If you use that name for a custom bus, Caravel will automatically use the default one.
+Also, the default bus is named `default`. If you use that name for a custom bus, Caravel will automatically switch to the default one.
+
+### Keep in mind event and bus names are case-sensitive.
 
