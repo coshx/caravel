@@ -43,7 +43,7 @@ Once done, you should find a `caravel.min.js` file in either the Pod or the subm
 
 ## Migrate from 0.* to 1.*
 
-[Please glance at this blog post]().
+[Please glance at this blog post](http://www.coshx.com/blog/2015/11/19/releasing-caravel-1-0-0/).
 
 ## Get started
 
