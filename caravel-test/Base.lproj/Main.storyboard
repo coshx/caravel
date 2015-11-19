@@ -275,6 +275,14 @@
                                     <segue destination="77g-j0-Ola" kind="show" id="wpS-aM-dll"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-LX-HM2">
+                                <rect key="frame" x="66" y="345" width="87" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Two buckets"/>
+                                <connections>
+                                    <segue destination="aEb-Mp-iDB" kind="show" id="KzD-U6-G4w"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -288,6 +296,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40" y="228"/>
+        </scene>
+        <!--Two Bucket Controller-->
+        <scene sceneID="AGe-fX-8I7">
+            <objects>
+                <viewController id="aEb-Mp-iDB" customClass="TwoBucketController" customModule="caravel_test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dZR-5K-tEI"/>
+                        <viewControllerLayoutGuide type="bottom" id="EQq-pw-izi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kSQ-hX-hhs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRT-qu-MFh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem title="Two buckets" id="wnc-aV-VHl">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="q1b-fh-AUe">
+                                            <connections>
+                                                <segue destination="KWL-x7-nGH" kind="unwind" unwindAction="unwind:" id="LoU-Hr-p6F"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ca-6W-M9s">
+                                <rect key="frame" x="0.0" y="44" width="600" height="282"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1G-wW-PQp">
+                                <rect key="frame" x="0.0" y="323" width="600" height="277"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="b1G-wW-PQp" secondAttribute="trailing" constant="-20" id="6Wr-i5-IJR"/>
+                            <constraint firstItem="6Ca-6W-M9s" firstAttribute="top" secondItem="TRT-qu-MFh" secondAttribute="bottom" id="KZJ-LF-9vw"/>
+                            <constraint firstItem="TRT-qu-MFh" firstAttribute="leading" secondItem="kSQ-hX-hhs" secondAttribute="leadingMargin" constant="-20" id="NM9-hv-5Rx"/>
+                            <constraint firstItem="EQq-pw-izi" firstAttribute="top" secondItem="b1G-wW-PQp" secondAttribute="bottom" id="U0B-oA-jHu"/>
+                            <constraint firstItem="b1G-wW-PQp" firstAttribute="leading" secondItem="kSQ-hX-hhs" secondAttribute="leadingMargin" constant="-20" id="W6j-vr-lsS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Ca-6W-M9s" secondAttribute="trailing" constant="-20" id="YAJ-L6-MyI"/>
+                            <constraint firstItem="TRT-qu-MFh" firstAttribute="top" secondItem="kSQ-hX-hhs" secondAttribute="topMargin" id="ft7-95-SDc"/>
+                            <constraint firstItem="b1G-wW-PQp" firstAttribute="width" secondItem="6Ca-6W-M9s" secondAttribute="width" id="l92-KH-6w8"/>
+                            <constraint firstItem="6Ca-6W-M9s" firstAttribute="leading" secondItem="kSQ-hX-hhs" secondAttribute="leadingMargin" constant="-20" id="pVC-X8-iIb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TRT-qu-MFh" secondAttribute="trailing" constant="-20" id="xRa-7o-xcF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView1" destination="6Ca-6W-M9s" id="N6T-7A-iWQ"/>
+                        <outlet property="webView2" destination="b1G-wW-PQp" id="Jco-wH-7Ne"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSB-Z7-gar" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KWL-x7-nGH" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="1572"/>
         </scene>
         <!--Benchmark Controller-->
         <scene sceneID="RNj-lb-XLT">
@@ -448,7 +517,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWr-Z7-F2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fzN-nE-3KF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-86" y="1684"/>
+            <point key="canvasLocation" x="-506" y="1560"/>
         </scene>
         <!--Event Name Controller-->
         <scene sceneID="ESZ-7I-jb3">

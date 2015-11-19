@@ -16,6 +16,9 @@
 		A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */; };
 		A71E829F1BFD3BEB0078C5A0 /* benchmark.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E829E1BFD3BEB0078C5A0 /* benchmark.js */; };
 		A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A01BFD3BFE0078C5A0 /* benchmark.html */; };
+		A71E82A31BFD45F80078C5A0 /* TwoBucketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */; };
+		A71E82A51BFD48260078C5A0 /* two_buckets.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A41BFD48260078C5A0 /* two_buckets.js */; };
+		A71E82A71BFD48350078C5A0 /* two_buckets.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A61BFD48350078C5A0 /* two_buckets.html */; };
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
@@ -82,6 +85,9 @@
 		A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkController.swift; sourceTree = "<group>"; };
 		A71E829E1BFD3BEB0078C5A0 /* benchmark.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = benchmark.js; path = js/benchmark.js; sourceTree = "<group>"; };
 		A71E82A01BFD3BFE0078C5A0 /* benchmark.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = benchmark.html; path = html/benchmark.html; sourceTree = "<group>"; };
+		A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoBucketController.swift; sourceTree = "<group>"; };
+		A71E82A41BFD48260078C5A0 /* two_buckets.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = two_buckets.js; path = js/two_buckets.js; sourceTree = "<group>"; };
+		A71E82A61BFD48350078C5A0 /* two_buckets.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = two_buckets.html; path = html/two_buckets.html; sourceTree = "<group>"; };
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 				A75AD4041B191A1800404C06 /* two_events.html */,
 				A71E829A1BFD1D0E0078C5A0 /* unregistration.html */,
 				A71E82A01BFD3BFE0078C5A0 /* benchmark.html */,
+				A71E82A61BFD48350078C5A0 /* two_buckets.html */,
 			);
 			name = html;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 				A75AD4021B191A1400404C06 /* two_events.js */,
 				A71E82981BFD1CFD0078C5A0 /* unregistration.js */,
 				A71E829E1BFD3BEB0078C5A0 /* benchmark.js */,
+				A71E82A41BFD48260078C5A0 /* two_buckets.js */,
 			);
 			name = js;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
 				A71E82961BFD19580078C5A0 /* UnregistrationController.swift */,
 				A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */,
+				A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -324,7 +333,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75AD40B1B191C8000404C06 /* two_buses.html in Resources */,
+				A71E82A51BFD48260078C5A0 /* two_buckets.js in Resources */,
 				A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */,
+				A71E82A71BFD48350078C5A0 /* two_buckets.html in Resources */,
 				A71E82931BFD13300078C5A0 /* threading.js in Resources */,
 				A79762951B199541006D94CB /* event_data.js in Resources */,
 				A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */,
@@ -374,6 +385,7 @@
 				A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */,
 				A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */,
 				A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */,
+				A71E82A31BFD45F80078C5A0 /* TwoBucketController.swift in Sources */,
 				A75AD4011B19182F00404C06 /* TwoEventController.swift in Sources */,
 				A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */,
 			);
