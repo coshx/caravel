@@ -15,8 +15,7 @@ import UIKit
 
 /**
   * @class Caravel
-  * @brief Main class of the library. The only public one.
-  * Manages all buses and dispatches actions to other components.
+  * @brief Main class of the library. Dispatches events among buses.
   */
 public class Caravel {
     private static let busLock = NSObject()
@@ -36,9 +35,6 @@ public class Caravel {
         }
     }
 
-    /**
-     * Sends event to JS
-     */
     internal func post<T>(eventName: String, eventData: T?) {
         ThreadingHelper.background {
             var data: String?
@@ -65,7 +61,7 @@ public class Caravel {
     }
     
     internal func addBus(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void, inBackground: Bool) {
-        // Test if an existing bus matching provided pair does not already exist
+        // Test if an existing bus matching provided pair already exists
         objc_sync_enter(Caravel.busLock)
         for b in self.buses {
             if b.getReference()?.hash == subscriber.hash && b.getWebView()?.hash == webView.hash {
@@ -133,12 +129,18 @@ public class Caravel {
         }
     }
     
+    /**
+     * Current name
+     */
     public var name: String {
         return self.secretName
     }
     
     /**
-     * Returns the default bus
+     * Returns default bus
+     * @param subscriber Subscriber
+     * @param webView WebView to watch
+     * @param whenReady Action to run when JS counterpart is ready
      */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
@@ -146,6 +148,12 @@ public class Caravel {
         return d
     }
     
+    /**
+     * Returns default bus and run callback on main thread
+     * @param subscriber Subscriber
+     * @param webView WebView to watch
+     * @param whenReadyOnMain Action to run when JS counterpart is ready
+     */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
@@ -154,6 +162,10 @@ public class Caravel {
     
     /**
      * Returns custom bus
+     * @param subscriber Subscriber
+     * @param name Bus name
+     * @param webView WebView to watch
+     * @param whenReady Action to run when JS counterpart is ready
      */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
@@ -161,6 +173,13 @@ public class Caravel {
         return d
     }
     
+    /**
+     * Returns custom bus and run callback on main thread
+     * @param subscriber Subscriber
+     * @param name Bus name
+     * @param webView WebView to watch
+     * @param whenReadyOnMain Action to run when JS counterpart is ready
+     */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)

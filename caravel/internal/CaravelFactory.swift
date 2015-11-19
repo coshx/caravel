@@ -1,8 +1,13 @@
+/**
+ * @class CaravelFactory
+ * @brief Manages the different Caravel instances and ensures they are all singletons
+ */
 internal class CaravelFactory {
     private static let defaultBusLock = NSObject()
     private static var defaultBus: Caravel?
     
     private static let creationLock = NSObject()
+    // A lock per bus. Uses lock above when initializing
     private static var busLocks: [String: NSObject] = [:]
     private static var buses: [String: Caravel] = [:]
     
