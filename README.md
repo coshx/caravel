@@ -1,4 +1,4 @@
-# Caravel
+![Caravel Logo](logo.png)
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/Caravel.svg?style=flat-square)](https://cocoapods.org/pods/Caravel)
 
