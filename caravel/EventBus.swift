@@ -6,6 +6,7 @@
  */
 public class EventBus: NSObject, UIWebViewDelegate {
     private let initializationLock = NSObject()
+    private let subscriberLock = NSObject()
     
     private weak var reference: AnyObject?
     private weak var webView: UIWebView?
@@ -61,14 +62,16 @@ public class EventBus: NSObject, UIWebViewDelegate {
      * Allows dispatcher to fire any event on this bus
      */
     internal func raise(name: String, data: AnyObject?) {
-        for s in self.subscribers {
-            if s.name == name {
-                let action = { s.callback(name, data) }
-                
-                if s.inBackground {
-                    ThreadingHelper.background(action)
-                } else {
-                    ThreadingHelper.main(action)
+        synchronized(subscriberLock) {
+            for s in self.subscribers {
+                if s.name == name {
+                    let action = { s.callback(name, data) }
+                    
+                    if s.inBackground {
+                        ThreadingHelper.background(action)
+                    } else {
+                        ThreadingHelper.main(action)
+                    }
                 }
             }
         }
@@ -187,7 +190,9 @@ public class EventBus: NSObject, UIWebViewDelegate {
      * @param callback Action to run when fired
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
-        self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: true))
+        synchronized(subscriberLock) {
+            self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: true))
+        }
     }
     
     /**
@@ -196,7 +201,9 @@ public class EventBus: NSObject, UIWebViewDelegate {
      * @param callback Action to run when fired
      */
     public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
-        self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: false))
+        synchronized(subscriberLock) {
+            self.subscribers.append(EventSubscriber(name: eventName, callback: callback, inBackground: false))
+        }
     }
     
     /**
