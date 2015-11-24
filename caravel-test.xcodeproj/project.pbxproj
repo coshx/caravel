@@ -44,7 +44,7 @@
 		A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; };
 		A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE281B18045C001E9B94 /* AppDelegate.swift */; };
-		A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* ViewController.swift */; };
+		A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* MainController.swift */; };
 		A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2C1B18045C001E9B94 /* Main.storyboard */; };
 		A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2F1B18045C001E9B94 /* Images.xcassets */; };
 		A7F1DE331B18045C001E9B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */; };
@@ -114,7 +114,7 @@
 		A7F1DE231B18045C001E9B94 /* caravel-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "caravel-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE271B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DE281B18045C001E9B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A7F1DE2A1B18045C001E9B94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A7F1DE2A1B18045C001E9B94 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		A7F1DE2D1B18045C001E9B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7F1DE2F1B18045C001E9B94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A7F1DE321B18045C001E9B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				A7C868F91B18CDC20070AF5A /* js */,
 				A7C868F81B18CC8D0070AF5A /* html */,
 				A7F1DE281B18045C001E9B94 /* AppDelegate.swift */,
-				A7F1DE2A1B18045C001E9B94 /* ViewController.swift */,
+				A7F1DE2A1B18045C001E9B94 /* MainController.swift */,
 				A7F1DE2C1B18045C001E9B94 /* Main.storyboard */,
 				A7F1DE2F1B18045C001E9B94 /* Images.xcassets */,
 				A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */,
@@ -376,7 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75AD3FB1B19169200404C06 /* MultipleSubscriberController.swift in Sources */,
-				A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */,
+				A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */,
 				A71E82971BFD19580078C5A0 /* UnregistrationController.swift in Sources */,
 				A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */,
 				A79762911B198BA7006D94CB /* EventNameController.swift in Sources */,
