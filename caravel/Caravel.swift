@@ -46,11 +46,15 @@ public class Caravel {
                 data = "null"
             }
             
+            toRun = "Caravel."
+            
             if self.secretName == Caravel.DEFAULT_BUS_NAME {
-                toRun = "Caravel.getDefault().raise(\"\(eventName)\", \(data!))"
+                toRun += "getDefault()"
             } else {
-                toRun = "Caravel.get(\"\(self.secretName)\").raise(\"\(eventName)\", \(data!))"
+                toRun += "get(\"\(self.secretName)\")"
             }
+            
+            toRun += ".raise(\"\(eventName)\", \(data!))"
             
             self.lockBuses {
                 for b in self.buses {
@@ -88,11 +92,19 @@ public class Caravel {
         ThreadingHelper.background { // Clean unused buses
             self.lockBuses {
                 var i = 0
+                var toRemove: [Int] = []
+                
                 for b in self.buses {
                     if b.getReference() == nil && b.getWebView() == nil {
                         // Watched pair was garbage collected. This bus is not needed anymore
-                        self.buses.removeAtIndex(i)
+                        toRemove.append(i)
                     }
+                    i++
+                }
+                
+                i = 0
+                for j in toRemove {
+                    self.buses.removeAtIndex(j - i)
                     i++
                 }
             }
