@@ -49,12 +49,12 @@ public class Caravel {
             toRun = "Caravel."
             
             if self.secretName == Caravel.DEFAULT_BUS_NAME {
-                toRun += "getDefault()"
+                toRun!.appendContentsOf("getDefault()")
             } else {
-                toRun += "get(\"\(self.secretName)\")"
+                toRun!.appendContentsOf("get(\"\(self.secretName)\")")
             }
             
-            toRun += ".raise(\"\(eventName)\", \(data!))"
+            toRun!.appendContentsOf(".raise(\"\(eventName)\", \(data!))")
             
             self.lockBuses {
                 for b in self.buses {
