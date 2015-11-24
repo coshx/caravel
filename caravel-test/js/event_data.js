@@ -124,15 +124,16 @@ Caravel.getDefault().register("ComplexDictionary", function(name, data) {
     }
 });
 
-Caravel.getDefault().post("True", true);
-Caravel.getDefault().post("False", false);
-Caravel.getDefault().post("Int", 987);
-Caravel.getDefault().post("Float", 19.89);
-Caravel.getDefault().post("Double", 15.15);
-Caravel.getDefault().post("String", "Napoleon");
-Caravel.getDefault().post("UUID", "9658ae60-9e0d-4da7-a63d-46fe75ff1db1");
-Caravel.getDefault().post("Array", [3, 1, 4]);
-Caravel.getDefault().post("Dictionary", { "movie": "Once upon a time in the West", "actor": "Charles Bronson" });
+Caravel.getDefault().register("Ready", function() {
+    Caravel.getDefault().post("True", true);
+    Caravel.getDefault().post("False", false);
+    Caravel.getDefault().post("Int", 987);
+    Caravel.getDefault().post("Double", 15.15);
+    Caravel.getDefault().post("String", "Napoleon");
+    Caravel.getDefault().post("UUID", "9658ae60-9e0d-4da7-a63d-46fe75ff1db1");
+    Caravel.getDefault().post("Array", [3, 1, 4]);
+    Caravel.getDefault().post("Dictionary", { "movie": "Once upon a time in the West", "actor": "Charles Bronson" });
 
-Caravel.getDefault().post("ComplexArray", [87, {"name": "Bruce Willis"}, "left-handed" ]);
-Caravel.getDefault().post("ComplexDictionary", {name: "John Malkovich", movies: ["Dangerous Liaisons", "Burn after reading"], kids: 2});
+    Caravel.getDefault().post("ComplexArray", [87, {"name": "Bruce Willis"}, "left-handed" ]);
+    Caravel.getDefault().post("ComplexDictionary", {name: "John Malkovich", movies: ["Dangerous Liaisons", "Burn after reading"], kids: 2});
+});
