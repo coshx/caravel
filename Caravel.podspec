@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  version = "1.0.0-alpha.1"
+  version = "1.0.0-alpha.2"
 
   s.name         = "Caravel"
   s.version      = version
