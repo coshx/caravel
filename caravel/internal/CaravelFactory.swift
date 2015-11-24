@@ -40,9 +40,8 @@ internal class CaravelFactory {
         if let bus = getExisting() {
             return bus
         } else {
-            // setWebView must be run within a synchronized block
             objc_sync_enter(defaultBusLock)
-            if let bus = getExisting() { // bus has been created while waiting
+            if let bus = getExisting() {
                 objc_sync_exit(defaultBusLock)
                 return bus
             } else {
@@ -68,7 +67,6 @@ internal class CaravelFactory {
             if let bus = getExisting() {
                 return bus
             } else {
-                // setWebView must be run within a synchronized block
                 objc_sync_enter(getLock(name))
                 if let bus = getExisting() {
                     objc_sync_exit(getLock(name))
