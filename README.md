@@ -20,7 +20,7 @@
 * JavaScript ~> iOS supported types:
   - `Boolean`
   - `Int`
-  - `Double`
+  - `Float`
   - `String`
   - `Array` (available as a `NSArray`)
   - `Object` (available as a `NSDictionary`)
