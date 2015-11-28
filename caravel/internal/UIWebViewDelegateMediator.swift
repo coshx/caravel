@@ -67,6 +67,7 @@ internal class UIWebViewDelegateMediator: NSObject, UIWebViewDelegate {
                         a.removeAtIndex(i)
                         if a.count == 0 {
                             singleton.webViewSubscribers.removeValueForKey(key)
+                            webView.delegate = nil
                         }
                         return
                     }

@@ -38,11 +38,11 @@
 		A79762951B199541006D94CB /* event_data.js in Resources */ = {isa = PBXBuildFile; fileRef = A79762941B199541006D94CB /* event_data.js */; };
 		A79762971B19954A006D94CB /* event_data.html in Resources */ = {isa = PBXBuildFile; fileRef = A79762961B19954A006D94CB /* event_data.html */; };
 		A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A7AC9F291B349BB40041EB0B /* caravel.min.js */; };
+		A7BC5DC41C09507100C0230A /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; };
+		A7BC5DC51C09507100C0230A /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
 		A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */; };
-		A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; };
-		A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE281B18045C001E9B94 /* AppDelegate.swift */; };
 		A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* MainController.swift */; };
 		A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2C1B18045C001E9B94 /* Main.storyboard */; };
@@ -62,13 +62,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A7EE0BA91BEC423E00D0925C /* Embed Frameworks */ = {
+		A7BC5DC61C09507100C0230A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */,
+				A7BC5DC51C09507100C0230A /* Caravel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,10 +107,10 @@
 		A79762941B199541006D94CB /* event_data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = event_data.js; path = js/event_data.js; sourceTree = "<group>"; };
 		A79762961B19954A006D94CB /* event_data.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = event_data.html; path = html/event_data.html; sourceTree = "<group>"; };
 		A7AC9F291B349BB40041EB0B /* caravel.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = caravel.min.js; path = caravel/js/caravel.min.js; sourceTree = SOURCE_ROOT; };
+		A7BC5DC31C09507100C0230A /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-dlpamqduufdwsvhblzaeqpmtdyag/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
 		A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTriggeringController.swift; sourceTree = "<group>"; };
-		A7EE0BA61BEC423E00D0925C /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-gxizvdjjntycpgaiopgmjthvbutx/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7F1DE231B18045C001E9B94 /* caravel-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "caravel-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE271B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DE281B18045C001E9B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */,
+				A7BC5DC41C09507100C0230A /* Caravel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 		A7F1DE1A1B18045C001E9B94 = {
 			isa = PBXGroup;
 			children = (
-				A7EE0BA61BEC423E00D0925C /* Caravel.framework */,
+				A7BC5DC31C09507100C0230A /* Caravel.framework */,
 				A7F1DE251B18045C001E9B94 /* caravel-test */,
 				A7F1DE3B1B18045C001E9B94 /* caravel-testTests */,
 				A7F1DE241B18045C001E9B94 /* Products */,
@@ -259,7 +259,7 @@
 				A7F1DE1F1B18045C001E9B94 /* Sources */,
 				A7F1DE201B18045C001E9B94 /* Frameworks */,
 				A7F1DE211B18045C001E9B94 /* Resources */,
-				A7EE0BA91BEC423E00D0925C /* Embed Frameworks */,
+				A7BC5DC61C09507100C0230A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -518,6 +518,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -534,6 +535,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

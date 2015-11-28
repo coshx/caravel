@@ -210,12 +210,11 @@ public class EventBus: NSObject, UIWebViewDelegate {
      * Unregisters subscriber from bus
      * @param subscriber Should be the same one than provided when registering.
      */
-    public func unregister(subscriber: AnyObject) {
-        if subscriber.hash == self.reference?.hash {
-            self.dispatcher!.deleteBus(self)
-            UIWebViewDelegateMediator.unsubscribe(self.webView!, subscriber: self)
-            self.reference = nil
-            self.webView = nil
-        }
+    public func unregister() {
+        self.dispatcher!.deleteBus(self)
+        UIWebViewDelegateMediator.unsubscribe(self.webView!, subscriber: self)
+        self.dispatcher = nil
+        self.reference = nil
+        self.webView = nil
     }
 }
