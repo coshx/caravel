@@ -104,7 +104,7 @@ Caravel.getDefault().register("ComplexArray", function(name, data) {
 });
 
 Caravel.getDefault().register("ComplexDictionary", function(name, data) {
-    var expectedData = {name: "Cesar", address: { street: "Parrot", city: "Perigueux" }, games: ["Fifa", "Star Wars"]};
+    var expectedData = {name: "Paul", address: { street: "Hugo", city: "Bordeaux" }, games: ["Fifa", "Star Wars"]};
     var customFail = function() {
         fail(name, data);
     };

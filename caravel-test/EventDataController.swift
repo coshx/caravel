@@ -31,7 +31,7 @@ public class EventDataController: UIViewController {
             bus.post("Array", data: [1, 2, 3, 5])
             bus.post("Dictionary", data: ["foo": 45, "bar": 89])
             bus.post("ComplexArray", data: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
-            bus.post("ComplexDictionary", data: ["name": "Cesar", "address": ["street": "Parrot", "city": "Perigueux"], "games": ["Fifa", "Star Wars"]])
+            bus.post("ComplexDictionary", data: ["name": "Paul", "address": ["street": "Hugo", "city": "Bordeaux"], "games": ["Fifa", "Star Wars"]])
             
             bus.register("True") { name, data in
                 if let b = data as? Bool {
