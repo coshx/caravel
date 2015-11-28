@@ -18,7 +18,7 @@ import UIKit
   * @brief Main class of the library. Dispatches events among buses.
   */
 public class Caravel {
-    private static let busLock = NSObject()
+    private let busLock = NSObject()
     internal static let DEFAULT_BUS_NAME = "default"
     
     private var secretName: String
@@ -29,8 +29,8 @@ public class Caravel {
         self.buses = []
     }
     
-    private func lockBuses(action: () -> Void) {
-        NSObject.synchronized(Caravel.busLock) {
+    private func lockBuses(@noescape action: () -> Void) {
+        NSObject.synchronized(busLock) {
             action()
         }
     }
@@ -66,7 +66,7 @@ public class Caravel {
     
     internal func addBus(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void, inBackground: Bool) {
         // Test if an existing bus matching provided pair already exists
-        objc_sync_enter(Caravel.busLock)
+        objc_sync_enter(busLock)
         for b in self.buses {
             if b.getReference()?.hash == subscriber.hash && b.getWebView()?.hash == webView.hash {
                 if inBackground {
@@ -74,11 +74,11 @@ public class Caravel {
                 } else {
                     b.whenReadyOnMain(whenReady)
                 }
-                objc_sync_exit(Caravel.busLock)
+                objc_sync_exit(busLock)
                 return
             }
         }
-        objc_sync_exit(Caravel.busLock)
+        objc_sync_exit(busLock)
         
         let bus = EventBus(dispatcher: self, reference: subscriber, webView: webView)
         
