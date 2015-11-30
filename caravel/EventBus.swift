@@ -41,6 +41,13 @@ public class EventBus: NSObject, UIWebViewDelegate {
         UIWebViewDelegateMediator.subscribe(self.webView!, subscriber: self)
     }
     
+    /**
+     * Current name
+     */
+    public var name: String {
+        return self.dispatcher!.name
+    }
+    
     internal func getReference() -> AnyObject? {
         return self.reference
     }
@@ -208,7 +215,6 @@ public class EventBus: NSObject, UIWebViewDelegate {
     
     /**
      * Unregisters subscriber from bus
-     * @param subscriber Should be the same one than provided when registering.
      */
     public func unregister() {
         self.dispatcher!.deleteBus(self)
