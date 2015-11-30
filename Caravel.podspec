@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  version = "1.0.0-alpha.2"
+  version = "1.0.0"
 
   s.name         = "Caravel"
   s.version      = version
@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "8.1"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
