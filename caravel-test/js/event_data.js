@@ -58,19 +58,28 @@ Caravel.getDefault().register("HazardousString", function(name, data) {
 });
 
 Caravel.getDefault().register("Array", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify([1, 2, 3, 5])) {
-        ok(name);
-    } else {
-        fail(name, data);
+    var expected = [1, 2, 3, 5];
+    for (var i = 0, s = data.length; i < s; i++) {
+        if (data[i] != expected[i]) {
+            fail(name, data);
+            return
+        }
     }
+
+    ok(name);
 });
 
 Caravel.getDefault().register("Dictionary", function(name, data) {
-    if (JSON.stringify(data) == JSON.stringify({ foo: 45, bar: 89 })) {
-        ok(name);
-    } else {
-        fail(name, data);
+    var expected = { foo: 45, bar: 89 };
+
+    for (var key in expected) {
+        if (!data.hasOwnKeyProperty(key) || data[key] != expected[key]) {
+            fail(name, data);
+            return;
+        }
     }
+
+    ok(name);
 });
 
 Caravel.getDefault().register("ComplexArray", function(name, data) {
@@ -95,7 +104,7 @@ Caravel.getDefault().register("ComplexArray", function(name, data) {
 });
 
 Caravel.getDefault().register("ComplexDictionary", function(name, data) {
-    var expectedData = {name: "Cesar", address: { street: "Parrot", city: "Perigueux" }, games: ["Fifa", "Star Wars"]};
+    var expectedData = {name: "Paul", address: { street: "Hugo", city: "Bordeaux" }, games: ["Fifa", "Star Wars"]};
     var customFail = function() {
         fail(name, data);
     };
@@ -115,15 +124,16 @@ Caravel.getDefault().register("ComplexDictionary", function(name, data) {
     }
 });
 
-Caravel.getDefault().post("True", true);
-Caravel.getDefault().post("False", false);
-Caravel.getDefault().post("Int", 987);
-Caravel.getDefault().post("Float", 19.89);
-Caravel.getDefault().post("Double", 15.15);
-Caravel.getDefault().post("String", "Napoleon");
-Caravel.getDefault().post("UUID", "9658ae60-9e0d-4da7-a63d-46fe75ff1db1");
-Caravel.getDefault().post("Array", [3, 1, 4]);
-Caravel.getDefault().post("Dictionary", { "movie": "Once upon a time in the West", "actor": "Charles Bronson" });
+Caravel.getDefault().register("Ready", function() {
+    Caravel.getDefault().post("True", true);
+    Caravel.getDefault().post("False", false);
+    Caravel.getDefault().post("Int", 987);
+    Caravel.getDefault().post("Double", 15.15);
+    Caravel.getDefault().post("String", "Napoleon");
+    Caravel.getDefault().post("UUID", "9658ae60-9e0d-4da7-a63d-46fe75ff1db1");
+    Caravel.getDefault().post("Array", [3, 1, 4]);
+    Caravel.getDefault().post("Dictionary", { "movie": "Once upon a time in the West", "actor": "Charles Bronson" });
 
-Caravel.getDefault().post("ComplexArray", [87, {"name": "Bruce Willis"}, "left-handed" ]);
-Caravel.getDefault().post("ComplexDictionary", {name: "John Malkovich", movies: ["Dangerous Liaisons", "Burn after reading"], kids: 2});
+    Caravel.getDefault().post("ComplexArray", [87, {"name": "Bruce Willis"}, "left-handed" ]);
+    Caravel.getDefault().post("ComplexDictionary", {name: "John Malkovich", movies: ["Dangerous Liaisons", "Burn after reading"], kids: 2});
+});

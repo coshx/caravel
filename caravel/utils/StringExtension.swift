@@ -1,14 +1,27 @@
-//
-//  StringExtension.swift
-//  Caravel
-//
-//  Created by Adrien on 19/06/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 
 internal extension String {
+    
+    var length: Int {
+        return self.characters.count
+    }
+    
+    var first: String? {
+        if self.length > 0 {
+            return self[0]
+        } else {
+            return nil
+        }
+    }
+    
+    var last: String? {
+        if self.length > 0 {
+            return self[self.length - 1]
+        } else {
+            return nil
+        }
+    }
+    
     subscript (i: Int) -> Character {
         return self[self.startIndex.advancedBy(i)]
     }

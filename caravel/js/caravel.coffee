@@ -45,7 +45,7 @@ class Caravel
       e.callback(name, parsedData) if e.name == name
 
   @getDefault: ->
-    if not Caravel.default?
+    unless Caravel.default?
       Caravel.default = new Caravel("default")
       Caravel.default.post "CaravelInit"
     Caravel.default

@@ -17,13 +17,13 @@ public class TwoBusController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.get("FooBus", webView: _webView).whenReady() { bus in
+        Caravel.get(self, name: "FooBus", webView: _webView, whenReady: { bus in
             bus.post("AnEvent")
-        }
+        })
         
-        Caravel.get("BarBus", webView: _webView).whenReady() { bus in
+        Caravel.get(self, name: "BarBus", webView: _webView, whenReady: { bus in
             bus.post("AnEvent")
-        }
+        })
         
         _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("two_buses", withExtension: "html")!))
     }

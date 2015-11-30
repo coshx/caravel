@@ -5,6 +5,6 @@
       location = "group:caravel-test.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/acadet/Documents/workspace/swift/caravel/Caravel.xcodeproj">
+      location = "group:Caravel.xcodeproj">
    </FileRef>
 </Workspace>

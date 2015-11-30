@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */; };
+		A71E82931BFD13300078C5A0 /* threading.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82921BFD13300078C5A0 /* threading.js */; };
+		A71E82951BFD14490078C5A0 /* threading.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82941BFD14490078C5A0 /* threading.html */; };
+		A71E82971BFD19580078C5A0 /* UnregistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82961BFD19580078C5A0 /* UnregistrationController.swift */; };
+		A71E82991BFD1CFD0078C5A0 /* unregistration.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82981BFD1CFD0078C5A0 /* unregistration.js */; };
+		A71E829B1BFD1D0E0078C5A0 /* unregistration.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E829A1BFD1D0E0078C5A0 /* unregistration.html */; };
+		A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */; };
+		A71E829F1BFD3BEB0078C5A0 /* benchmark.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E829E1BFD3BEB0078C5A0 /* benchmark.js */; };
+		A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A01BFD3BFE0078C5A0 /* benchmark.html */; };
+		A71E82A31BFD45F80078C5A0 /* TwoBucketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */; };
+		A71E82A51BFD48260078C5A0 /* two_buckets.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A41BFD48260078C5A0 /* two_buckets.js */; };
+		A71E82A71BFD48350078C5A0 /* two_buckets.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A61BFD48350078C5A0 /* two_buckets.html */; };
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
@@ -26,13 +38,13 @@
 		A79762951B199541006D94CB /* event_data.js in Resources */ = {isa = PBXBuildFile; fileRef = A79762941B199541006D94CB /* event_data.js */; };
 		A79762971B19954A006D94CB /* event_data.html in Resources */ = {isa = PBXBuildFile; fileRef = A79762961B19954A006D94CB /* event_data.html */; };
 		A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A7AC9F291B349BB40041EB0B /* caravel.min.js */; };
+		A7BC5DC41C09507100C0230A /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; };
+		A7BC5DC51C09507100C0230A /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
 		A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */; };
-		A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; };
-		A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7EE0BA61BEC423E00D0925C /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE281B18045C001E9B94 /* AppDelegate.swift */; };
-		A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* ViewController.swift */; };
+		A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* MainController.swift */; };
 		A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2C1B18045C001E9B94 /* Main.storyboard */; };
 		A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE2F1B18045C001E9B94 /* Images.xcassets */; };
 		A7F1DE331B18045C001E9B94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */; };
@@ -50,13 +62,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A7EE0BA91BEC423E00D0925C /* Embed Frameworks */ = {
+		A7BC5DC61C09507100C0230A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A7EE0BA81BEC423E00D0925C /* Caravel.framework in Embed Frameworks */,
+				A7BC5DC51C09507100C0230A /* Caravel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +76,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadingController.swift; sourceTree = "<group>"; };
+		A71E82921BFD13300078C5A0 /* threading.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = threading.js; path = js/threading.js; sourceTree = "<group>"; };
+		A71E82941BFD14490078C5A0 /* threading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = threading.html; path = html/threading.html; sourceTree = "<group>"; };
+		A71E82961BFD19580078C5A0 /* UnregistrationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnregistrationController.swift; sourceTree = "<group>"; };
+		A71E82981BFD1CFD0078C5A0 /* unregistration.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = unregistration.js; path = js/unregistration.js; sourceTree = "<group>"; };
+		A71E829A1BFD1D0E0078C5A0 /* unregistration.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = unregistration.html; path = html/unregistration.html; sourceTree = "<group>"; };
+		A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BenchmarkController.swift; sourceTree = "<group>"; };
+		A71E829E1BFD3BEB0078C5A0 /* benchmark.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = benchmark.js; path = js/benchmark.js; sourceTree = "<group>"; };
+		A71E82A01BFD3BFE0078C5A0 /* benchmark.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = benchmark.html; path = html/benchmark.html; sourceTree = "<group>"; };
+		A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoBucketController.swift; sourceTree = "<group>"; };
+		A71E82A41BFD48260078C5A0 /* two_buckets.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = two_buckets.js; path = js/two_buckets.js; sourceTree = "<group>"; };
+		A71E82A61BFD48350078C5A0 /* two_buckets.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = two_buckets.html; path = html/two_buckets.html; sourceTree = "<group>"; };
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
@@ -83,14 +107,14 @@
 		A79762941B199541006D94CB /* event_data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = event_data.js; path = js/event_data.js; sourceTree = "<group>"; };
 		A79762961B19954A006D94CB /* event_data.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = event_data.html; path = html/event_data.html; sourceTree = "<group>"; };
 		A7AC9F291B349BB40041EB0B /* caravel.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = caravel.min.js; path = caravel/js/caravel.min.js; sourceTree = SOURCE_ROOT; };
+		A7BC5DC31C09507100C0230A /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-dlpamqduufdwsvhblzaeqpmtdyag/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
 		A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTriggeringController.swift; sourceTree = "<group>"; };
-		A7EE0BA61BEC423E00D0925C /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-gxizvdjjntycpgaiopgmjthvbutx/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7F1DE231B18045C001E9B94 /* caravel-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "caravel-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE271B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DE281B18045C001E9B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A7F1DE2A1B18045C001E9B94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A7F1DE2A1B18045C001E9B94 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		A7F1DE2D1B18045C001E9B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A7F1DE2F1B18045C001E9B94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A7F1DE321B18045C001E9B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -104,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7EE0BA71BEC423E00D0925C /* Caravel.framework in Frameworks */,
+				A7BC5DC41C09507100C0230A /* Caravel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,13 +145,17 @@
 		A7C868F81B18CC8D0070AF5A /* html */ = {
 			isa = PBXGroup;
 			children = (
+				A7C869051B18CEF30070AF5A /* basic_triggering.html */,
 				A79762961B19954A006D94CB /* event_data.html */,
 				A797628C1B198B98006D94CB /* event_name.html */,
+				A75AD3F81B19150200404C06 /* initialization.html */,
+				A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */,
+				A71E82941BFD14490078C5A0 /* threading.html */,
 				A75AD40A1B191C8000404C06 /* two_buses.html */,
 				A75AD4041B191A1800404C06 /* two_events.html */,
-				A75AD3FC1B1917BE00404C06 /* multiple_subscribers.html */,
-				A75AD3F81B19150200404C06 /* initialization.html */,
-				A7C869051B18CEF30070AF5A /* basic_triggering.html */,
+				A71E829A1BFD1D0E0078C5A0 /* unregistration.html */,
+				A71E82A01BFD3BFE0078C5A0 /* benchmark.html */,
+				A71E82A61BFD48350078C5A0 /* two_buckets.html */,
 			);
 			name = html;
 			sourceTree = "<group>";
@@ -135,14 +163,18 @@
 		A7C868F91B18CDC20070AF5A /* js */ = {
 			isa = PBXGroup;
 			children = (
+				A7C869071B18CF450070AF5A /* basic_triggering.js */,
 				A7AC9F291B349BB40041EB0B /* caravel.min.js */,
 				A79762941B199541006D94CB /* event_data.js */,
-				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A797628E1B198B9F006D94CB /* event_name.js */,
-				A7C869071B18CF450070AF5A /* basic_triggering.js */,
-				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
 				A75AD3F61B1914FA00404C06 /* initialization.js */,
+				A75AD3FE1B1917C300404C06 /* multiple_subscribers.js */,
+				A71E82921BFD13300078C5A0 /* threading.js */,
+				A75AD4081B191C7A00404C06 /* two_buses.js */,
 				A75AD4021B191A1400404C06 /* two_events.js */,
+				A71E82981BFD1CFD0078C5A0 /* unregistration.js */,
+				A71E829E1BFD3BEB0078C5A0 /* benchmark.js */,
+				A71E82A41BFD48260078C5A0 /* two_buckets.js */,
 			);
 			name = js;
 			sourceTree = "<group>";
@@ -150,7 +182,7 @@
 		A7F1DE1A1B18045C001E9B94 = {
 			isa = PBXGroup;
 			children = (
-				A7EE0BA61BEC423E00D0925C /* Caravel.framework */,
+				A7BC5DC31C09507100C0230A /* Caravel.framework */,
 				A7F1DE251B18045C001E9B94 /* caravel-test */,
 				A7F1DE3B1B18045C001E9B94 /* caravel-testTests */,
 				A7F1DE241B18045C001E9B94 /* Products */,
@@ -172,7 +204,7 @@
 				A7C868F91B18CDC20070AF5A /* js */,
 				A7C868F81B18CC8D0070AF5A /* html */,
 				A7F1DE281B18045C001E9B94 /* AppDelegate.swift */,
-				A7F1DE2A1B18045C001E9B94 /* ViewController.swift */,
+				A7F1DE2A1B18045C001E9B94 /* MainController.swift */,
 				A7F1DE2C1B18045C001E9B94 /* Main.storyboard */,
 				A7F1DE2F1B18045C001E9B94 /* Images.xcassets */,
 				A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */,
@@ -184,6 +216,10 @@
 				A75AD4061B191ADF00404C06 /* TwoBusController.swift */,
 				A79762901B198BA7006D94CB /* EventNameController.swift */,
 				A79762921B19904C006D94CB /* EventDataController.swift */,
+				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
+				A71E82961BFD19580078C5A0 /* UnregistrationController.swift */,
+				A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */,
+				A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -223,7 +259,7 @@
 				A7F1DE1F1B18045C001E9B94 /* Sources */,
 				A7F1DE201B18045C001E9B94 /* Frameworks */,
 				A7F1DE211B18045C001E9B94 /* Resources */,
-				A7EE0BA91BEC423E00D0925C /* Embed Frameworks */,
+				A7BC5DC61C09507100C0230A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,7 +296,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Coshx Labs";
 				TargetAttributes = {
 					A7F1DE221B18045C001E9B94 = {
@@ -297,10 +333,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75AD40B1B191C8000404C06 /* two_buses.html in Resources */,
+				A71E82A51BFD48260078C5A0 /* two_buckets.js in Resources */,
 				A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */,
+				A71E82A71BFD48350078C5A0 /* two_buckets.html in Resources */,
+				A71E82931BFD13300078C5A0 /* threading.js in Resources */,
 				A79762951B199541006D94CB /* event_data.js in Resources */,
+				A71E82A11BFD3BFE0078C5A0 /* benchmark.html in Resources */,
 				A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */,
 				A797628D1B198B98006D94CB /* event_name.html in Resources */,
+				A71E82991BFD1CFD0078C5A0 /* unregistration.js in Resources */,
 				A7F1DE2E1B18045C001E9B94 /* Main.storyboard in Resources */,
 				A75AD3FD1B1917BE00404C06 /* multiple_subscribers.html in Resources */,
 				A79762971B19954A006D94CB /* event_data.html in Resources */,
@@ -310,10 +351,13 @@
 				A7F1DE301B18045C001E9B94 /* Images.xcassets in Resources */,
 				A797628F1B198B9F006D94CB /* event_name.js in Resources */,
 				A75AD3F71B1914FB00404C06 /* initialization.js in Resources */,
+				A71E829F1BFD3BEB0078C5A0 /* benchmark.js in Resources */,
 				A75AD4091B191C7A00404C06 /* two_buses.js in Resources */,
 				A75AD3F91B19150200404C06 /* initialization.html in Resources */,
+				A71E829B1BFD1D0E0078C5A0 /* unregistration.html in Resources */,
 				A75AD3FF1B1917C300404C06 /* multiple_subscribers.js in Resources */,
 				A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */,
+				A71E82951BFD14490078C5A0 /* threading.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,14 +376,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75AD3FB1B19169200404C06 /* MultipleSubscriberController.swift in Sources */,
-				A7F1DE2B1B18045C001E9B94 /* ViewController.swift in Sources */,
+				A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */,
+				A71E82971BFD19580078C5A0 /* UnregistrationController.swift in Sources */,
 				A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */,
 				A79762911B198BA7006D94CB /* EventNameController.swift in Sources */,
 				A75AD4071B191ADF00404C06 /* TwoBusController.swift in Sources */,
 				A79762931B19904C006D94CB /* EventDataController.swift in Sources */,
 				A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */,
 				A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */,
+				A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */,
+				A71E82A31BFD45F80078C5A0 /* TwoBucketController.swift in Sources */,
 				A75AD4011B19182F00404C06 /* TwoEventController.swift in Sources */,
+				A71E829D1BFD39DA0078C5A0 /* BenchmarkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +450,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -469,10 +518,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -484,10 +535,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/acadet/Documents/workspace/swift/caravel/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -506,6 +559,7 @@
 				);
 				INFOPLIST_FILE = "caravel-testTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};
@@ -521,6 +575,7 @@
 				);
 				INFOPLIST_FILE = "caravel-testTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};

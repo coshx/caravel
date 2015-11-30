@@ -1,15 +1,6 @@
-//
-//  ViewController.swift
-//  caravel-test
-//
-//  Created by Adrien on 28/05/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import UIKit
-import Caravel
 
-class ViewController: UIViewController {
+class MainController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
