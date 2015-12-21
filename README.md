@@ -2,7 +2,7 @@
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/Caravel.svg?style=flat-square)](https://cocoapods.org/pods/Caravel)
 
-[![Join the chat at https://gitter.im/coshx/caravel](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/coshx/caravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/coshx/caravel](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/coshx/caravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **An event bus for sending messages between UIWebView and embedded JS. Made with pure Swift.**
 
