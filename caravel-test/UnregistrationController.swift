@@ -50,9 +50,7 @@ class UnregistrationController: UIViewController {
     
     func unsubscribe() {
         self.bus!.unregister()
-        dispatch_async(dispatch_get_main_queue()) {
-            self.timer?.invalidate()
-            self.timer = nil
-        }
+        self.timer?.invalidate()
+        self.timer = nil
     }
 }

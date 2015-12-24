@@ -30,13 +30,13 @@ public class Caravel {
     }
     
     private func lockBuses(@noescape action: () -> Void) {
-        NSObject.synchronized(busLock) {
+        synchronized(busLock) {
             action()
         }
     }
 
     internal func post<T>(eventName: String, eventData: T?) {
-        ThreadingHelper.background {
+        background {
             var data: String?
             var toRun: String?
             
@@ -89,7 +89,7 @@ public class Caravel {
             bus.whenReadyOnMain(whenReady)
         }
         
-        ThreadingHelper.background { // Clean unused buses
+        background { // Clean unused buses
             self.lockBuses {
                 var i = 0
                 var toRemove: [Int] = []
@@ -125,17 +125,29 @@ public class Caravel {
         }
     }
     
-    internal func dispatch(args: (busName: String, eventName: String, eventData: String?)) {
-        ThreadingHelper.background {
-            var data: AnyObject? = nil
-            
-            if let d = args.eventData { // Data are optional
-                data = DataSerializer.deserialize(d)
-            }
-            
+    internal func dispatch(busName: String, eventName: String, eventData: String?) {
+        if busName != self.name {
+            return
+        }
+        
+        if eventName == "CaravelInit" { // Reserved event name. Triggers whenReady
             self.lockBuses {
                 for b in self.buses {
-                    ThreadingHelper.background { b.raise(args.eventName, data: data) }
+                    b.onInit()
+                }
+            }
+        } else {
+            background {
+                var data: AnyObject? = nil
+                
+                if let d = eventData { // Data are optional
+                    data = DataSerializer.deserialize(d)
+                }
+                
+                self.lockBuses {
+                    for b in self.buses {
+                        background { b.raise(eventName, data: data) }
+                    }
                 }
             }
         }

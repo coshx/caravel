@@ -16,10 +16,13 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
     
     init(webView: UIWebView) {
         self.originalDelegate = webView.delegate
+        
+        super.init()
+        
         webView.delegate = self
     }
     
-    private func lockSubscribers(action: () -> Void) {
+    private func lockSubscribers(@noescape action: () -> Void) {
         synchronized(UIWebViewDelegateProxy.subscriberLock, action: action)
     }
     
@@ -33,11 +36,17 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
     
     func subscribe(subscriber: IUIWebViewObserver) {
         lockSubscribers {
+            for s in self.subscribers {
+                if s.hash == subscriber.hash {
+                    return
+                }
+            }
+            
             self.subscribers.append(subscriber)
         }
     }
     
-    internal func unsubscribe(subscriber: IUIWebViewObserver) {
+    func unsubscribe(subscriber: IUIWebViewObserver) {
         lockSubscribers {
             var i = 0
             for e in self.subscribers {
@@ -48,6 +57,14 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
                 i++
             }
         }
+    }
+    
+    func hasSubscribers() -> Bool {
+        return self.subscribers.count > 0
+    }
+    
+    func deactivate(webView: UIWebView) {
+        webView.delegate = self.originalDelegate
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
@@ -66,9 +83,8 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
             if scheme == "caravel" {
                 let args = ArgumentParser.parse(request.URL!.query!)
                 
-                
                 iterateOverDelegates { e in
-                    ThreadingHelper.background { e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData) }
+                    background { e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData) }
                 }
                 
                 shouldLoad = false
