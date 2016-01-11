@@ -1,0 +1,2 @@
+internal protocol IWKWebViewObserver: IWebComponentObserver {
+}

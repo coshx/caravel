@@ -1,15 +1,46 @@
+import WebKit
+
 /**
  * @class EventBus
  * @brief In charge of watching a subscriber / webview pair.
  * If any event is captured, it forwards it to dispatcher (except init one).
  * Argument passed as well when whenReady callback is run.
  */
-public class EventBus: NSObject, IUIWebViewObserver {
+public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
+    
+    public class Draft: NSObject, IWKWebViewObserver {
+        private var wkWebViewConfiguration: WKWebViewConfiguration
+        internal weak var parent: EventBus?
+        
+        init(wkWebViewConfiguration: WKWebViewConfiguration) {
+            self.wkWebViewConfiguration = wkWebViewConfiguration
+            
+            super.init()
+            
+            WKScriptMessageHandlerProxyMediator.subscribe(self.wkWebViewConfiguration, observer: self)
+        }
+        
+        func onMessage(busName: String, eventName: String, eventData: String?) {
+            self.parent?.onMessage(busName, eventName: eventName, eventData: eventData)
+        }
+    }
+    
+    private class WKWebViewPair {
+        var draft: Draft
+        weak var webView: WKWebView?
+        
+        init(draft: Draft, webView: WKWebView) {
+            self.draft = draft
+            self.webView = webView
+        }
+    }
+    
     private let initializationLock = NSObject()
     private let subscriberLock = NSObject()
     
     private weak var reference: AnyObject?
     private weak var webView: UIWebView?
+    private var wkWebViewPair: WKWebViewPair?
     private weak var dispatcher: Caravel?
     
     /**
@@ -30,6 +61,14 @@ public class EventBus: NSObject, IUIWebViewObserver {
     private lazy var onGoingInitializers: [Int: (callback: (EventBus) -> Void, inBackground: Bool)] = [:]
     private lazy var onGoingInitializersId = 0 // Id counter
     
+    private init(dispatcher: Caravel, reference: AnyObject) {
+        self.dispatcher = dispatcher
+        self.reference = reference
+        self.isInitialized = false
+        
+        super.init()
+    }
+    
     internal init(dispatcher: Caravel, reference: AnyObject, webView: UIWebView) {
         self.dispatcher = dispatcher
         self.reference = reference
@@ -39,6 +78,17 @@ public class EventBus: NSObject, IUIWebViewObserver {
         super.init()
         
         UIWebViewDelegateProxyMediator.subscribe(self.webView!, observer: self)
+    }
+    
+    internal init(dispatcher: Caravel, reference: AnyObject, wkWebViewPair: (Draft, WKWebView)) {
+        self.dispatcher = dispatcher
+        self.reference = reference
+        self.isInitialized = false
+        self.wkWebViewPair = WKWebViewPair(draft: wkWebViewPair.0, webView: wkWebViewPair.1)
+        
+        super.init()
+        
+        self.wkWebViewPair!.draft.parent = self
     }
     
     /**
@@ -52,8 +102,16 @@ public class EventBus: NSObject, IUIWebViewObserver {
         return self.reference
     }
     
+    internal func isUsingWebView() -> Bool {
+        return self.webView != nil
+    }
+    
     internal func getWebView() -> UIWebView? {
         return self.webView
+    }
+    
+    internal func getWKWebView() -> WKWebView? {
+        return self.wkWebViewPair?.webView
     }
     
     /**
@@ -61,7 +119,11 @@ public class EventBus: NSObject, IUIWebViewObserver {
      */
     internal func forwardToJS(toRun: String) {
         main {
-            self.webView?.stringByEvaluatingJavaScriptFromString(toRun)
+            if self.isUsingWebView() {
+                self.webView?.stringByEvaluatingJavaScriptFromString(toRun)
+            } else {
+                self.wkWebViewPair?.webView?.evaluateJavaScript(toRun, completionHandler: nil)
+            }
         }
     }
     
@@ -77,7 +139,7 @@ public class EventBus: NSObject, IUIWebViewObserver {
             
             for pair in self.initializers {
                 let index = self.onGoingInitializersId
-                let action: ((EventBus) -> Void, Int) -> Void = { initializer, id in
+                let action: ((EventBus) -> Void, Int) -> Void = {initializer, id in
                     initializer(self)
                     self.onGoingInitializers.removeValueForKey(id)
                 }
@@ -86,7 +148,7 @@ public class EventBus: NSObject, IUIWebViewObserver {
                 self.onGoingInitializersId++
                 
                 if pair.inBackground {
-                    background { action(pair.callback, index) }
+                    background {action(pair.callback, index)}
                 } else {
                     action(pair.callback, index)
                 }
@@ -103,7 +165,7 @@ public class EventBus: NSObject, IUIWebViewObserver {
         synchronized(subscriberLock) {
             for s in self.subscribers {
                 if s.name == name {
-                    let action = { s.callback(name, data) }
+                    let action = {s.callback(name, data)}
                     
                     if s.inBackground {
                         background(action)
@@ -206,9 +268,20 @@ public class EventBus: NSObject, IUIWebViewObserver {
      */
     public func unregister() {
         self.dispatcher!.deleteBus(self)
-        UIWebViewDelegateProxyMediator.unsubscribe(self.webView!, observer: self)
+        
+        if self.isUsingWebView() {
+            if let w = self.webView {
+                UIWebViewDelegateProxyMediator.unsubscribe(w, observer: self)
+            }
+        } else {
+            if let p = self.wkWebViewPair {
+                WKScriptMessageHandlerProxyMediator.unsubscribe(p.draft.wkWebViewConfiguration, observer: self)
+            }
+        }
+        
         self.dispatcher = nil
         self.reference = nil
         self.webView = nil
+        self.wkWebViewPair = nil
     }
 }

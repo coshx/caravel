@@ -10,7 +10,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
     private var originalDelegate: UIWebViewDelegate?
     
     /**
-     * All the subscribers. They are grouped by webview's hash
+     * All the subscribers.
      */
     private lazy var subscribers: [IUIWebViewObserver] = []
     
@@ -76,7 +76,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         let original = self.originalDelegate?.webView?(webView, shouldStartLoadWithRequest: request, navigationType: navigationType)
         
         if let b = original {
-            shouldLoad = shouldLoad || b
+            shouldLoad = shouldLoad && b
         }
         
         if let scheme: String = request.URL?.scheme {
