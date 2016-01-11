@@ -83,8 +83,8 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
             if scheme == "caravel" {
                 let args = ArgumentParser.parse(request.URL!.query!)
                 
-                iterateOverDelegates { e in
-                    background { e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData) }
+                iterateOverDelegates {e in
+                    e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData)
                 }
                 
                 shouldLoad = false

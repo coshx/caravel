@@ -45,25 +45,23 @@ public class Caravel {
             bus.whenReadyOnMain(whenReady)
         }
         
-        if Int(NSDate().timeIntervalSince1970) % 2 == 0 {// Clean unused buses randomly
-            background {
-                self.lockBuses {
-                    var i = 0
-                    var toRemove: [Int] = []
-                    
-                    for b in self.buses {
-                        if (b.getReference() == nil && b.getWebView() == nil) || (b.getReference() == nil && b.getWKWebView() == nil) {
-                            // Watched pair was garbage collected. This bus is not needed anymore
-                            toRemove.append(i)
-                        }
-                        i++
+        background {// Clean unused buses
+            self.lockBuses {
+                var i = 0
+                var toRemove: [Int] = []
+                
+                for b in self.buses {
+                    if (b.getReference() == nil && b.getWebView() == nil) || (b.getReference() == nil && b.getWKWebView() == nil) {
+                        // Watched pair was garbage collected. This bus is not needed anymore
+                        toRemove.append(i)
                     }
-                    
-                    i = 0
-                    for j in toRemove {
-                        self.buses.removeAtIndex(j - i)
-                        i++
-                    }
+                    i++
+                }
+                
+                i = 0
+                for j in toRemove {
+                    self.buses.removeAtIndex(j - i)
+                    i++
                 }
             }
         }
@@ -238,7 +236,7 @@ public class Caravel {
     }
     
     public static func getDraft(configuration: WKWebViewConfiguration) -> EventBus.Draft {
-        return EventBus.Draft(wkWebViewConfiguration: configuration)
+        return EventBus.buildDraft(configuration)
     }
     
     /**

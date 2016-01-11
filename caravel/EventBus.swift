@@ -10,7 +10,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     
     public class Draft: NSObject, IWKWebViewObserver {
         private var wkWebViewConfiguration: WKWebViewConfiguration
-        internal weak var parent: EventBus?
+        internal weak var parent: IWKWebViewObserver?
         
         init(wkWebViewConfiguration: WKWebViewConfiguration) {
             self.wkWebViewConfiguration = wkWebViewConfiguration
@@ -69,24 +69,16 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
         super.init()
     }
     
-    internal init(dispatcher: Caravel, reference: AnyObject, webView: UIWebView) {
-        self.dispatcher = dispatcher
-        self.reference = reference
-        self.isInitialized = false
+    internal convenience init(dispatcher: Caravel, reference: AnyObject, webView: UIWebView) {
+        self.init(dispatcher: dispatcher, reference: reference)
         self.webView = webView
-        
-        super.init()
         
         UIWebViewDelegateProxyMediator.subscribe(self.webView!, observer: self)
     }
     
-    internal init(dispatcher: Caravel, reference: AnyObject, wkWebViewPair: (Draft, WKWebView)) {
-        self.dispatcher = dispatcher
-        self.reference = reference
-        self.isInitialized = false
+    internal convenience init(dispatcher: Caravel, reference: AnyObject, wkWebViewPair: (Draft, WKWebView)) {
+        self.init(dispatcher: dispatcher, reference: reference)
         self.wkWebViewPair = WKWebViewPair(draft: wkWebViewPair.0, webView: wkWebViewPair.1)
-        
-        super.init()
         
         self.wkWebViewPair!.draft.parent = self
     }
@@ -135,7 +127,9 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
         }
         
         synchronized(self.initializationLock) {
-            self.isInitialized = true
+            if self.isInitialized {
+                return
+            }
             
             for pair in self.initializers {
                 let index = self.onGoingInitializersId
@@ -150,11 +144,12 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
                 if pair.inBackground {
                     background {action(pair.callback, index)}
                 } else {
-                    action(pair.callback, index)
+                    main {action(pair.callback, index)}
                 }
             }
             
             self.initializers = []
+            self.isInitialized = true
         }
     }
     
@@ -215,6 +210,10 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
                 }
             }
         }
+    }
+    
+    internal static func buildDraft(wkWebViewConfiguration: WKWebViewConfiguration) -> Draft {
+        return Draft(wkWebViewConfiguration: wkWebViewConfiguration)
     }
     
     /**
