@@ -17,12 +17,12 @@
   - `Float`
   - `Double`
   - `String`
-  - Any array (using types in this list)
-  - Any dictionary (using types in this list)
+  - Any array (using types in this list, including dictionaries)
+  - Any dictionary (using types in this list, including arrays)
 * JavaScript ~> iOS supported types:
   - `Boolean`
   - `Int`
-  - `Float`
+  - `Float` (available as a `Double`)
   - `String`
   - `Array` (available as a `NSArray`)
   - `Object` (available as a `NSDictionary`)
@@ -43,9 +43,10 @@ Once done, you should find a `caravel.min.js` file in either the Pod or the subm
 <script type="text/javascript" src="caravel.min.js"></script>
 ```
 
-## Migrate from 0.* to 1.*
+## Might be useful 
 
-[Please glance at this blog post](http://www.coshx.com/blog/2015/11/19/releasing-caravel-1-0-0/).
+* [Engineer a TODO list using Caravel and Framework7](http://www.coshx.com/blog/2015/12/04/engineer-a-todo-list-using-caravel-and-framework7/)
+* [Migrate from 0.* to 1.*](http://www.coshx.com/blog/2015/11/19/releasing-caravel-1-0-0/)
 
 ## Get started
 
