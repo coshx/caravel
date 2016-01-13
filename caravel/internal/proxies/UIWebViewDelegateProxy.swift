@@ -84,7 +84,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
                 let args = ArgumentParser.parse(request.URL!.query!)
                 
                 iterateOverDelegates {e in
-                    e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData)
+                    e.onMessage(args.busName, eventName: args.eventName, rawEventData: args.eventData)
                 }
                 
                 shouldLoad = false

@@ -14,12 +14,10 @@ class Caravel
   # Internal method for posting
   _post: (eventName, data) ->
     if @isUsingWKWebView
-      body = "busName=#{@name}&eventName=#{eventName}"
-      if data?
-        if data instanceof Array or data instanceof Object
-          body += "&eventData=#{JSON.stringify(data)}"
-        else
-          body += "&eventData=#{data}"
+      body =
+        busName: @name
+        eventName: eventName
+        eventData: data
       window.webkit.messageHandlers.caravel.postMessage body
     else
       # shouldLoadRequest is only triggered when a new content is required

@@ -150,7 +150,20 @@ public class Caravel {
         }
     }
     
-    internal func dispatch(busName: String, eventName: String, eventData: String?) {
+    internal func dispatch(busName: String, eventName: String, rawEventData: String?) {
+        if busName != self.name {
+            return
+        }
+        
+        var data: AnyObject?
+        if let d = rawEventData {// Data are optional
+            data = DataSerializer.deserialize(d)
+        }
+        
+        self.dispatch(busName, eventName: eventName, eventData: data)
+    }
+    
+    internal func dispatch(busName: String, eventName: String, eventData: AnyObject?) {
         if busName != self.name {
             return
         }
@@ -163,15 +176,9 @@ public class Caravel {
             }
         } else {
             background {
-                var data: AnyObject? = nil
-                
-                if let d = eventData {// Data are optional
-                    data = DataSerializer.deserialize(d)
-                }
-                
                 self.lockBuses {
                     for b in self.buses {
-                        background {b.raise(eventName, data: data)}
+                        background {b.raise(eventName, data: eventData)}
                     }
                 }
             }

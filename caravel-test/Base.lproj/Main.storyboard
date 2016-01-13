@@ -172,7 +172,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="04R-Op-c0p">
-                                <rect key="frame" x="37" y="84" width="108" height="30"/>
+                                <rect key="frame" x="57" y="154" width="108" height="30"/>
                                 <state key="normal" title="Basic triggering">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -181,7 +181,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDv-1q-FKP">
-                                <rect key="frame" x="196" y="84" width="63" height="30"/>
+                                <rect key="frame" x="216" y="154" width="63" height="30"/>
                                 <state key="normal" title="Init event">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -190,7 +190,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guj-sM-4VH">
-                                <rect key="frame" x="22" y="135" width="139" height="30"/>
+                                <rect key="frame" x="42" y="205" width="139" height="30"/>
                                 <state key="normal" title="Multiple subscribers">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -199,7 +199,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2o-H8-izy">
-                                <rect key="frame" x="206" y="135" width="77" height="30"/>
+                                <rect key="frame" x="226" y="205" width="77" height="30"/>
                                 <state key="normal" title="Two events">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -208,7 +208,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPV-mf-nu2">
-                                <rect key="frame" x="55" y="186" width="73" height="30"/>
+                                <rect key="frame" x="75" y="256" width="73" height="30"/>
                                 <state key="normal" title="Two buses">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -217,7 +217,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4UX-sv-l26">
-                                <rect key="frame" x="204" y="186" width="81" height="30"/>
+                                <rect key="frame" x="224" y="256" width="81" height="30"/>
                                 <state key="normal" title="Event name">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -226,7 +226,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObR-E7-ydu">
-                                <rect key="frame" x="55" y="242" width="74" height="30"/>
+                                <rect key="frame" x="75" y="312" width="74" height="30"/>
                                 <state key="normal" title="Event data">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -235,33 +235,43 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nc-o2-T4L">
-                                <rect key="frame" x="209" y="242" width="70" height="30"/>
+                                <rect key="frame" x="229" y="312" width="70" height="30"/>
                                 <state key="normal" title="Threading"/>
                                 <connections>
                                     <segue destination="T94-wa-1Vw" kind="show" id="Sve-cC-anv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTf-Ka-AZZ">
-                                <rect key="frame" x="60" y="295" width="98" height="30"/>
+                                <rect key="frame" x="80" y="365" width="98" height="30"/>
                                 <state key="normal" title="Unregistration"/>
                                 <connections>
                                     <segue destination="zbV-fF-zaZ" kind="show" id="SvK-lC-Poh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IV1-cg-Xcv">
-                                <rect key="frame" x="205" y="295" width="78" height="30"/>
+                                <rect key="frame" x="225" y="365" width="78" height="30"/>
                                 <state key="normal" title="Benchmark"/>
                                 <connections>
                                     <segue destination="77g-j0-Ola" kind="show" id="wpS-aM-dll"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUd-LX-HM2">
-                                <rect key="frame" x="66" y="345" width="87" height="30"/>
+                                <rect key="frame" x="86" y="415" width="87" height="30"/>
                                 <state key="normal" title="Two buckets"/>
                                 <connections>
                                     <segue destination="aEb-Mp-iDB" kind="show" id="KzD-U6-G4w"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bfc-1e-XDy">
+                                <rect key="frame" x="95" y="68" width="183" height="29"/>
+                                <segments>
+                                    <segment title="UIWebView"/>
+                                    <segment title="WKWebView"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onTypeChange:" destination="vXZ-lx-hvc" eventType="valueChanged" id="jvZ-Vl-srB"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>

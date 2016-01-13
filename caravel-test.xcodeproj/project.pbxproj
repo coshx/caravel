@@ -19,6 +19,7 @@
 		A71E82A31BFD45F80078C5A0 /* TwoBucketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */; };
 		A71E82A51BFD48260078C5A0 /* two_buckets.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A41BFD48260078C5A0 /* two_buckets.js */; };
 		A71E82A71BFD48350078C5A0 /* two_buckets.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82A61BFD48350078C5A0 /* two_buckets.html */; };
+		A727041C1C4700BD00E9CC82 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A727041B1C4700BD00E9CC82 /* BaseController.swift */; };
 		A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75AD3F41B1913B600404C06 /* InitializationController.swift */; };
 		A75AD3F71B1914FB00404C06 /* initialization.js in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F61B1914FA00404C06 /* initialization.js */; };
 		A75AD3F91B19150200404C06 /* initialization.html in Resources */ = {isa = PBXBuildFile; fileRef = A75AD3F81B19150200404C06 /* initialization.html */; };
@@ -88,6 +89,7 @@
 		A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoBucketController.swift; sourceTree = "<group>"; };
 		A71E82A41BFD48260078C5A0 /* two_buckets.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = two_buckets.js; path = js/two_buckets.js; sourceTree = "<group>"; };
 		A71E82A61BFD48350078C5A0 /* two_buckets.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = two_buckets.html; path = html/two_buckets.html; sourceTree = "<group>"; };
+		A727041B1C4700BD00E9CC82 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		A75AD3F41B1913B600404C06 /* InitializationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitializationController.swift; sourceTree = "<group>"; };
 		A75AD3F61B1914FA00404C06 /* initialization.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = initialization.js; path = js/initialization.js; sourceTree = "<group>"; };
 		A75AD3F81B19150200404C06 /* initialization.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = initialization.html; path = html/initialization.html; sourceTree = "<group>"; };
@@ -110,7 +112,6 @@
 		A7BC5DC31C09507100C0230A /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-dlpamqduufdwsvhblzaeqpmtdyag/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
-		A7DB0FE71C445647002EA3FC /* Caravel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Caravel.framework; path = "build/Debug-iphoneos/Caravel.framework"; sourceTree = "<group>"; };
 		A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTriggeringController.swift; sourceTree = "<group>"; };
 		A7F1DE231B18045C001E9B94 /* caravel-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "caravel-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DE271B18045C001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,7 +184,6 @@
 		A7F1DE1A1B18045C001E9B94 = {
 			isa = PBXGroup;
 			children = (
-				A7DB0FE71C445647002EA3FC /* Caravel.framework */,
 				A7BC5DC31C09507100C0230A /* Caravel.framework */,
 				A7F1DE251B18045C001E9B94 /* caravel-test */,
 				A7F1DE3B1B18045C001E9B94 /* caravel-testTests */,
@@ -203,25 +203,26 @@
 		A7F1DE251B18045C001E9B94 /* caravel-test */ = {
 			isa = PBXGroup;
 			children = (
-				A7C868F91B18CDC20070AF5A /* js */,
-				A7C868F81B18CC8D0070AF5A /* html */,
 				A7F1DE281B18045C001E9B94 /* AppDelegate.swift */,
-				A7F1DE2A1B18045C001E9B94 /* MainController.swift */,
-				A7F1DE2C1B18045C001E9B94 /* Main.storyboard */,
-				A7F1DE2F1B18045C001E9B94 /* Images.xcassets */,
-				A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */,
-				A7F1DE261B18045C001E9B94 /* Supporting Files */,
+				A727041B1C4700BD00E9CC82 /* BaseController.swift */,
 				A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */,
-				A75AD3F41B1913B600404C06 /* InitializationController.swift */,
-				A75AD3FA1B19169200404C06 /* MultipleSubscriberController.swift */,
-				A75AD4001B19182F00404C06 /* TwoEventController.swift */,
-				A75AD4061B191ADF00404C06 /* TwoBusController.swift */,
-				A79762901B198BA7006D94CB /* EventNameController.swift */,
-				A79762921B19904C006D94CB /* EventDataController.swift */,
-				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
-				A71E82961BFD19580078C5A0 /* UnregistrationController.swift */,
 				A71E829C1BFD39DA0078C5A0 /* BenchmarkController.swift */,
+				A79762921B19904C006D94CB /* EventDataController.swift */,
+				A79762901B198BA7006D94CB /* EventNameController.swift */,
+				A75AD3F41B1913B600404C06 /* InitializationController.swift */,
+				A7F1DE2A1B18045C001E9B94 /* MainController.swift */,
+				A75AD3FA1B19169200404C06 /* MultipleSubscriberController.swift */,
+				A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */,
 				A71E82A21BFD45F80078C5A0 /* TwoBucketController.swift */,
+				A75AD4061B191ADF00404C06 /* TwoBusController.swift */,
+				A75AD4001B19182F00404C06 /* TwoEventController.swift */,
+				A71E82961BFD19580078C5A0 /* UnregistrationController.swift */,
+				A7F1DE2F1B18045C001E9B94 /* Images.xcassets */,
+				A7C868F81B18CC8D0070AF5A /* html */,
+				A7C868F91B18CDC20070AF5A /* js */,
+				A7F1DE311B18045C001E9B94 /* LaunchScreen.xib */,
+				A7F1DE2C1B18045C001E9B94 /* Main.storyboard */,
+				A7F1DE261B18045C001E9B94 /* Supporting Files */,
 			);
 			path = "caravel-test";
 			sourceTree = "<group>";
@@ -379,6 +380,7 @@
 			files = (
 				A75AD3FB1B19169200404C06 /* MultipleSubscriberController.swift in Sources */,
 				A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */,
+				A727041C1C4700BD00E9CC82 /* BaseController.swift in Sources */,
 				A71E82971BFD19580078C5A0 /* UnregistrationController.swift in Sources */,
 				A75AD3F51B1913B600404C06 /* InitializationController.swift in Sources */,
 				A79762911B198BA7006D94CB /* EventNameController.swift in Sources */,

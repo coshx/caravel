@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Caravel
 
-public class EventDataController: UIViewController {
+public class EventDataController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
@@ -21,7 +21,8 @@ public class EventDataController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
+        let tuple = setUp("event_data", webView: _webView)
+        let action = {(bus: EventBus) in
             bus.post("Bool", data: true)
             bus.post("Int", data: 42)
             bus.post("Float", data: 19.92)
@@ -33,7 +34,7 @@ public class EventDataController: UIViewController {
             bus.post("ComplexArray", data: [["name": "Alice", "age": 24], ["name": "Bob", "age": 23]])
             bus.post("ComplexDictionary", data: ["name": "Paul", "address": ["street": "Hugo", "city": "Bordeaux"], "games": ["Fifa", "Star Wars"]])
             
-            bus.register("True") { name, data in
+            bus.register("True") {name, data in
                 if let b = data as? Bool {
                     if b != true {
                         self._raise("True - wrong value")
@@ -43,7 +44,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("False") { name, data in
+            bus.register("False") {name, data in
                 if let b = data as? Bool {
                     if b != false {
                         self._raise("False - wrong value")
@@ -53,7 +54,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("Int") { name, data in
+            bus.register("Int") {name, data in
                 if let i = data as? Int {
                     if i != 987 {
                         self._raise("Int - wrong value")
@@ -63,7 +64,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("Double") { name, data in
+            bus.register("Double") {name, data in
                 if let d = data as? Double {
                     if d != 15.15 {
                         self._raise("Double - wrong value")
@@ -73,7 +74,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("String") { name, data in
+            bus.register("String") {name, data in
                 if let s = data as? String {
                     if s != "Napoleon" {
                         self._raise("String - wrong value")
@@ -83,7 +84,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("UUID") { name, data in
+            bus.register("UUID") {name, data in
                 if let s = data as? String {
                     if s != "9658ae60-9e0d-4da7-a63d-46fe75ff1db1" {
                         self._raise("UUID - wrong value")
@@ -93,7 +94,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("Array") { name, data in
+            bus.register("Array") {name, data in
                 if let a = data as? NSArray {
                     if a.count != 3 {
                         self._raise("Array - wrong length")
@@ -112,7 +113,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("Dictionary") { name, data in
+            bus.register("Dictionary") {name, data in
                 if let d = data as? NSDictionary {
                     if d.count != 2 {
                         self._raise("Dictionary - wrong length")
@@ -128,7 +129,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("ComplexArray") { name, data in
+            bus.register("ComplexArray") {name, data in
                 if let a = data as? NSArray {
                     if a.count != 3 {
                         self._raise("ComplexArray - wrong length")
@@ -151,7 +152,7 @@ public class EventDataController: UIViewController {
                 }
             }
             
-            bus.register("ComplexDictionary") { name, data in
+            bus.register("ComplexDictionary") {name, data in
                 if let d = data as? NSDictionary {
                     if d.valueForKey("name") as! String != "John Malkovich" {
                         self._raise("ComplexDictionary - wrong first pair")
@@ -180,8 +181,14 @@ public class EventDataController: UIViewController {
             }
             
             bus.post("Ready")
-        })
+        }
         
-        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("event_data", withExtension: "html")!))
+        if BaseController.isUsingWKWebView {
+            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+        } else {
+            Caravel.getDefault(self, webView: _webView, whenReady: action)
+        }
+        
+        tuple.0()
     }
 }

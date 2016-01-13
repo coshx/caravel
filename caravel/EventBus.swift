@@ -20,7 +20,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
             WKScriptMessageHandlerProxyMediator.subscribe(self.wkWebViewConfiguration, observer: self)
         }
         
-        func onMessage(busName: String, eventName: String, eventData: String?) {
+        func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
             self.parent?.onMessage(busName, eventName: eventName, eventData: eventData)
         }
     }
@@ -216,10 +216,11 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
         return Draft(wkWebViewConfiguration: wkWebViewConfiguration)
     }
     
-    /**
-     * Engines potential event firing from JS
-     */
-    func onMessage(busName: String, eventName: String, eventData: String?) {
+    func onMessage(busName: String, eventName: String, rawEventData: String?) {
+        self.dispatcher?.dispatch(busName, eventName: eventName, rawEventData: rawEventData)
+    }
+    
+    func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
         self.dispatcher?.dispatch(busName, eventName: eventName, eventData: eventData)
     }
     
