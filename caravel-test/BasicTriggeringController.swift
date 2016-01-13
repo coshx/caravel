@@ -1,28 +1,36 @@
-//
-//  BasicTriggeringController.swift
-//  caravel-test
-//
-//  Created by Adrien on 29/05/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Caravel
+import WebKit
 
 public class BasicTriggeringController: UIViewController {
     
     @IBOutlet weak var _webView: UIWebView!
+    private var wkWebView: WKWebView?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
-            bus.register("From JS") { name, data in
-                bus.post("From iOS")
-            }
-        })
+        let config = WKWebViewConfiguration()
+        let draft = Caravel.getDraft(config)
+        wkWebView = WKWebView(frame: self._webView.frame, configuration: config)
+        self._webView.removeFromSuperview()
+        self.view.addSubview(wkWebView!)
         
-        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("basic_triggering", withExtension: "html")!))
+        Caravel.getDefault(self, wkWebView: wkWebView!, draft: draft, whenReady: {bus in
+                bus.register("From JS") {name, data in
+                    bus.post("From iOS")
+                }
+            })
+        
+        self.wkWebView!.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("basic_triggering", withExtension: "html")!))
+        
+//        Caravel.getDefault(self, webView: _webView, whenReady: {bus in
+//                bus.register("From JS") {name, data in
+//                    bus.post("From iOS")
+//                }
+//            })
+//
+//        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("basic_triggering", withExtension: "html")!))
     }
 }

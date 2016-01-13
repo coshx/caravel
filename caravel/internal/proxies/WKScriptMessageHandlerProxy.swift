@@ -56,14 +56,11 @@ internal class WKScriptMessageHandlerProxy: NSObject, WKScriptMessageHandler {
     }
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
-        let args = message.body as! NSDictionary
-        let busName = args["busName"] as! String
-        let eventName = args["eventName"] as! String
-        let eventData = "\(args["eventData"])"
+        let input = message.body as! String
+        let args = ArgumentParser.parse(input)
         
-        iterateOverDelegates { e in
-            background { e.onMessage(busName, eventName: eventName, eventData: eventData) }
+        iterateOverDelegates {e in
+            background {e.onMessage(args.busName, eventName: args.eventName, eventData: args.eventData)}
         }
     }
-
 }

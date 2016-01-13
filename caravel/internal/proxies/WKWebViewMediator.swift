@@ -10,7 +10,7 @@ internal class WKScriptMessageHandlerProxyMediator {
     }
     
     static func subscribe(configuration: WKWebViewConfiguration, observer: IWKWebViewObserver) {
-        let action: Void -> Bool  = {
+        let action: Void -> Bool = {
             for (k, v) in proxies {
                 if k == configuration.hash {
                     v.subscribe(observer)
