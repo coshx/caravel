@@ -1,15 +1,61 @@
+import WebKit
+import UIKit
+
 /**
- * @class EventBus
- * @brief In charge of watching a subscriber / webview pair.
- * If any event is captured, it forwards it to dispatcher (except init one).
- * Argument passed as well when whenReady callback is run.
+ **EventBus**
+
+ In charge of watching a subscriber / webview-wkwebview pair.
+ Deals with any request from the user side, as well as the watched pair, and forward them to the dispatcher.
  */
-public class EventBus: NSObject, UIWebViewDelegate {
+public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
+    
+    /**
+     **Draft**
+
+     Required when watching a WKWebView
+     */
+    public class Draft: NSObject, IWKWebViewObserver {
+        private var wkWebViewConfiguration: WKWebViewConfiguration
+        internal weak var parent: IWKWebViewObserver?
+        internal var hasBeenUsed = false
+        
+        internal init(wkWebViewConfiguration: WKWebViewConfiguration) {
+            self.wkWebViewConfiguration = wkWebViewConfiguration
+            
+            super.init()
+            
+            WKScriptMessageHandlerProxyMediator.subscribe(self.wkWebViewConfiguration, observer: self)
+        }
+        
+        internal func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
+            self.parent?.onMessage(busName, eventName: eventName, eventData: eventData)
+        }
+    }
+    
+    private class WKWebViewPair {
+        var draft: Draft
+        weak var webView: WKWebView?
+        
+        init(draft: Draft, webView: WKWebView) throws {
+            self.draft = draft
+            self.webView = webView
+            
+            if draft.hasBeenUsed {
+                // If a draft is used twice, the previous listener (parent) is overriden
+                // and will never be notified. Hence, prevent this scenario from happening.
+                throw CaravelError.DraftUsedTwice
+            } else {
+                self.draft.hasBeenUsed = true
+            }
+        }
+    }
+    
     private let initializationLock = NSObject()
     private let subscriberLock = NSObject()
     
     private weak var reference: AnyObject?
     private weak var webView: UIWebView?
+    private var wkWebViewPair: WKWebViewPair?
     private weak var dispatcher: Caravel?
     
     /**
@@ -30,15 +76,26 @@ public class EventBus: NSObject, UIWebViewDelegate {
     private lazy var onGoingInitializers: [Int: (callback: (EventBus) -> Void, inBackground: Bool)] = [:]
     private lazy var onGoingInitializersId = 0 // Id counter
     
-    internal init(dispatcher: Caravel, reference: AnyObject, webView: UIWebView) {
+    private init(dispatcher: Caravel, reference: AnyObject) {
         self.dispatcher = dispatcher
         self.reference = reference
         self.isInitialized = false
-        self.webView = webView
         
         super.init()
+    }
+    
+    internal convenience init(dispatcher: Caravel, reference: AnyObject, webView: UIWebView) {
+        self.init(dispatcher: dispatcher, reference: reference)
+        self.webView = webView
         
-        UIWebViewDelegateMediator.subscribe(self.webView!, subscriber: self)
+        UIWebViewDelegateProxyMediator.subscribe(self.webView!, observer: self)
+    }
+    
+    internal convenience init(dispatcher: Caravel, reference: AnyObject, wkWebViewPair: (Draft, WKWebView)) {
+        self.init(dispatcher: dispatcher, reference: reference)
+        try! self.wkWebViewPair = WKWebViewPair(draft: wkWebViewPair.0, webView: wkWebViewPair.1)
+        
+        self.wkWebViewPair!.draft.parent = self
     }
     
     /**
@@ -52,32 +109,78 @@ public class EventBus: NSObject, UIWebViewDelegate {
         return self.reference
     }
     
+    internal func isUsingWebView() -> Bool {
+        return self.webView != nil
+    }
+    
     internal func getWebView() -> UIWebView? {
         return self.webView
     }
     
+    internal func getWKWebView() -> WKWebView? {
+        return self.wkWebViewPair?.webView
+    }
+    
     /**
-     * Runs JS script into current context
+     Runs JS script into current context
      */
     internal func forwardToJS(toRun: String) {
-        ThreadingHelper.main {
-            self.webView?.stringByEvaluatingJavaScriptFromString(toRun)
+        main {
+            if self.isUsingWebView() {
+                self.webView?.stringByEvaluatingJavaScriptFromString(toRun)
+            } else {
+                self.wkWebViewPair?.webView?.evaluateJavaScript(toRun, completionHandler: nil)
+            }
+        }
+    }
+    
+    internal func onInit() {
+        // Initialization must be run on the main thread. Otherwise, some events would be triggered before onReady
+        // has been run and hence be lost.
+        if self.isInitialized {
+            return
+        }
+        
+        synchronized(self.initializationLock) {
+            if self.isInitialized {
+                return
+            }
+            
+            for pair in self.initializers {
+                let index = self.onGoingInitializersId
+                let action: ((EventBus) -> Void, Int) -> Void = {initializer, id in
+                    initializer(self)
+                    self.onGoingInitializers.removeValueForKey(id)
+                }
+                
+                self.onGoingInitializers[index] = pair
+                self.onGoingInitializersId++
+                
+                if pair.inBackground {
+                    background {action(pair.callback, index)}
+                } else {
+                    main {action(pair.callback, index)}
+                }
+            }
+            
+            self.initializers = []
+            self.isInitialized = true
         }
     }
     
     /**
-     * Allows dispatcher to fire any event on this bus
+     Allows dispatcher to fire any event on this bus
      */
     internal func raise(name: String, data: AnyObject?) {
         synchronized(subscriberLock) {
             for s in self.subscribers {
                 if s.name == name {
-                    let action = { s.callback(name, data) }
+                    let action = {s.callback(name, data)}
                     
                     if s.inBackground {
-                        ThreadingHelper.background(action)
+                        background(action)
                     } else {
-                        ThreadingHelper.main(action)
+                        main(action)
                     }
                 }
             }
@@ -85,15 +188,15 @@ public class EventBus: NSObject, UIWebViewDelegate {
     }
     
     internal func whenReady(callback: (EventBus) -> Void) {
-        ThreadingHelper.background {
+        background {
             if self.isInitialized {
-                ThreadingHelper.background {
+                background {
                     callback(self)
                 }
             } else {
-                self.synchronized(self.initializationLock) {
+                synchronized(self.initializationLock) {
                     if self.isInitialized {
-                        ThreadingHelper.background {
+                        background {
                             callback(self)
                         }
                     } else {
@@ -105,15 +208,15 @@ public class EventBus: NSObject, UIWebViewDelegate {
     }
     
     internal func whenReadyOnMain(callback: (EventBus) -> Void) {
-        ThreadingHelper.background {
+        background {
             if self.isInitialized {
-                ThreadingHelper.main {
+                main {
                     callback(self)
                 }
             } else {
-                self.synchronized(self.initializationLock) {
+                synchronized(self.initializationLock) {
                     if self.isInitialized {
-                        ThreadingHelper.main {
+                        main {
                             callback(self)
                         }
                     } else {
@@ -124,77 +227,42 @@ public class EventBus: NSObject, UIWebViewDelegate {
         }
     }
     
-    /**
-     * Engines potential event firing from JS
-     */
-    public func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let scheme: String = request.URL?.scheme {
-            if scheme == "caravel" {
-                let args = ArgumentParser.parse(request.URL!.query!)
-                
-                // All buses are notified about that incoming event. Then, each bus has to investigate first if it
-                // is a potential receiver
-                if self.dispatcher?.name == args.busName {
-                    if args.eventName == "CaravelInit" && !self.isInitialized { // Reserved event name. Triggers whenReady
-                        // Initialization must be run on the main thread. Otherwise, some events would be triggered before onReady
-                        // has been run and hence be lost.
-                        // Also, this function has to return if the request should be blocked or not.
-                        self.isInitialized = true
-                        
-                        for pair in self.initializers {
-                            let index = self.onGoingInitializersId
-                            let action: ((EventBus) -> Void, Int) -> Void = { initializer, id in
-                                initializer(self)
-                                self.onGoingInitializers.removeValueForKey(id)
-                            }
-                            
-                            self.onGoingInitializers[index] = pair
-                            self.onGoingInitializersId++
-                            
-                            if pair.inBackground {
-                                ThreadingHelper.background { action(pair.callback, index) }
-                            } else {
-                                ThreadingHelper.main { action(pair.callback, index) }
-                            }
-                        }
-                        
-                        self.initializers = []
-                    } else {
-                        self.dispatcher?.dispatch(args)
-                    }
-                }
-                
-                // As it is a custom URL, webview shall not run it
-                return false
-            }
-            
-            return true
-        }
-        
-        return true
+    internal static func buildDraft(wkWebViewConfiguration: WKWebViewConfiguration) -> Draft {
+        return Draft(wkWebViewConfiguration: wkWebViewConfiguration)
+    }
+    
+    func onMessage(busName: String, eventName: String, rawEventData: String?) {
+        self.dispatcher?.dispatch(busName, eventName: eventName, rawEventData: rawEventData)
+    }
+    
+    func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
+        self.dispatcher?.dispatch(busName, eventName: eventName, eventData: eventData)
     }
     
     /**
-     * Posts event
-     * @param eventName Event's name
+     Posts event
+
+     - Parameter eventName: Name of the event
      */
     public func post(eventName: String) {
         self.dispatcher?.post(eventName, eventData: nil as AnyObject?)
     }
     
     /**
-     * Posts event with extra data
-     * @param eventName Event's name
-     * @param data Data to post (see documentation for supported types)
+     Posts event with extra data
+
+     - Parameter eventName: Name of the event
+     - Parameter data: Data to post (see documentation for supported types)
      */
     public func post<T>(eventName: String, data: T) {
         self.dispatcher?.post(eventName, eventData: data)
     }
     
     /**
-     * Subscribes to event. Callback is run with the event's name and extra data (if any).
-     * @param eventName Event to watch
-     * @param callback Action to run when fired
+     Subscribes to event. Callback is run with the event's name and extra data (if any).
+
+     - Parameter eventName: Event to watch
+     - Parameter callback: Action to run when fired
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {
@@ -203,9 +271,10 @@ public class EventBus: NSObject, UIWebViewDelegate {
     }
     
     /**
-     * Subscribes to event. Callback is run on main thread with the event's name and extra data (if any).
-     * @param eventName Event to watch
-     * @param callback Action to run when fired
+     Subscribes to event. Callback is run on main thread with the event's name and extra data (if any).
+
+     - Parameter eventName: Event to watch
+     - Parameter callback: Action to run when fired
      */
     public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {
@@ -214,13 +283,24 @@ public class EventBus: NSObject, UIWebViewDelegate {
     }
     
     /**
-     * Unregisters subscriber from bus
+     Unregisters subscriber from bus
      */
     public func unregister() {
         self.dispatcher!.deleteBus(self)
-        UIWebViewDelegateMediator.unsubscribe(self.webView!, subscriber: self)
+        
+        if self.isUsingWebView() {
+            if let w = self.webView {
+                UIWebViewDelegateProxyMediator.unsubscribe(w, observer: self)
+            }
+        } else {
+            if let p = self.wkWebViewPair {
+                WKScriptMessageHandlerProxyMediator.unsubscribe(p.draft.wkWebViewConfiguration, observer: self)
+            }
+        }
+        
         self.dispatcher = nil
         self.reference = nil
         self.webView = nil
+        self.wkWebViewPair = nil
     }
 }

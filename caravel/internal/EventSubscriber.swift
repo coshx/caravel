@@ -1,6 +1,7 @@
 /**
- * @class EventSubscriber
- * @brief Internal class storing bus subscribers
+ **EventSubscriber**
+
+ Internal class storing bus subscribers
  */
 internal class EventSubscriber {
     var name: String

@@ -1,8 +1,9 @@
 import Foundation
 
 /**
- * @class ArgumentParser
- * @brief Parses JS input to a list of arguments. Expected pattern: busName=*&eventName=*&eventData=*. Data are optional
+ **ArgumentParser**
+
+ Parses JS input to a list of arguments. Expected pattern: busName=*&eventName=*&eventData=*. Data are optional
  */
 internal class ArgumentParser {
     

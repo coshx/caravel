@@ -1,26 +1,25 @@
-//
-//  MultipleSubscriberController.swift
-//  caravel-test
-//
-//  Created by Adrien on 29/05/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Caravel
 
-public class MultipleSubscriberController: UIViewController {
+public class MultipleSubscriberController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
+        let tuple = setUp("multiple_subscribers", webView: _webView)
+        let action = {(bus: EventBus) in
             bus.post("AnEvent")
-        })
+        }
         
-        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("multiple_subscribers", withExtension: "html")!))
+        if BaseController.isUsingWKWebView {
+            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+        } else {
+            Caravel.getDefault(self, webView: _webView, whenReady: action)
+        }
+        
+        tuple.0()
     }
 }

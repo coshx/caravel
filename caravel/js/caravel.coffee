@@ -7,23 +7,33 @@ class Caravel
   constructor: (name)  ->
     @name = name
     @subscribers = []
+    @isUsingWKWebView = window.webkit? &&
+                        window.webkit.messageHandlers? &&
+                        window.webkit.messageHandlers.caravel?
 
   # Internal method for posting
   _post: (eventName, data) ->
-    # shouldLoadRequest is only triggered when a new content is required
-    # Ajax requests are useless
-    setTimeout (() =>
-      iframe = document.createElement 'iframe'
-      src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
-      if data?
-        if data instanceof Array or data instanceof Object
-          src += "&eventData=#{encodeURIComponent(JSON.stringify(data))}"
-        else
-          src += "&eventData=#{encodeURIComponent(data)}"
-      iframe.setAttribute 'src', src
-      document.documentElement.appendChild iframe
-      iframe.parentNode.removeChild iframe
-    ), 0
+    if @isUsingWKWebView
+      body =
+        busName: @name
+        eventName: eventName
+        eventData: data
+      window.webkit.messageHandlers.caravel.postMessage body
+    else
+      # shouldLoadRequest is only triggered when a new content is required
+      # Ajax requests are useless
+      setTimeout (() =>
+        iframe = document.createElement 'iframe'
+        src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
+        if data?
+          if data instanceof Array or data instanceof Object
+            src += "&eventData=#{encodeURIComponent(JSON.stringify(data))}"
+          else
+            src += "&eventData=#{encodeURIComponent(data)}"
+        iframe.setAttribute 'src', src
+        document.documentElement.appendChild iframe
+        iframe.parentNode.removeChild iframe
+      ), 0
 
   getName: () ->
     @name
