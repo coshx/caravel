@@ -9,7 +9,7 @@ build:
 	  --author_url http://www.coshx.com/ \
 	  --github_url $(repo) \
 	  --root-url https://coshx.github.io/caravel/ \
-	  --module-version 1.0.0 \
+	  --module-version 1.1.0 \
 	  --x -project,Caravel.xcodeproj \
 	  --output ../ \
 	  --theme fullwidth

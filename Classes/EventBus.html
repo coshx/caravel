@@ -20,7 +20,7 @@
         <a class="header-link" href="../index.html">
           Caravel Docs
         </a>
-         (87% documented)
+         (100% documented)
       </p>
     
         <p class="header-col header-col--secondary">
@@ -75,14 +75,14 @@
             <h1>EventBus</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EventBus</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">UIWebViewDelegate</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">EventBus</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">IUIWebViewObserver</span><span class="p">,</span> <span class="kt">IWKWebViewObserver</span></code></pre>
 
                 </div>
               </div>
-            <p>@class EventBus
-@brief In charge of watching a subscriber / webview pair.
-If any event is captured, it forwards it to dispatcher (except init one).
-Argument passed as well when whenReady callback is run.</p>
+            <p><strong>EventBus</strong></p>
+
+<p>In charge of watching a subscriber / webview-wkwebview pair.
+Deals with any request from the user side, as well as the watched pair, and forward them to the dispatcher.</p>
 
           </div>
         </section>
@@ -91,6 +91,35 @@ Argument passed as well when whenReady callback is run.</p>
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:CC7Caravel8EventBus5Draft"></a>
+                    <a name="//apple_ref/swift/Class/Draft" class="dashAnchor"></a>
+                    <a class="token" href="#/s:CC7Caravel8EventBus5Draft">Draft</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><strong>Draft</strong></p>
+
+<p>Required when watching a WKWebView</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Draft</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">IWKWebViewObserver</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -121,33 +150,6 @@ Argument passed as well when whenReady callback is run.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC7Caravel8EventBus7webViewFS0_FTCSo9UIWebView26shouldStartLoadWithRequestCSo12NSURLRequest14navigationTypeOSC23UIWebViewNavigationType_Sb"></a>
-                    <a name="//apple_ref/swift/Method/webView(_:shouldStartLoadWithRequest:navigationType:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC7Caravel8EventBus7webViewFS0_FTCSo9UIWebView26shouldStartLoadWithRequestCSo12NSURLRequest14navigationTypeOSC23UIWebViewNavigationType_Sb">webView(_:shouldStartLoadWithRequest:navigationType:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Engines potential event firing from JS</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">webView</span><span class="p">(</span><span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="p">,</span> <span class="n">shouldStartLoadWithRequest</span> <span class="nv">request</span><span class="p">:</span> <span class="kt">NSURLRequest</span><span class="p">,</span> <span class="nv">navigationType</span><span class="p">:</span> <span class="kt">UIWebViewNavigationType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:FC7Caravel8EventBus4postFS0_FSST_"></a>
                     <a name="//apple_ref/swift/Method/post(_:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FC7Caravel8EventBus4postFS0_FSST_">post(_:)</a>
@@ -158,8 +160,13 @@ Argument passed as well when whenReady callback is run.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Posts event
-@param eventName Event&rsquo;s name</p>
+                        <p>Posts event</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter eventName: Name of the event
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -169,6 +176,26 @@ Argument passed as well when whenReady callback is run.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">post</span><span class="p">(</span><span class="nv">eventName</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the event</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -186,9 +213,19 @@ Argument passed as well when whenReady callback is run.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Posts event with extra data
-@param eventName Event&rsquo;s name
-@param data Data to post (see documentation for supported types)</p>
+                        <p>Posts event with extra data</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter eventName: Name of the event
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter data: Data to post (see documentation for supported types)
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -198,6 +235,39 @@ Argument passed as well when whenReady callback is run.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">post</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">eventName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name of the event</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to post (see documentation for supported types)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -215,9 +285,19 @@ Argument passed as well when whenReady callback is run.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Subscribes to event. Callback is run with the event&rsquo;s name and extra data (if any).
-@param eventName Event to watch
-@param callback Action to run when fired</p>
+                        <p>Subscribes to event. Callback is run with the event&rsquo;s name and extra data (if any).</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter eventName: Event to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter callback: Action to run when fired
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -227,6 +307,39 @@ Argument passed as well when whenReady callback is run.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">eventName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">AnyObject</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Event to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when fired</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -244,9 +357,19 @@ Argument passed as well when whenReady callback is run.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Subscribes to event. Callback is run on main thread with the event&rsquo;s name and extra data (if any).
-@param eventName Event to watch
-@param callback Action to run when fired</p>
+                        <p>Subscribes to event. Callback is run on main thread with the event&rsquo;s name and extra data (if any).</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter eventName: Event to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter callback: Action to run when fired
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -256,6 +379,39 @@ Argument passed as well when whenReady callback is run.</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">registerOnMain</span><span class="p">(</span><span class="nv">eventName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">(</span><span class="kt">String</span><span class="p">,</span> <span class="kt">AnyObject</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>eventName</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Event to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when fired</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -295,7 +451,7 @@ Argument passed as well when whenReady callback is run.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-11)</p>
+      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

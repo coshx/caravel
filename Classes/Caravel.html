@@ -20,7 +20,7 @@
         <a class="header-link" href="../index.html">
           Caravel Docs
         </a>
-         (87% documented)
+         (100% documented)
       </p>
     
         <p class="header-col header-col--secondary">
@@ -79,8 +79,9 @@
 
                 </div>
               </div>
-            <p>@class Caravel
-@brief Main class of the library. Dispatches events among buses.</p>
+            <p><strong>Caravel</strong></p>
+
+<p>Main class of the library. Dispatches events among buses.</p>
 
           </div>
         </section>
@@ -129,10 +130,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns default bus
-@param subscriber Subscriber
-@param webView WebView to watch
-@param whenReady Action to run when JS counterpart is ready</p>
+                        <p>Returns default bus</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter webView: WebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReady: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -142,6 +164,57 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getDefault</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReady</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
                       </div>
                     </section>
                   </div>
@@ -159,10 +232,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns default bus and run callback on main thread
-@param subscriber Subscriber
-@param webView WebView to watch
-@param whenReadyOnMain Action to run when JS counterpart is ready</p>
+                        <p>Returns default bus and run callback on main thread</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter webView: WebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReadyOnMain: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -172,6 +266,57 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getDefault</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="p">,</span> <span class="nv">whenReadyOnMain</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReadyOnMain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
                       </div>
                     </section>
                   </div>
@@ -189,11 +334,37 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns custom bus
-@param subscriber Subscriber
-@param name Bus name
-@param webView WebView to watch
-@param whenReady Action to run when JS counterpart is ready</p>
+                        <p>Returns custom bus</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter name: Bus name
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter webView: WebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReady: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -203,6 +374,70 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bus name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReady</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
                       </div>
                     </section>
                   </div>
@@ -220,11 +455,37 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns custom bus and run callback on main thread
-@param subscriber Subscriber
-@param name Bus name
-@param webView WebView to watch
-@param whenReadyOnMain Action to run when JS counterpart is ready</p>
+                        <p>Returns custom bus and run callback on main thread</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter name: Bus name
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter webView: WebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReadyOnMain: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -234,6 +495,656 @@
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="p">,</span> <span class="nv">whenReadyOnMain</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bus name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>webView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReadyOnMain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Caravel7Caravel8getDraftFMS0_FCSo22WKWebViewConfigurationCCS_8EventBus5Draft"></a>
+                    <a name="//apple_ref/swift/Method/getDraft(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Caravel7Caravel8getDraftFMS0_FCSo22WKWebViewConfigurationCCS_8EventBus5Draft">getDraft(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Builds draft for single use with provided WKWebView configuration</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter configuration: Custom WKWebView configuration</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Bus draft</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getDraft</span><span class="p">(</span><span class="nv">configuration</span><span class="p">:</span> <span class="kt">WKWebViewConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">EventBus</span><span class="o">.</span><span class="kt">Draft</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>configuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Custom WKWebView configuration</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Bus draft</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Caravel7Caravel10getDefaultFMS0_FTPSs9AnyObject_9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft9whenReadyFS3_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/getDefault(_:wkWebView:draft:whenReady:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Caravel7Caravel10getDefaultFMS0_FTPSs9AnyObject_9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft9whenReadyFS3_T__S0_">getDefault(_:wkWebView:draft:whenReady:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns default bus</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter wkWebView: WKWebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter draft: EventBus draft that has been built before initializing the view
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReady: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getDefault</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="kt">EventBus</span><span class="o">.</span><span class="kt">Draft</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkWebView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WKWebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draft</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EventBus draft that has been built before initializing the view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReady</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Caravel7Caravel10getDefaultFMS0_FTPSs9AnyObject_9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft15whenReadyOnMainFS3_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/getDefault(_:wkWebView:draft:whenReadyOnMain:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Caravel7Caravel10getDefaultFMS0_FTPSs9AnyObject_9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft15whenReadyOnMainFS3_T__S0_">getDefault(_:wkWebView:draft:whenReadyOnMain:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns default bus and run callback on main thread</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter wkWebView: WKWebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter draft: EventBus draft that has been built before initializing the view
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReadyOnMain: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">getDefault</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="kt">EventBus</span><span class="o">.</span><span class="kt">Draft</span><span class="p">,</span> <span class="nv">whenReadyOnMain</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkWebView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WKWebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draft</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EventBus draft that has been built before initializing the view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReadyOnMain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Caravel7Caravel3getFMS0_FTPSs9AnyObject_4nameSS9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft9whenReadyFS3_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/get(_:name:wkWebView:draft:whenReady:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Caravel7Caravel3getFMS0_FTPSs9AnyObject_4nameSS9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft9whenReadyFS3_T__S0_">get(_:name:wkWebView:draft:whenReady:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns default bus</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter name: Bus name
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter wkWebView: WKWebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter draft: EventBus draft that has been built before initializing the view
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReady: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="kt">EventBus</span><span class="o">.</span><span class="kt">Draft</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bus name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkWebView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WKWebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draft</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EventBus draft that has been built before initializing the view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReady</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC7Caravel7Caravel3getFMS0_FTPSs9AnyObject_4nameSS9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft15whenReadyOnMainFS3_T__S0_"></a>
+                    <a name="//apple_ref/swift/Method/get(_:name:wkWebView:draft:whenReadyOnMain:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC7Caravel7Caravel3getFMS0_FTPSs9AnyObject_4nameSS9wkWebViewCSo9WKWebView5draftCCS_8EventBus5Draft15whenReadyOnMainFS3_T__S0_">get(_:name:wkWebView:draft:whenReadyOnMain:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns default bus and run callback on main thread</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter subscriber: Subscriber (usually the view controller)
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter name: Bus name
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter wkWebView: WKWebView to watch
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter draft: EventBus draft that has been built before initializing the view
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    <p>Parameter whenReadyOnMain: Action to run when bus is ready to use</p>
+
+</div>
+
+<div class="aside aside-returns">
+    <p class="aside-title">Returns</p>
+    <p>Current instance</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">subscriber</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="kt">EventBus</span><span class="o">.</span><span class="kt">Draft</span><span class="p">,</span> <span class="nv">whenReadyOnMain</span><span class="p">:</span> <span class="p">(</span><span class="kt">EventBus</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Caravel</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subscriber</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Subscriber (usually the view controller)</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Bus name</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>wkWebView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>WKWebView to watch</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draft</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EventBus draft that has been built before initializing the view</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>whenReadyOnMain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Action to run when bus is ready to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Current instance</p>
+
                       </div>
                     </section>
                   </div>
@@ -246,7 +1157,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-11)</p>
+      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

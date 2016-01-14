@@ -19,7 +19,7 @@
         <a class="header-link" href="index.html">
           Caravel Docs
         </a>
-         (87% documented)
+         (100% documented)
       </p>
     
         <p class="header-col header-col--secondary">
@@ -78,13 +78,14 @@
 
 <p><a href="https://gitter.im/coshx/caravel?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" alt="Join the chat at https://gitter.im/coshx/caravel"></a></p>
 
-<p><strong>An event bus for sending messages between UIWebView and embedded JS. Made with pure Swift.</strong></p>
+<p><strong>An event bus for sending messages between UIWebView/WKWebView and embedded JS. Made with pure Swift.</strong></p>
 <a href='#features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='features'>Features</h2>
 
 <ul>
 <li>Easy, fast and reliable event bus system</li>
 <li>Multiple bus support</li>
 <li>Multithreading support</li>
+<li><code>WKWebView</code> support</li>
 <li>iOS ~&gt; JavaScript supported types:
 
 <ul>
@@ -93,15 +94,15 @@
 <li><code>Float</code></li>
 <li><code>Double</code></li>
 <li><code>String</code></li>
-<li>Any array (using types in this list)</li>
-<li>Any dictionary (using types in this list)</li>
+<li>Any array (using types in this list, including dictionaries)</li>
+<li>Any dictionary (using types in this list, including arrays)</li>
 </ul></li>
 <li>JavaScript ~&gt; iOS supported types:
 
 <ul>
 <li><code>Boolean</code></li>
 <li><code>Int</code></li>
-<li><code>Float</code></li>
+<li><code>Float</code> (available as a <code>Double</code>)</li>
 <li><code>String</code></li>
 <li><code>Array</code> (available as a <code>NSArray</code>)</li>
 <li><code>Object</code> (available as a <code>NSDictionary</code>)</li>
@@ -118,9 +119,12 @@
 <p>Once done, you should find a <code>caravel.min.js</code> file in either the Pod or the submodule. Add this file to your project. Then, in each HTML page you have, load it before running your main script:</p>
 <pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"caravel.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
-<a href='#migrate_from_0_to_1' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='migrate_from_0_to_1'>Migrate from 0.* to 1.*</h2>
+<a href='#might_be_useful' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='might_be_useful'>Might be useful</h2>
 
-<p><a href="http://www.coshx.com/blog/2015/11/19/releasing-caravel-1-0-0/">Please glance at this blog post</a>.</p>
+<ul>
+<li><a href="http://www.coshx.com/blog/2015/12/04/engineer-a-todo-list-using-caravel-and-framework7/">Engineer a TODO list using Caravel and Framework7</a></li>
+<li><a href="http://www.coshx.com/blog/2015/11/19/releasing-caravel-1-0-0/">Migrate from 0.* to 1.*</a></li>
+</ul>
 <a href='#get_started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='get_started'>Get started</h2>
 
 <p>Caravel allows developers to communicate between their <code>UIWebView</code> and the embedded JS. You can send any kind of message between those two folks.</p>
@@ -129,34 +133,67 @@
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
     <span class="kd">@IBOutlet</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">webView</span><span class="p">:</span> <span class="kt">UIWebView</span><span class="o">!</span>
 
-    <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
 
         <span class="c1">// Prepare your bus before loading your web view's content</span>
         <span class="kt">Caravel</span><span class="o">.</span><span class="nf">getDefault</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">webView</span><span class="p">:</span> <span class="n">webView</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">{</span> <span class="n">bus</span> <span class="k">in</span>
-            <span class="c1">// The JS endpoint is ready to handle any event.</span>
-            <span class="c1">// Register and post your events in this scope</span>
+            <span class="c1">// In this scope, the JS endpoint is ready to handle any event.</span>
+            <span class="c1">// Register and post your events here</span>
             <span class="n">bus</span><span class="o">.</span><span class="nf">post</span><span class="p">(</span><span class="s">"MyEvent"</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
             <span class="k">self</span><span class="o">.</span><span class="n">bus</span> <span class="o">=</span> <span class="n">bus</span> <span class="c1">// You can save your bus for firing events later</span>
         <span class="p">})</span>
 
-        <span class="c1">// ... Load web view content below</span>
+        <span class="c1">// ... Load web view's content there</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
 
 <p>And now, in your JS:</p>
-<pre class="highlight javascript"><code><span class="nx">Caravel</span><span class="p">.</span><span class="nx">getDefault</span><span class="p">().</span><span class="nx">register</span><span class="p">(</span><span class="s2">"AnEvent"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">'I received this array: '</span> <span class="o">+</span> <span class="nx">data</span><span class="p">);</span>
+<pre class="highlight javascript"><code><span class="nx">Caravel</span><span class="p">.</span><span class="nx">getDefault</span><span class="p">().</span><span class="nx">register</span><span class="p">(</span><span class="s2">"AnEventWithAString"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'I received this string: '</span> <span class="o">+</span> <span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
 
 <p>And voilà!</p>
+<a href='#wkwebview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='wkwebview'>WKWebView</h2>
+
+<p>Caravel 1.1.0 supports <code>WKWebView</code>. Keep in mind this class is still in beta and might not work as expected. We won&rsquo;t ship you a 🍕 if your app does not work. </p>
+
+<p>Anyway. If you&rsquo;re this kind of guy involved in some risky business, here how to use Caravel with this object. Be careful, it is a two-step process.</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="k">var</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">?</span>
+
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
+
+        <span class="k">let</span> <span class="nv">config</span> <span class="o">=</span> <span class="kt">WKWebViewConfiguration</span><span class="p">()</span>
+        <span class="c1">// First generate a draft using your custom configuration</span>
+        <span class="k">let</span> <span class="nv">draft</span> <span class="o">=</span> <span class="kt">Caravel</span><span class="o">.</span><span class="nf">getDraft</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="c1">// Build your WKWebView as usual then</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">wkWebView</span> <span class="o">=</span> <span class="kt">WKWebView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
+
+        <span class="c1">// Then initiate Caravel</span>
+        <span class="kt">Caravel</span><span class="o">.</span><span class="nf">getDefault</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">wkWebView</span><span class="o">!</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="n">draft</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">{</span>
+            <span class="c1">// Do whatever you've got to do here</span>
+        <span class="p">})</span>
+
+        <span class="c1">// ... Load content into your WKWebView there</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 <a href='#troubleshooting' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='troubleshooting'>Troubleshooting</h2>
 <a href='#i_want_to_use_my_custom_uiwebviewdelegate_what_should_i_do' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i_want_to_use_my_custom_uiwebviewdelegate_what_should_i_do'>I want to use my custom UIWebViewDelegate. What should I do?</h3>
 
-<p>To raise iOS events, Caravel must be the delegate of the provided <code>UIWebView</code>. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it before any call to Caravel.</p>
+<p>To raise iOS events, Caravel must be the delegate of the provided <code>UIWebView</code>. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it <strong>before</strong> any call to Caravel.</p>
+<a href='#i_want_to_use_my_custom_wkusercontentcontroller_what_should_i_do' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i_want_to_use_my_custom_wkusercontentcontroller_what_should_i_do'>I want to use my custom WKUserContentController. What should I do?</h3>
+
+<p>To raise iOS events, Caravel adds a custom <code>WKScriptMessageHandler</code> to the current content controller. If you would like to use your custom one, simply set it <strong>before</strong> any call to Caravel.</p>
+<a href='#what_object_should_i_use_as_a_subscriber' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='what_object_should_i_use_as_a_subscriber'>What object should I use as a subscriber?</h3>
+
+<p>A subscriber could be any object <strong>except the watched target</strong> (either the <code>UIWebView</code> or the <code>WKWebView</code>). We recommend to use the controller as a subscriber (it is a common pattern).</p>
 <a href='#reserved_names' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='reserved_names'>Reserved names</h3>
 
 <p><code>CaravelInit</code> is an internal event, sent by the JS part for triggering the <code>whenReady</code> method.</p>
@@ -171,7 +208,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-11)</p>
+      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-13)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
