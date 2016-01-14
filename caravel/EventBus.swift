@@ -1,19 +1,25 @@
 import WebKit
+import UIKit
 
 /**
- * @class EventBus
- * @brief In charge of watching a subscriber / webview pair.
- * If any event is captured, it forwards it to dispatcher (except init one).
- * Argument passed as well when whenReady callback is run.
+ **EventBus**
+
+ In charge of watching a subscriber / webview-wkwebview pair.
+ Deals with any request from the user side, as well as the watched pair, and forward them to the dispatcher.
  */
 public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     
+    /**
+     **Draft**
+
+     Required when watching a WKWebView
+     */
     public class Draft: NSObject, IWKWebViewObserver {
         private var wkWebViewConfiguration: WKWebViewConfiguration
         internal weak var parent: IWKWebViewObserver?
         internal var hasBeenUsed = false
         
-        init(wkWebViewConfiguration: WKWebViewConfiguration) {
+        internal init(wkWebViewConfiguration: WKWebViewConfiguration) {
             self.wkWebViewConfiguration = wkWebViewConfiguration
             
             super.init()
@@ -21,7 +27,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
             WKScriptMessageHandlerProxyMediator.subscribe(self.wkWebViewConfiguration, observer: self)
         }
         
-        func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
+        internal func onMessage(busName: String, eventName: String, eventData: AnyObject?) {
             self.parent?.onMessage(busName, eventName: eventName, eventData: eventData)
         }
     }
@@ -35,6 +41,8 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
             self.webView = webView
             
             if draft.hasBeenUsed {
+                // If a draft is used twice, the previous listener (parent) is overriden
+                // and will never be notified. Hence, prevent this scenario from happening.
                 throw CaravelError.DraftUsedTwice
             } else {
                 self.draft.hasBeenUsed = true
@@ -114,7 +122,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     }
     
     /**
-     * Runs JS script into current context
+     Runs JS script into current context
      */
     internal func forwardToJS(toRun: String) {
         main {
@@ -161,7 +169,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     }
     
     /**
-     * Allows dispatcher to fire any event on this bus
+     Allows dispatcher to fire any event on this bus
      */
     internal func raise(name: String, data: AnyObject?) {
         synchronized(subscriberLock) {
@@ -232,26 +240,29 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     }
     
     /**
-     * Posts event
-     * @param eventName Event's name
+     Posts event
+
+     - Parameter eventName: Name of the event
      */
     public func post(eventName: String) {
         self.dispatcher?.post(eventName, eventData: nil as AnyObject?)
     }
     
     /**
-     * Posts event with extra data
-     * @param eventName Event's name
-     * @param data Data to post (see documentation for supported types)
+     Posts event with extra data
+
+     - Parameter eventName: Name of the event
+     - Parameter data: Data to post (see documentation for supported types)
      */
     public func post<T>(eventName: String, data: T) {
         self.dispatcher?.post(eventName, eventData: data)
     }
     
     /**
-     * Subscribes to event. Callback is run with the event's name and extra data (if any).
-     * @param eventName Event to watch
-     * @param callback Action to run when fired
+     Subscribes to event. Callback is run with the event's name and extra data (if any).
+
+     - Parameter eventName: Event to watch
+     - Parameter callback: Action to run when fired
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {
@@ -260,9 +271,10 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     }
     
     /**
-     * Subscribes to event. Callback is run on main thread with the event's name and extra data (if any).
-     * @param eventName Event to watch
-     * @param callback Action to run when fired
+     Subscribes to event. Callback is run on main thread with the event's name and extra data (if any).
+
+     - Parameter eventName: Event to watch
+     - Parameter callback: Action to run when fired
      */
     public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {
@@ -271,7 +283,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     }
     
     /**
-     * Unregisters subscriber from bus
+     Unregisters subscriber from bus
      */
     public func unregister() {
         self.dispatcher!.deleteBus(self)

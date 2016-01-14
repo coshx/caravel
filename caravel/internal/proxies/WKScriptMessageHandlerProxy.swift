@@ -1,10 +1,15 @@
 import WebKit
 
+/**
+ **WKScriptMessageHandlerProxy**
+
+ Sets up a custom script message handler for the provided configuration
+ */
 internal class WKScriptMessageHandlerProxy: NSObject, WKScriptMessageHandler {
     private static let subscriberLock = NSObject()
     
     /**
-     * All the subscribers.
+     All the subscribers.
      */
     private lazy var subscribers: [IWKWebViewObserver] = []
     

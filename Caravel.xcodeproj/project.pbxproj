@@ -15,7 +15,6 @@
 		A75215341C2C3EB700B7CAA3 /* IUIWebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75215331C2C3EB700B7CAA3 /* IUIWebViewObserver.swift */; };
 		A75215361C2C491400B7CAA3 /* UIWebViewDelegateProxyMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75215351C2C491400B7CAA3 /* UIWebViewDelegateProxyMediator.swift */; };
 		A75215381C2C5A8300B7CAA3 /* WKScriptMessageHandlerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75215371C2C5A8300B7CAA3 /* WKScriptMessageHandlerProxy.swift */; };
-		A752153A1C2C5AEE00B7CAA3 /* IWebComponentObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75215391C2C5AED00B7CAA3 /* IWebComponentObserver.swift */; };
 		A752153C1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752153B1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift */; };
 		A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC9F271B3493EB0041EB0B /* StringExtension.swift */; };
 		A7F1DD981B17D957001E9B94 /* caravel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F1DD971B17D957001E9B94 /* caravel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,7 +46,6 @@
 		A75215331C2C3EB700B7CAA3 /* IUIWebViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IUIWebViewObserver.swift; path = internal/proxies/IUIWebViewObserver.swift; sourceTree = "<group>"; };
 		A75215351C2C491400B7CAA3 /* UIWebViewDelegateProxyMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewDelegateProxyMediator.swift; path = internal/proxies/UIWebViewDelegateProxyMediator.swift; sourceTree = "<group>"; };
 		A75215371C2C5A8300B7CAA3 /* WKScriptMessageHandlerProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WKScriptMessageHandlerProxy.swift; path = internal/proxies/WKScriptMessageHandlerProxy.swift; sourceTree = "<group>"; };
-		A75215391C2C5AED00B7CAA3 /* IWebComponentObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IWebComponentObserver.swift; path = internal/proxies/IWebComponentObserver.swift; sourceTree = "<group>"; };
 		A752153B1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IWKWebViewObserver.swift; path = internal/proxies/IWKWebViewObserver.swift; sourceTree = "<group>"; };
 		A7AC9F271B3493EB0041EB0B /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = utils/StringExtension.swift; sourceTree = "<group>"; };
 		A7F1DD921B17D957001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				A75215331C2C3EB700B7CAA3 /* IUIWebViewObserver.swift */,
-				A75215391C2C5AED00B7CAA3 /* IWebComponentObserver.swift */,
 				A752153B1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift */,
 				A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateProxy.swift */,
 				A75215351C2C491400B7CAA3 /* UIWebViewDelegateProxyMediator.swift */,
@@ -287,7 +284,6 @@
 				A7F1DDB31B17D989001E9B94 /* EventSubscriber.swift in Sources */,
 				A75215381C2C5A8300B7CAA3 /* WKScriptMessageHandlerProxy.swift in Sources */,
 				A75215361C2C491400B7CAA3 /* UIWebViewDelegateProxyMediator.swift in Sources */,
-				A752153A1C2C5AEE00B7CAA3 /* IWebComponentObserver.swift in Sources */,
 				A7199EF31BFC1F4400757E4F /* EventBus.swift in Sources */,
 				A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */,
 				A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateProxy.swift in Sources */,

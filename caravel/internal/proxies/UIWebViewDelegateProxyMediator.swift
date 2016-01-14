@@ -1,8 +1,16 @@
 import UIKit
 
+/**
+ **UIWebViewDelegateProxyMediator**
+
+ Manages any UIWebViewDelegateProxy instance. One per UIWebView
+ */
 internal class UIWebViewDelegateProxyMediator {
     private static let creationLock = NSObject()
     
+    /**
+     Indexed by UIWebViews' hash
+     */
     private static var proxies: [Int: UIWebViewDelegateProxy] = [:]
     
     private static func lockProxies(@noescape action: () -> Void) {
@@ -10,7 +18,7 @@ internal class UIWebViewDelegateProxyMediator {
     }
     
     static func subscribe(webView: UIWebView, observer: IUIWebViewObserver) {
-        let action: Void -> Bool  = {
+        let action: Void -> Bool = {
             for (k, v) in proxies {
                 if k == webView.hash {
                     v.subscribe(observer)

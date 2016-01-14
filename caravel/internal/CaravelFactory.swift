@@ -1,6 +1,7 @@
 /**
- * @class CaravelFactory
- * @brief Manages the different Caravel instances and ensures they are all singletons
+ **CaravelFactory**
+
+ Manages the different Caravel instances and ensures they are all singletons
  */
 internal class CaravelFactory {
     private static let defaultBusLock = NSObject()
@@ -29,7 +30,7 @@ internal class CaravelFactory {
     }
     
     internal static func getDefault() -> Caravel {
-        let getExisting = { () -> Caravel? in
+        let getExisting = {() -> Caravel? in
             if let b = defaultBus {
                 return b
             } else {
@@ -56,7 +57,7 @@ internal class CaravelFactory {
         if name == Caravel.DEFAULT_BUS_NAME {
             return getDefault()
         } else {
-            let getExisting = { () -> Caravel? in
+            let getExisting = {() -> Caravel? in
                 if let b = buses[name] {
                     return b
                 } else {

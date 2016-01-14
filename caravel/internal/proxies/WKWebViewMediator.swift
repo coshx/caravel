@@ -1,8 +1,16 @@
 import WebKit
 
+/**
+ **WKScriptMessageHandlerProxyMediator**
+
+ Manages any WKScriptMessageHandlerProxy instance. One per WKWebViewConfiguration.
+ */
 internal class WKScriptMessageHandlerProxyMediator {
     private static let creationLock = NSObject()
     
+    /**
+     Indexed by WKWebViewConfiguration's hash
+     */
     private static var proxies: [Int: WKScriptMessageHandlerProxy] = [:]
     
     private static func lockProxies(@noescape action: () -> Void) {

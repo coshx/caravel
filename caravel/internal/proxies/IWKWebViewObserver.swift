@@ -1,3 +1,3 @@
-internal protocol IWKWebViewObserver: IWebComponentObserver {
+internal protocol IWKWebViewObserver: NSObjectProtocol {
     func onMessage(busName: String, eventName: String, eventData: AnyObject?)
 }

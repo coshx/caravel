@@ -1,8 +1,9 @@
 import UIKit
 
 /**
- * @class UIWebViewDelegateProxy
- * @brief Saves current webview delegate (if existing) and dispatches events to subscribers
+ **UIWebViewDelegateProxy**
+
+ Saves current webview delegate (if any) and dispatches events to subscribers
  */
 internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
     private static let subscriberLock = NSObject()
@@ -10,7 +11,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
     private var originalDelegate: UIWebViewDelegate?
     
     /**
-     * All the subscribers.
+     All the subscribers
      */
     private lazy var subscribers: [IUIWebViewObserver] = []
     

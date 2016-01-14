@@ -1,12 +1,13 @@
 import Foundation
 
 /**
- * @class DataSerializer
- * @brief Serializes data to JS format and parses data coming from JS
+ **DataSerializer**
+
+ Serializes data to JS format and parses data coming from JS
  */
 internal class DataSerializer {
     
-    internal static func serialize<T>(input: T) throws -> String  {
+    internal static func serialize<T>(input: T) throws -> String {
         var output: String?
         
         if let b = input as? Bool {
@@ -54,7 +55,7 @@ internal class DataSerializer {
             var isNumber = true
             for i in 0..<input.characters.count {
                 if Int(input[i]) != nil || input[i] == "." || input[i] == "," {
-                   // Do nothing
+                    // Do nothing
                 } else {
                     isNumber = false
                     break
