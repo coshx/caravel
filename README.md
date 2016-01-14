@@ -4,7 +4,7 @@
 
 [![Join the chat at https://gitter.im/coshx/caravel](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/coshx/caravel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-**An event bus for sending messages between UIWebView and embedded JS. Made with pure Swift.**
+**An event bus for sending messages between UIWebView/WKWebView and embedded JS. Made with pure Swift.**
 
 ## Features
 
@@ -128,7 +128,7 @@ To raise iOS events, Caravel adds a custom `WKScriptMessageHandler` to the curre
 
 ### What object should I use as a subscriber?
 
-A subscriber could be any object **but the watched target** (either the `UIWebView` or the `WKWebView`). We recommend to use the controller as a subscriber (it is a common pattern!).
+A subscriber could be any object **except the watched target** (either the `UIWebView` or the `WKWebView`). We recommend to use the controller as a subscriber (it is a common pattern).
 
 ### Reserved names
 

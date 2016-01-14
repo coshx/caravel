@@ -19,10 +19,10 @@ Pod::Spec.new do |s|
 
   s.name         = "Caravel"
   s.version      = version
-  s.summary      = "A Swift event bus for UIWebView and JS"
+  s.summary      = "A Swift event bus for UIWebView/WKWebView and JS"
 
   s.description  = <<-DESC
-                   An event bus for sending messages between UIWebView and embedded JS. Made with pure Swift.
+                   An event bus for sending messages between UIWebView/WKWebView and embedded JS. Made with pure Swift.
                    DESC
 
   s.homepage     = "https://github.com/coshx/caravel"
