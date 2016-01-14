@@ -1,30 +1,34 @@
-//
-//  InitializationController.swift
-//  caravel-test
-//
-//  Created by Adrien on 29/05/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Caravel
 
-public class InitializationController: UIViewController {
+public class InitializationController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
+        let tuple = setUp("initialization", webView: _webView)
+        let action = {(bus: EventBus) in
             bus.post("Before")
-        })
-        
-        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("initialization", withExtension: "html")!))
-        
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
+        }
+        let action2 = {(bus: EventBus) in
             bus.post("After")
-        })
+        }
+        
+        if BaseController.isUsingWKWebView {
+            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+        } else {
+            Caravel.getDefault(self, webView: _webView, whenReady: action)
+        }
+        
+        tuple.0()
+        
+        if BaseController.isUsingWKWebView {
+            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action2)
+        } else {
+            Caravel.getDefault(self, webView: _webView, whenReady: action2)
+        }
     }
 }

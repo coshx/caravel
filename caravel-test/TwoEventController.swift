@@ -1,32 +1,31 @@
-//
-//  TwoEventController.swift
-//  caravel-test
-//
-//  Created by Adrien on 29/05/15.
-//  Copyright (c) 2015 Coshx Labs. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import Caravel
 
-public class TwoEventController: UIViewController {
+public class TwoEventController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        Caravel.getDefault(self, webView: _webView, whenReady: { bus in
-            bus.register("FirstEvent") { name, data in
+        let tuple = setUp("two_events", webView: _webView)
+        let action = {(bus: EventBus) in
+            bus.register("FirstEvent") {name, data in
                 bus.post("ThirdEvent")
             }
             
-            bus.register("NeverTriggeredEvent") { name, data in
+            bus.register("NeverTriggeredEvent") {name, data in
                 bus.post("FourthEvent")
             }
-        })
+        }
         
-        _webView.loadRequest(NSURLRequest(URL: NSBundle.mainBundle().URLForResource("two_events", withExtension: "html")!))
+        if BaseController.isUsingWKWebView {
+            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+        } else {
+            Caravel.getDefault(self, webView: _webView, whenReady: action)
+        }
+        
+        tuple.0()
     }
 }

@@ -11,6 +11,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     public class Draft: NSObject, IWKWebViewObserver {
         private var wkWebViewConfiguration: WKWebViewConfiguration
         internal weak var parent: IWKWebViewObserver?
+        internal var hasBeenUsed = false
         
         init(wkWebViewConfiguration: WKWebViewConfiguration) {
             self.wkWebViewConfiguration = wkWebViewConfiguration
@@ -29,9 +30,15 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
         var draft: Draft
         weak var webView: WKWebView?
         
-        init(draft: Draft, webView: WKWebView) {
+        init(draft: Draft, webView: WKWebView) throws {
             self.draft = draft
             self.webView = webView
+            
+            if draft.hasBeenUsed {
+                throw CaravelError.DraftUsedTwice
+            } else {
+                self.draft.hasBeenUsed = true
+            }
         }
     }
     
@@ -78,7 +85,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     
     internal convenience init(dispatcher: Caravel, reference: AnyObject, wkWebViewPair: (Draft, WKWebView)) {
         self.init(dispatcher: dispatcher, reference: reference)
-        self.wkWebViewPair = WKWebViewPair(draft: wkWebViewPair.0, webView: wkWebViewPair.1)
+        try! self.wkWebViewPair = WKWebViewPair(draft: wkWebViewPair.0, webView: wkWebViewPair.1)
         
         self.wkWebViewPair!.draft.parent = self
     }
