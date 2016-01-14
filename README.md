@@ -11,6 +11,7 @@
 * Easy, fast and reliable event bus system
 * Multiple bus support
 * Multithreading support
+* `WKWebView` support
 * iOS ~> JavaScript supported types:
   - `Bool`
   - `Int`
@@ -57,19 +58,19 @@ Have a glance at this super simple sample. Let's start with the iOS part:
 class MyController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
-    func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // Prepare your bus before loading your web view's content
         Caravel.getDefault(self, webView: webView, whenReady: { bus in
-            // The JS endpoint is ready to handle any event.
-            // Register and post your events in this scope
+            // In this scope, the JS endpoint is ready to handle any event.
+            // Register and post your events here
             bus.post("MyEvent", data: [1, 2, 3])
             
             self.bus = bus // You can save your bus for firing events later
         })
         
-        // ... Load web view content below
+        // ... Load web view's content there
     }
 }
 ```
@@ -77,18 +78,56 @@ class MyController: UIViewController {
 And now, in your JS:
 
 ```javascript
-Caravel.getDefault().register("AnEvent", function(name, data) {
-    alert('I received this array: ' + data);
+Caravel.getDefault().register("AnEventWithAString", function(name, data) {
+    alert('I received this string: ' + data);
 });
 ```
 
 And voilà!
 
+## WKWebView
+
+Caravel 1.1.0 supports `WKWebView`. Keep in mind this class is still in beta and might not work as expected. We won't ship you a 🍕 if your app does not work. 
+
+Anyway. If you're this kind of guy involved in some risky business, here how to use Caravel with this object. Be careful, it is a two-step process.
+
+```swift
+class MyController: UIViewController {
+    private var wkWebView: WKWebView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let config = WKWebViewConfiguration()
+        // First generate a draft using your custom configuration
+        let draft = Caravel.getDraft(config)
+
+        // Build your WKWebView as usual then
+        self.wkWebView = WKWebView(frame: self.view.bounds, configuration: config)
+
+        // Then initiate Caravel
+        Caravel.getDefault(self, wkWebView: self.wkWebView!, draft: draft, whenReady: {
+            // Do whatever you've got to do here
+        })
+
+        // ... Load content into your WKWebView there
+    }
+}
+```
+
 ## Troubleshooting
 
 ### I want to use my custom UIWebViewDelegate. What should I do?
 
-To raise iOS events, Caravel must be the delegate of the provided `UIWebView`. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it before any call to Caravel.
+To raise iOS events, Caravel must be the delegate of the provided `UIWebView`. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it **before** any call to Caravel.
+
+### I want to use my custom WKUserContentController. What should I do?
+
+To raise iOS events, Caravel adds a custom `WKScriptMessageHandler` to the current content controller. If you would like to use your custom one, simply set it **before** any call to Caravel.
+
+### What object should I use as a subscriber?
+
+A subscriber could be any object **but the watched target** (either the `UIWebView` or the `WKWebView`). We recommend to use the controller as a subscriber (it is a common pattern!).
 
 ### Reserved names
 
