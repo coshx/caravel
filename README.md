@@ -30,19 +30,29 @@
 
 ## Installation
 
-Install Caravel using CocoaPods:
+### Using CocoaPods
+
+Add this line to your Podfile:
 
 ```ruby
 pod 'Caravel'
 ```
 
-Otherwise, you can install it as a submodule of your project.
+And run `pod install`. Once installed, open the `Pods` folder. Navigate to `caravel/caravel/js`. In this folder, drag and drop `caravel.min.js` into your Xcode project. You should load this JS script in any webpage you use Caravel.
 
-Once done, you should find a `caravel.min.js` file in either the Pod or the submodule. Add this file to your project. Then, in each HTML page you have, load it before running your main script:
+### Using Carthage
 
-```html
-<script type="text/javascript" src="caravel.min.js"></script>
+Add this line to your Cartfile:
+
 ```
+github "coshx/caravel"
+```
+
+And run `carthage update`. Once installed, open the `Carthage/Checkouts` folder. Navigate to `caravel/caravel/js`. In this folder, drag and drop `caravel.min.js` into your Xcode project. You should load this JS script in any webpage you use Caravel.
+
+### Using as a submodule
+
+Clone this repo and add `Caravel.xcodeproj` into your workspace. 
 
 ## Might be useful 
 
