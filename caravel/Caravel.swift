@@ -217,7 +217,7 @@ public class Caravel {
     }
     
     /**
-     Returns default bus and run callback on main thread
+     Returns default bus and runs callback on main thread
 
      - parameter subscriber: Subscriber (usually the view controller)
      - parameter webView: WebView to watch
@@ -250,7 +250,7 @@ public class Caravel {
     }
     
     /**
-     Returns custom bus and run callback on main thread
+     Returns custom bus and runs callback on main thread
 
      - parameter subscriber: Subscriber (usually the view controller)
      - parameter name: Bus name
@@ -295,7 +295,7 @@ public class Caravel {
     }
     
     /**
-     Returns default bus and run callback on main thread
+     Returns default bus and runs callback on main thread
 
      - parameter subscriber: Subscriber (usually the view controller)
      - parameter wkWebView: WKWebView to watch
@@ -330,7 +330,7 @@ public class Caravel {
     }
     
     /**
-     Returns default bus and run callback on main thread
+     Returns default bus and runs callback on main thread
 
      - parameter subscriber: Subscriber (usually the view controller)
      - parameter name: Bus name
