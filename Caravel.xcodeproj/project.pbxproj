@@ -18,24 +18,12 @@
 		A752153C1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A752153B1C2C5B2E00B7CAA3 /* IWKWebViewObserver.swift */; };
 		A7AC9F281B3493EB0041EB0B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC9F271B3493EB0041EB0B /* StringExtension.swift */; };
 		A7F1DD981B17D957001E9B94 /* caravel.h in Headers */ = {isa = PBXBuildFile; fileRef = A7F1DD971B17D957001E9B94 /* caravel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A7F1DD9E1B17D958001E9B94 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F1DD921B17D957001E9B94 /* Caravel.framework */; };
-		A7F1DDA51B17D958001E9B94 /* caravelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDA41B17D958001E9B94 /* caravelTests.swift */; };
 		A7F1DDB21B17D989001E9B94 /* Caravel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDAE1B17D989001E9B94 /* Caravel.swift */; };
 		A7F1DDB31B17D989001E9B94 /* EventSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDAF1B17D989001E9B94 /* EventSubscriber.swift */; };
 		A7F1DDB51B17D989001E9B94 /* UIWebViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateProxy.swift */; };
 		A7F1DDB81B17E5F8001E9B94 /* DataSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDB71B17E5F8001E9B94 /* DataSerializer.swift */; };
 		A7F1DDBC1B17EF24001E9B94 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DDBB1B17EF24001E9B94 /* ArgumentParser.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A7F1DD9F1B17D958001E9B94 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7F1DD891B17D957001E9B94 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7F1DD911B17D957001E9B94;
-			remoteInfo = caravel;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A7199EE91BFC038D00757E4F /* CaravelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaravelError.swift; sourceTree = "<group>"; };
@@ -51,9 +39,6 @@
 		A7F1DD921B17D957001E9B94 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7F1DD961B17D957001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7F1DD971B17D957001E9B94 /* caravel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = caravel.h; sourceTree = "<group>"; };
-		A7F1DD9D1B17D958001E9B94 /* CaravelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaravelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7F1DDA31B17D958001E9B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7F1DDA41B17D958001E9B94 /* caravelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = caravelTests.swift; sourceTree = "<group>"; };
 		A7F1DDAE1B17D989001E9B94 /* Caravel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caravel.swift; sourceTree = "<group>"; };
 		A7F1DDAF1B17D989001E9B94 /* EventSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventSubscriber.swift; path = internal/EventSubscriber.swift; sourceTree = "<group>"; };
 		A7F1DDB11B17D989001E9B94 /* UIWebViewDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIWebViewDelegateProxy.swift; path = internal/proxies/UIWebViewDelegateProxy.swift; sourceTree = "<group>"; };
@@ -66,14 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7F1DD9A1B17D958001E9B94 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7F1DD9E1B17D958001E9B94 /* Caravel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				A7F1DD941B17D957001E9B94 /* caravel */,
-				A7F1DDA11B17D958001E9B94 /* caravelTests */,
 				A7F1DD931B17D957001E9B94 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				A7F1DD921B17D957001E9B94 /* Caravel.framework */,
-				A7F1DD9D1B17D958001E9B94 /* CaravelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,23 +125,6 @@
 			isa = PBXGroup;
 			children = (
 				A7F1DD961B17D957001E9B94 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A7F1DDA11B17D958001E9B94 /* caravelTests */ = {
-			isa = PBXGroup;
-			children = (
-				A7F1DDA41B17D958001E9B94 /* caravelTests.swift */,
-				A7F1DDA21B17D958001E9B94 /* Supporting Files */,
-			);
-			path = caravelTests;
-			sourceTree = "<group>";
-		};
-		A7F1DDA21B17D958001E9B94 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A7F1DDA31B17D958001E9B94 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -203,24 +161,6 @@
 			productReference = A7F1DD921B17D957001E9B94 /* Caravel.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A7F1DD9C1B17D958001E9B94 /* CaravelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "CaravelTests" */;
-			buildPhases = (
-				A7F1DD991B17D958001E9B94 /* Sources */,
-				A7F1DD9A1B17D958001E9B94 /* Frameworks */,
-				A7F1DD9B1B17D958001E9B94 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7F1DDA01B17D958001E9B94 /* PBXTargetDependency */,
-			);
-			name = CaravelTests;
-			productName = caravelTests;
-			productReference = A7F1DD9D1B17D958001E9B94 /* CaravelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -233,9 +173,6 @@
 				ORGANIZATIONNAME = "Coshx Labs";
 				TargetAttributes = {
 					A7F1DD911B17D957001E9B94 = {
-						CreatedOnToolsVersion = 6.3.2;
-					};
-					A7F1DD9C1B17D958001E9B94 = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
@@ -253,20 +190,12 @@
 			projectRoot = "";
 			targets = (
 				A7F1DD911B17D957001E9B94 /* Caravel */,
-				A7F1DD9C1B17D958001E9B94 /* CaravelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A7F1DD901B17D957001E9B94 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7F1DD9B1B17D958001E9B94 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -298,23 +227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7F1DD991B17D958001E9B94 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7F1DDA51B17D958001E9B94 /* caravelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A7F1DDA01B17D958001E9B94 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7F1DD911B17D957001E9B94 /* Caravel */;
-			targetProxy = A7F1DD9F1B17D958001E9B94 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A7F1DDA61B17D958001E9B94 /* Debug */ = {
@@ -439,36 +352,6 @@
 			};
 			name = Release;
 		};
-		A7F1DDAC1B17D958001E9B94 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = caravelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = CaravelTests;
-			};
-			name = Debug;
-		};
-		A7F1DDAD1B17D958001E9B94 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = caravelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = CaravelTests;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -486,15 +369,6 @@
 			buildConfigurations = (
 				A7F1DDA91B17D958001E9B94 /* Debug */,
 				A7F1DDAA1B17D958001E9B94 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7F1DDAB1B17D958001E9B94 /* Build configuration list for PBXNativeTarget "CaravelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7F1DDAC1B17D958001E9B94 /* Debug */,
-				A7F1DDAD1B17D958001E9B94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
