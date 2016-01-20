@@ -109,6 +109,12 @@ public class Caravel {
         self.addBus(bus, whenReady: whenReady, inBackground: inBackground)
     }
     
+    private static func testSubscriber(subscriber: AnyObject, target: AnyObject) throws {
+        if subscriber.hash == target.hash {
+            throw CaravelError.SubscriberIsSameThanTarget
+        }
+    }
+    
     internal func post<T>(eventName: String, eventData: T?) {
         background {
             var data: String?
@@ -205,6 +211,7 @@ public class Caravel {
      */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -220,6 +227,7 @@ public class Caravel {
      */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -236,6 +244,7 @@ public class Caravel {
      */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -252,6 +261,7 @@ public class Caravel {
      */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -279,6 +289,7 @@ public class Caravel {
      */
     public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -295,6 +306,7 @@ public class Caravel {
      */
     public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -312,6 +324,7 @@ public class Caravel {
      */
     public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -329,6 +342,7 @@ public class Caravel {
      */
     public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }

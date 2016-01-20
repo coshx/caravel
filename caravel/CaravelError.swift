@@ -1,7 +1,7 @@
 /**
  **CaravelError**
 
- Potential erros that Caravel maight throw
+ Potential erros that Caravel might throw
  */
 public enum CaravelError: ErrorType {
     /**
@@ -13,4 +13,9 @@ public enum CaravelError: ErrorType {
      An unsupported type was provided when posting an event from iOS
      */
     case SerializationUnsupportedData
+    
+    /**
+     User is trying to create a bus with a subscriber identical to the watched target
+    */
+    case SubscriberIsSameThanTarget
 }
