@@ -22,7 +22,7 @@ import WebKit
  */
 public class Caravel {
     private let busLock = NSObject()
-    internal static let DEFAULT_BUS_NAME = "default"
+    internal static let DefaultBusName = "default"
     
     private var secretName: String
     private var buses: [EventBus]
@@ -109,6 +109,12 @@ public class Caravel {
         self.addBus(bus, whenReady: whenReady, inBackground: inBackground)
     }
     
+    private static func testSubscriber(subscriber: AnyObject, target: AnyObject) throws {
+        if subscriber.hash == target.hash {
+            throw CaravelError.SubscriberIsSameThanTarget
+        }
+    }
+    
     internal func post<T>(eventName: String, eventData: T?) {
         background {
             var data: String?
@@ -122,7 +128,7 @@ public class Caravel {
             
             toRun = "Caravel."
             
-            if self.secretName == Caravel.DEFAULT_BUS_NAME {
+            if self.secretName == Caravel.DefaultBusName {
                 toRun!.appendContentsOf("getDefault()")
             } else {
                 toRun!.appendContentsOf("get(\"\(self.secretName)\")")
@@ -197,14 +203,15 @@ public class Caravel {
     /**
      Returns default bus
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter webView: WebView to watch
-     - Parameter whenReady: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter webView: WebView to watch
+     - parameter whenReady: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -212,14 +219,15 @@ public class Caravel {
     /**
      Returns default bus and run callback on main thread
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter webView: WebView to watch
-     - Parameter whenReadyOnMain: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter webView: WebView to watch
+     - parameter whenReadyOnMain: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -227,15 +235,16 @@ public class Caravel {
     /**
      Returns custom bus
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter name: Bus name
-     - Parameter webView: WebView to watch
-     - Parameter whenReady: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter name: Bus name
+     - parameter webView: WebView to watch
+     - parameter whenReady: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -243,15 +252,16 @@ public class Caravel {
     /**
      Returns custom bus and run callback on main thread
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter name: Bus name
-     - Parameter webView: WebView to watch
-     - Parameter whenReadyOnMain: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter name: Bus name
+     - parameter webView: WebView to watch
+     - parameter whenReadyOnMain: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -259,9 +269,9 @@ public class Caravel {
     /**
      Builds draft for single use with provided WKWebView configuration
 
-     - Parameter configuration: Custom WKWebView configuration
+     - parameter configuration: Custom WKWebView configuration
 
-     - Returns: Bus draft
+     - returns: Bus draft
      */
     public static func getDraft(configuration: WKWebViewConfiguration) -> EventBus.Draft {
         return EventBus.buildDraft(configuration)
@@ -270,15 +280,16 @@ public class Caravel {
     /**
      Returns default bus
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter wkWebView: WKWebView to watch
-     - Parameter draft: EventBus draft that has been built before initializing the view
-     - Parameter whenReady: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter wkWebView: WKWebView to watch
+     - parameter draft: EventBus draft that has been built before initializing the view
+     - parameter whenReady: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -286,15 +297,16 @@ public class Caravel {
     /**
      Returns default bus and run callback on main thread
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter wkWebView: WKWebView to watch
-     - Parameter draft: EventBus draft that has been built before initializing the view
-     - Parameter whenReadyOnMain: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter wkWebView: WKWebView to watch
+     - parameter draft: EventBus draft that has been built before initializing the view
+     - parameter whenReadyOnMain: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }
@@ -302,16 +314,17 @@ public class Caravel {
     /**
      Returns default bus
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter name: Bus name
-     - Parameter wkWebView: WKWebView to watch
-     - Parameter draft: EventBus draft that has been built before initializing the view
-     - Parameter whenReady: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter name: Bus name
+     - parameter wkWebView: WKWebView to watch
+     - parameter draft: EventBus draft that has been built before initializing the view
+     - parameter whenReady: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
         return d
     }
@@ -319,16 +332,17 @@ public class Caravel {
     /**
      Returns default bus and run callback on main thread
 
-     - Parameter subscriber: Subscriber (usually the view controller)
-     - Parameter name: Bus name
-     - Parameter wkWebView: WKWebView to watch
-     - Parameter draft: EventBus draft that has been built before initializing the view
-     - Parameter whenReadyOnMain: Action to run when bus is ready to use
+     - parameter subscriber: Subscriber (usually the view controller)
+     - parameter name: Bus name
+     - parameter wkWebView: WKWebView to watch
+     - parameter draft: EventBus draft that has been built before initializing the view
+     - parameter whenReadyOnMain: Action to run when bus is ready to use
 
-     - Returns: Current instance
+     - returns: Current instance
      */
     public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
+        try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)
         return d
     }

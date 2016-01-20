@@ -123,6 +123,8 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     
     /**
      Runs JS script into current context
+     
+     - parameter toRun: JS script
      */
     internal func forwardToJS(toRun: String) {
         main {
@@ -170,6 +172,9 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     
     /**
      Allows dispatcher to fire any event on this bus
+     
+     - parameter name: event's name
+     - parameter data: event's data
      */
     internal func raise(name: String, data: AnyObject?) {
         synchronized(subscriberLock) {
@@ -242,7 +247,7 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     /**
      Posts event
 
-     - Parameter eventName: Name of the event
+     - parameter eventName: Name of the event
      */
     public func post(eventName: String) {
         self.dispatcher?.post(eventName, eventData: nil as AnyObject?)
@@ -251,8 +256,8 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     /**
      Posts event with extra data
 
-     - Parameter eventName: Name of the event
-     - Parameter data: Data to post (see documentation for supported types)
+     - parameter eventName: Name of the event
+     - parameter data: Data to post (see documentation for supported types)
      */
     public func post<T>(eventName: String, data: T) {
         self.dispatcher?.post(eventName, eventData: data)
@@ -261,8 +266,8 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     /**
      Subscribes to event. Callback is run with the event's name and extra data (if any).
 
-     - Parameter eventName: Event to watch
-     - Parameter callback: Action to run when fired
+     - parameter eventName: Event to watch
+     - parameter callback: Action to run when fired
      */
     public func register(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {
@@ -273,8 +278,8 @@ public class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     /**
      Subscribes to event. Callback is run on main thread with the event's name and extra data (if any).
 
-     - Parameter eventName: Event to watch
-     - Parameter callback: Action to run when fired
+     - parameter eventName: Event to watch
+     - parameter callback: Action to run when fired
      */
     public func registerOnMain(eventName: String, callback: (String, AnyObject?) -> Void) {
         synchronized(subscriberLock) {

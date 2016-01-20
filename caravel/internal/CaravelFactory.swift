@@ -46,7 +46,7 @@ internal class CaravelFactory {
                 objc_sync_exit(defaultBusLock)
                 return bus
             } else {
-                self.defaultBus = Caravel(name: Caravel.DEFAULT_BUS_NAME)
+                self.defaultBus = Caravel(name: Caravel.DefaultBusName)
                 objc_sync_exit(defaultBusLock)
                 return self.defaultBus!
             }
@@ -54,7 +54,7 @@ internal class CaravelFactory {
     }
     
     internal static func get(name: String) -> Caravel {
-        if name == Caravel.DEFAULT_BUS_NAME {
+        if name == Caravel.DefaultBusName {
             return getDefault()
         } else {
             let getExisting = {() -> Caravel? in
