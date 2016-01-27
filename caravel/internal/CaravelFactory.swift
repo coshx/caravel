@@ -6,12 +6,12 @@
 internal class CaravelFactory {
     private static let defaultBusLock = NSObject()
     private static var defaultBus: Caravel?
-    
+
     private static let creationLock = NSObject()
     // A lock per bus. Uses lock above when initializing
     private static var busLocks: [String: NSObject] = [:]
     private static var buses: [String: Caravel] = [:]
-    
+
     private static func getLock(name: String) -> NSObject {
         if let o = busLocks[name] {
             return o
@@ -28,16 +28,16 @@ internal class CaravelFactory {
             }
         }
     }
-    
+
     internal static func getDefault() -> Caravel {
-        let getExisting = {() -> Caravel? in
+        let getExisting = { () -> Caravel? in
             if let b = defaultBus {
                 return b
             } else {
                 return nil
             }
         }
-        
+
         if let bus = getExisting() {
             return bus
         } else {
@@ -52,19 +52,19 @@ internal class CaravelFactory {
             }
         }
     }
-    
+
     internal static func get(name: String) -> Caravel {
         if name == Caravel.DefaultBusName {
             return getDefault()
         } else {
-            let getExisting = {() -> Caravel? in
+            let getExisting = { () -> Caravel? in
                 if let b = buses[name] {
                     return b
                 } else {
                     return nil
                 }
             }
-            
+
             if let bus = getExisting() {
                 return bus
             } else {
