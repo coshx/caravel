@@ -18,7 +18,7 @@ class Caravel
         busName: @name
         eventName: eventName
         eventData: data
-      window.webkit.messageHandlers.caravel.postMessage body
+      setTimeout (() => window.webkit.messageHandlers.caravel.postMessage(body)), 0
     else
       # shouldLoadRequest is only triggered when a new content is required
       # Ajax requests are useless
@@ -46,6 +46,7 @@ class Caravel
 
   # Internal method only. Called by iOS part for triggering events on the bus
   raise: (name, data) ->
+    parsedData = null
     if data instanceof Array or data instanceof Object or (typeof data == "string" or data instanceof String)
       # Data are already parsed, nothing to do
       parsedData = data
