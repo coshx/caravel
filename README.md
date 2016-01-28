@@ -128,7 +128,7 @@ class MyController: UIViewController {
 
 ## Troubleshooting
 
-### 😕 Sometimes the bus does not work?!
+### 😕 Sometimes the bus is not working?!
 
 Firstly, ensure you are using the bus correctly. Check if you are unregistering the bus when exiting the controller owning your web component (either a `UIWebView` or a `WKWebView`). Use the [unregister method for this](http://coshx.github.io/caravel/Classes/EventBus.html#/s:FC7Caravel8EventBus10unregisterFS0_FT_T_).
 
