@@ -161,6 +161,8 @@ public class Caravel {
 
     internal func dispatch(busName: String, eventName: String, eventData: AnyObject?) {
         if busName != self.name {
+            // Different buses can use the same web view so same proxy
+            // If not a potential receiver, ignore event
             return
         }
 

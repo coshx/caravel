@@ -7,51 +7,47 @@ import WebKit
  */
 internal class WKScriptMessageHandlerProxyMediator {
     private static let creationLock = NSObject()
-    
+
     /**
      Indexed by WKWebViewConfiguration's hash
      */
     private static var proxies: [Int: WKScriptMessageHandlerProxy] = [:]
-    
+
     private static func lockProxies(@noescape action: () -> Void) {
         synchronized(creationLock, action: action)
     }
-    
+
     static func subscribe(configuration: WKWebViewConfiguration, observer: IWKWebViewObserver) {
-        let action: Void -> Bool = {
-            for (k, v) in proxies {
-                if k == configuration.hash {
-                    v.subscribe(observer)
-                    return true
-                }
-            }
-            return false
-        }
-        
-        if !action() {
+        let key = configuration.hash
+
+        if let p = proxies[key] {
+            p.subscribe(observer)
+        } else {
             lockProxies {
-                if action() {
-                    return
-                } else {
-                    let p = WKScriptMessageHandlerProxy(configuration: configuration)
+                if let p = proxies[key] {
                     p.subscribe(observer)
-                    proxies[configuration.hash] = p
+                } else {
+                    let proxy = WKScriptMessageHandlerProxy(configuration: configuration)
+                    proxy.subscribe(observer)
+                    proxies[key] = proxy
                 }
             }
         }
     }
-    
+
     static func unsubscribe(configuration: WKWebViewConfiguration, observer: IWKWebViewObserver) {
-        for (k, v) in proxies {
-            if k == configuration.hash {
-                v.unsubscribe(observer)
-                
-                if !v.hasSubscribers() {
-                    lockProxies {
-                        proxies.removeValueForKey(configuration.hash)
+        let key = configuration.hash
+
+        if let p = proxies[key] {
+            p.unsubscribe(observer)
+
+            if !p.hasSubscribers() {
+                lockProxies {
+                    if !p.hasSubscribers() {
+                        p.willBeDeleted(configuration)
+                        proxies.removeValueForKey(key)
                     }
                 }
-                return
             }
         }
     }
