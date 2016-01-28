@@ -98,9 +98,9 @@ And voilà!
 
 ## WKWebView
 
-Caravel 1.1.0 supports `WKWebView`. Keep in mind this class is still in beta and might not work as expected. We won't ship you a 🍕 if your app does not work. 
+Caravel 1.1.0 supports `WKWebView`. Keep in mind this component is still in beta and might not work as expected. We won't ship you a 🍕 if your app does not work. 
 
-Anyway. If you're this kind of guy involved in some risky business, here how to use Caravel with this object. Be careful, it is a two-step process.
+Anyway. If you're this kind of guy who likes being involved in some risky business, here is an example about how to use Caravel with it. Be careful, it is a 2-step process.
 
 ```swift
 class MyController: UIViewController {
@@ -116,7 +116,7 @@ class MyController: UIViewController {
         // Build your WKWebView as usual then
         self.wkWebView = WKWebView(frame: self.view.bounds, configuration: config)
 
-        // Then initiate Caravel
+        // Finally initiate Caravel
         Caravel.getDefault(self, wkWebView: self.wkWebView!, draft: draft, whenReady: {
             // Do whatever you've got to do here
         })
@@ -127,6 +127,14 @@ class MyController: UIViewController {
 ```
 
 ## Troubleshooting
+
+### 😕 Sometimes the bus does not work?!
+
+Firstly, ensure you are using the bus correctly. Check if you are unregistering the bus when exiting the controller owning your web component (either a `UIWebView` or a `WKWebView`). Use the [unregister method for this](http://coshx.github.io/caravel/Classes/EventBus.html#/s:FC7Caravel8EventBus10unregisterFS0_FT_T_).
+
+Caravel automatically cleans up any unused bus when you create a new one. However, this operation is run in the background to avoid any delay on your side. So, a thread collision might happen if you have not unsubscribed your bus properly.
+
+However, if you think everything is good with your codebase, feel free to open a ticket.
 
 ### I want to use my custom UIWebViewDelegate. What should I do?
 
