@@ -61,7 +61,7 @@ Clone this repo and add `Caravel.xcodeproj` into your workspace.
 
 ## Get started
 
-Caravel allows developers to communicate between their `UIWebView` and the embedded JS. You can send any kind of message between those two folks.
+Caravel allows developers to communicate between their `UIWebView` and the embedded JS. You can send any kind of message between these two folks.
 
 Have a glance at this super simple sample. Let's start with the iOS part:
 
@@ -89,8 +89,11 @@ class MyController: UIViewController {
 And now, in your JS:
 
 ```javascript
-Caravel.getDefault().register("AnEventWithAString", function(name, data) {
+var bus = Caravel.getDefault();
+
+bus.register("AnEventWithAString", function(name, data) {
     alert('I received this string: ' + data);
+    bus.post("AnEventForiOS");
 });
 ```
 
@@ -126,6 +129,14 @@ class MyController: UIViewController {
 }
 ```
 
+## Porting your app from Drekkar to Caravel
+
+Super duper easy. Just use the same codebase and add this after having loaded the Caravel script:
+
+```javascript
+var Drekkar = Caravel;
+```
+
 ## Troubleshooting
 
 ### 😕 Sometimes the bus is not working?!
@@ -152,7 +163,9 @@ A subscriber could be any object **except the watched target** (either the `UIWe
 
 `CaravelInit` is an internal event, sent by the JS part for triggering the `whenReady` method.
 
-Also, the default bus is named `default`. If you use that name for a custom bus, Caravel will automatically switch to the default one.
+Also, the default bus is named `default`. If you use this name for a custom bus, Caravel will automatically switch to the default one.
+
+Finally, when using a `WKWebView`, Caravel names its script message handler `caravel`.
 
 ### Keep in mind event and bus names are case-sensitive.
 
