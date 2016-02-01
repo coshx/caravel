@@ -134,7 +134,7 @@
 </ul>
 <a href='#get_started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='get_started'>Get started</h2>
 
-<p>Caravel allows developers to communicate between their <code>UIWebView</code> and the embedded JS. You can send any kind of message between those two folks.</p>
+<p>Caravel allows developers to communicate between their <code>UIWebView</code> and the embedded JS. You can send any kind of message between these two folks.</p>
 
 <p>Have a glance at this super simple sample. Let&rsquo;s start with the iOS part:</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
@@ -158,17 +158,20 @@
 </code></pre>
 
 <p>And now, in your JS:</p>
-<pre class="highlight javascript"><code><span class="nx">Caravel</span><span class="p">.</span><span class="nx">getDefault</span><span class="p">().</span><span class="nx">register</span><span class="p">(</span><span class="s2">"AnEventWithAString"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">bus</span> <span class="o">=</span> <span class="nx">Caravel</span><span class="p">.</span><span class="nx">getDefault</span><span class="p">();</span>
+
+<span class="nx">bus</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s2">"AnEventWithAString"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">alert</span><span class="p">(</span><span class="s1">'I received this string: '</span> <span class="o">+</span> <span class="nx">data</span><span class="p">);</span>
+    <span class="nx">bus</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">"AnEventForiOS"</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre>
 
 <p>And voilà!</p>
 <a href='#wkwebview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='wkwebview'>WKWebView</h2>
 
-<p>Caravel 1.1.0 supports <code>WKWebView</code>. Keep in mind this class is still in beta and might not work as expected. We won&rsquo;t ship you a 🍕 if your app does not work. </p>
+<p>Caravel 1.1.0 supports <code>WKWebView</code>. Keep in mind this component is still in beta and might not work as expected. We won&rsquo;t ship you a 🍕 if your app does not work. </p>
 
-<p>Anyway. If you&rsquo;re this kind of guy involved in some risky business, here how to use Caravel with this object. Be careful, it is a two-step process.</p>
+<p>Anyway. If you&rsquo;re this kind of guy who likes being involved in some risky business, here is an example about how to use Caravel with it. Be careful, it is a 2-step process.</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MyController</span><span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="k">var</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="kt">WKWebView</span><span class="p">?</span>
 
@@ -182,7 +185,7 @@
         <span class="c1">// Build your WKWebView as usual then</span>
         <span class="k">self</span><span class="o">.</span><span class="n">wkWebView</span> <span class="o">=</span> <span class="kt">WKWebView</span><span class="p">(</span><span class="nv">frame</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">bounds</span><span class="p">,</span> <span class="nv">configuration</span><span class="p">:</span> <span class="n">config</span><span class="p">)</span>
 
-        <span class="c1">// Then initiate Caravel</span>
+        <span class="c1">// Finally initiate Caravel</span>
         <span class="kt">Caravel</span><span class="o">.</span><span class="nf">getDefault</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">wkWebView</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">wkWebView</span><span class="o">!</span><span class="p">,</span> <span class="nv">draft</span><span class="p">:</span> <span class="n">draft</span><span class="p">,</span> <span class="nv">whenReady</span><span class="p">:</span> <span class="p">{</span>
             <span class="c1">// Do whatever you've got to do here</span>
         <span class="p">})</span>
@@ -191,7 +194,19 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+<a href='#porting_your_app_from_drekkar_to_caravel' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='porting_your_app_from_drekkar_to_caravel'>Porting your app from Drekkar to Caravel</h2>
+
+<p>Super duper easy. Just use the same codebase and use the JS script from Caravel. Finally, add this after having loaded the Caravel script:</p>
+<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Drekkar</span> <span class="o">=</span> <span class="nx">Caravel</span><span class="p">;</span>
+</code></pre>
 <a href='#troubleshooting' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='troubleshooting'>Troubleshooting</h2>
+<a href='#sometimes_the_bus_is_not_working' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='sometimes_the_bus_is_not_working'>😕 Sometimes the bus is not working?!</h3>
+
+<p>Firstly, ensure you are using the bus correctly. Check if you are unregistering the bus when exiting the controller owning your web component (either a <code>UIWebView</code> or a <code>WKWebView</code>). Use the <a href="http://coshx.github.io/caravel/Classes/EventBus.html#/s:FC7Caravel8EventBus10unregisterFS0_FT_T_">unregister method for this</a>.</p>
+
+<p>Caravel automatically cleans up any unused bus when you create a new one. However, this operation is run in the background to avoid any delay on your side. So, a thread collision might happen if you have not unsubscribed your bus properly.</p>
+
+<p>However, if you think everything is good with your codebase, feel free to open a ticket.</p>
 <a href='#i_want_to_use_my_custom_uiwebviewdelegate_what_should_i_do' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='i_want_to_use_my_custom_uiwebviewdelegate_what_should_i_do'>I want to use my custom UIWebViewDelegate. What should I do?</h3>
 
 <p>To raise iOS events, Caravel must be the delegate of the provided <code>UIWebView</code>. However, if there is any existing delegate, Caravel saves it before setting its own. So, if you would like to use your custom one, simply set it <strong>before</strong> any call to Caravel.</p>
@@ -205,7 +220,9 @@
 
 <p><code>CaravelInit</code> is an internal event, sent by the JS part for triggering the <code>whenReady</code> method.</p>
 
-<p>Also, the default bus is named <code>default</code>. If you use that name for a custom bus, Caravel will automatically switch to the default one.</p>
+<p>Also, the default bus is named <code>default</code>. If you use this name for a custom bus, Caravel will automatically switch to the default one.</p>
+
+<p>Finally, when using a <code>WKWebView</code>, Caravel names its script message handler <code>caravel</code>.</p>
 <a href='#keep_in_mind_event_and_bus_names_are_case_sensitive' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='keep_in_mind_event_and_bus_names_are_case_sensitive'>Keep in mind event and bus names are case-sensitive.</h3>
 
           </div>
@@ -215,7 +232,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-01-20)</p>
+      <p>&copy; 2016 <a class="link" href="http://www.coshx.com/" target="_blank" rel="external">Coshx Labs</a>. All rights reserved. (Last updated: 2016-02-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
