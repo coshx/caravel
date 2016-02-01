@@ -131,7 +131,7 @@ class MyController: UIViewController {
 
 ## Porting your app from Drekkar to Caravel
 
-Super duper easy. Just use the same codebase and add this after having loaded the Caravel script:
+Super duper easy. Just use the same codebase and use the JS script from Caravel. Finally, add this after having loaded the Caravel script:
 
 ```javascript
 var Drekkar = Caravel;
