@@ -13,16 +13,18 @@ class Caravel
 
   # Internal method for posting
   _post: (eventName, data) ->
+    action = null
+
     if @isUsingWKWebView
       body =
         busName: @name
         eventName: eventName
         eventData: data
-      setTimeout (() => window.webkit.messageHandlers.caravel.postMessage(body)), 0
+      action = () => window.webkit.messageHandlers.caravel.postMessage(body)
     else
       # shouldLoadRequest is only triggered when a new content is required
       # Ajax requests are useless
-      setTimeout (() =>
+      action = () =>
         iframe = document.createElement 'iframe'
         src = "caravel://host.com?busName=#{encodeURIComponent(@name)}&eventName=#{encodeURIComponent(eventName)}"
         if data?
@@ -33,7 +35,8 @@ class Caravel
         iframe.setAttribute 'src', src
         document.documentElement.appendChild iframe
         iframe.parentNode.removeChild iframe
-      ), 0
+
+    setTimeout(action, 0)
 
   getName: () ->
     @name
