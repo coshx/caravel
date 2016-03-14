@@ -71,7 +71,7 @@ internal class WKScriptMessageHandlerProxy: NSObject, WKScriptMessageHandler {
         let eventData = body["eventData"]
 
         iterateOverDelegates { e in
-            background { e.onMessage(busName, eventName: eventName, eventData: eventData) }
+            e.onMessage(busName, eventName: eventName, eventData: eventData)
         }
     }
 }
