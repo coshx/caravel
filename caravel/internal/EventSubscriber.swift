@@ -8,7 +8,7 @@ internal class EventSubscriber {
     var callback: (String, AnyObject?) -> Void
     var inBackground: Bool
     
-    init(name: String, callback: (String, AnyObject?) -> Void, inBackground: Bool) {
+    init(name: String, callback: @escaping (String, AnyObject?) -> Void, inBackground: Bool) {
         self.name = name
         self.callback = callback
         self.inBackground = inBackground

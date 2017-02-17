@@ -7,18 +7,18 @@ import Foundation
  */
 internal class ArgumentParser {
     
-    internal class func parse(input: String) -> (busName: String, eventName: String, eventData: String?) {
-        let queryPairs = input.componentsSeparatedByString("&")
+    internal class func parse(_ input: String) -> (busName: String, eventName: String, eventData: String?) {
+        let queryPairs = input.components(separatedBy: "&")
         var outcome: (busName: String, eventName: String, eventData: String?) = (busName: "", eventName: "", eventData: nil)
         
         for p in queryPairs {
-            var keyValue = p.componentsSeparatedByString("=")
+            var keyValue = p.components(separatedBy: "=")
             if keyValue[0] == "busName" {
-                outcome.busName = keyValue[1].stringByRemovingPercentEncoding!
+                outcome.busName = keyValue[1].removingPercentEncoding!
             } else if keyValue[0] == "eventName" {
-                outcome.eventName = keyValue[1].stringByRemovingPercentEncoding!
+                outcome.eventName = keyValue[1].removingPercentEncoding!
             } else if keyValue[0] == "eventData" {
-                outcome.eventData = keyValue[1].stringByRemovingPercentEncoding
+                outcome.eventData = keyValue[1].removingPercentEncoding
             }
         }
         

@@ -6,12 +6,12 @@ import WebKit
 class ThreadingController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
-    private var wkWebView: WKWebView?
+    fileprivate var wkWebView: WKWebView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = NSURLRequest(URL: NSBundle.mainBundle().URLForResource("threading", withExtension: "html")!)
+        let request = URLRequest(url: Bundle.main.url(forResource: "threading", withExtension: "html")!)
         let action1 = {(bus: EventBus) in
             bus.registerOnMain("FromJSForBackground") {_, _ in
                 bus.post("FromBackgroundAfterFromJS")
@@ -41,7 +41,7 @@ class ThreadingController: UIViewController {
             Caravel.get(self, name: "First", wkWebView: self.wkWebView!, draft: draft1, whenReady: action1)
             Caravel.get(self, name: "Second", wkWebView: self.wkWebView!, draft: draft2, whenReadyOnMain: action2)
             
-            self.wkWebView!.loadRequest(request)
+            self.wkWebView!.load(request)
         } else {
             Caravel.get(self, name: "First", webView: webView, whenReady: action1)
             Caravel.get(self, name: "Second", webView: webView, whenReadyOnMain: action2)

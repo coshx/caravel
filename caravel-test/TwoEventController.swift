@@ -2,11 +2,11 @@ import Foundation
 import UIKit
 import Caravel
 
-public class TwoEventController: BaseController {
+open class TwoEventController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let tuple = setUp("two_events", webView: _webView)

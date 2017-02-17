@@ -1,3 +1,3 @@
 internal protocol IUIWebViewObserver: NSObjectProtocol {
-    func onMessage(busName: String, eventName: String, rawEventData: String?)
+    func onMessage(_ busName: String, eventName: String, rawEventData: String?)
 }

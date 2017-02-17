@@ -17,8 +17,8 @@ class UnregistrationController: BaseController {
     }
     
     @IBOutlet weak var webView: UIWebView!
-    private weak var bus: EventBus?
-    private weak var timer: NSTimer?
+    fileprivate weak var bus: EventBus?
+    fileprivate weak var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,11 @@ class UnregistrationController: BaseController {
             
             bus.registerOnMain("Whazup?") {_, _ in
                 bus.post("Bye")
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "unsubscribe", userInfo: nil, repeats: false)
+                self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(UnregistrationController.unsubscribe), userInfo: nil, repeats: false)
             }
             
             bus.register("Still around?") {name, _ in
-                NSException(name: name, reason: "", userInfo: nil).raise()
+                NSException(name: NSExceptionName(rawValue: name), reason: "", userInfo: nil).raise()
             }
             
             bus.post("Hello!")
@@ -48,7 +48,7 @@ class UnregistrationController: BaseController {
         tuple.0()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         if !BaseController.isUsingWKWebView {

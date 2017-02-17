@@ -2,11 +2,11 @@ import Foundation
 import UIKit
 import Caravel
 
-public class InitializationController: BaseController {
+open class InitializationController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let tuple = setUp("initialization", webView: _webView)

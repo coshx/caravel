@@ -3,11 +3,11 @@ import UIKit
 import Caravel
 import WebKit
 
-public class BasicTriggeringController: BaseController {
+open class BasicTriggeringController: BaseController {
 
     @IBOutlet weak var _webView: UIWebView!
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         let tuple = setUp("basic_triggering", webView: _webView)

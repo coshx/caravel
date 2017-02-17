@@ -6,14 +6,14 @@ import WebKit
 class BenchmarkController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
     
-    private weak var bus: EventBus?
-    private var wkWebView: WKWebView?
-    private var draftForBenchmarking: EventBus.Draft?
+    fileprivate weak var bus: EventBus?
+    fileprivate var wkWebView: WKWebView?
+    fileprivate var draftForBenchmarking: EventBus.Draft?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = NSURLRequest(URL: NSBundle.mainBundle().URLForResource("benchmark", withExtension: "html")!)
+        let request = URLRequest(url: Bundle.main.url(forResource: "benchmark", withExtension: "html")!)
         let action = {(bus: EventBus) in
             self.bus = bus
         }
@@ -29,15 +29,15 @@ class BenchmarkController: UIViewController {
             
             Caravel.getDefault(self, wkWebView: self.wkWebView!, draft: draft, whenReady: action)
             
-            self.wkWebView!.loadRequest(request)
+            self.wkWebView!.load(request)
         } else {
             Caravel.getDefault(self, webView: webView, whenReady: action)
             webView.loadRequest(request)
         }
     }
     
-    @IBAction func onStart(sender: AnyObject) {
-        let name = NSUUID().UUIDString
+    @IBAction func onStart(_ sender: AnyObject) {
+        let name = UUID().uuidString
         let action = {(bus: EventBus) in
             for i in 0..<1000 {
                 bus.register("Background-\(i)") {name, _ in

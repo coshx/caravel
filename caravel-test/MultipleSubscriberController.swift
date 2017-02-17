@@ -2,11 +2,11 @@ import Foundation
 import UIKit
 import Caravel
 
-public class MultipleSubscriberController: BaseController {
+open class MultipleSubscriberController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let tuple = setUp("multiple_subscribers", webView: _webView)

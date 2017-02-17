@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import Caravel
 
-public class EventDataController: BaseController {
+open class EventDataController: BaseController {
     
     @IBOutlet weak var _webView: UIWebView!
     
-    private func _raise(name: String) {
-        NSException(name: name, reason: "", userInfo: nil).raise()
+    fileprivate func _raise(_ name: String) {
+        NSException(name: NSExceptionName(rawValue: name), reason: "", userInfo: nil).raise()
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let tuple = setUp("event_data", webView: _webView)
@@ -118,10 +118,10 @@ public class EventDataController: BaseController {
                     if d.count != 2 {
                         self._raise("Dictionary - wrong length")
                     }
-                    if d.valueForKey("movie") as! String != "Once upon a time in the West" {
+                    if d.value(forKey: "movie") as! String != "Once upon a time in the West" {
                         self._raise("Dictionary - wrong first pair")
                     }
-                    if d.valueForKey("actor") as! String != "Charles Bronson" {
+                    if d.value(forKey: "actor") as! String != "Charles Bronson" {
                         self._raise("Dictionary - wrong second pair")
                     }
                 } else {
@@ -138,7 +138,7 @@ public class EventDataController: BaseController {
                         self._raise("ComplexArray - wrong first element")
                     }
                     if let d = a[1] as? NSDictionary {
-                        if d.valueForKey("name") as! String != "Bruce Willis" {
+                        if d.value(forKey: "name") as! String != "Bruce Willis" {
                             self._raise("ComplexArray - wrong second element")
                         }
                     } else {
@@ -154,11 +154,11 @@ public class EventDataController: BaseController {
             
             bus.register("ComplexDictionary") {name, data in
                 if let d = data as? NSDictionary {
-                    if d.valueForKey("name") as! String != "John Malkovich" {
+                    if d.value(forKey: "name") as! String != "John Malkovich" {
                         self._raise("ComplexDictionary - wrong first pair")
                     }
                     
-                    if let a = d.valueForKey("movies") as? NSArray {
+                    if let a = d.value(forKey: "movies") as? NSArray {
                         if a.count != 2 {
                             self._raise("ComplexDictionary - wrong length")
                         }
@@ -172,7 +172,7 @@ public class EventDataController: BaseController {
                         self._raise("ComplexDictionary - wrong typed second element")
                     }
                     
-                    if d.valueForKey("kids") as! Int != 2 {
+                    if d.value(forKey: "kids") as! Int != 2 {
                         self._raise("ComplexDictionary - wrong third pair")
                     }
                 } else {

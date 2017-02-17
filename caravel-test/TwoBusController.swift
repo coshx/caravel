@@ -3,15 +3,15 @@ import UIKit
 import Caravel
 import WebKit
 
-public class TwoBusController: UIViewController {
+open class TwoBusController: UIViewController {
     
     @IBOutlet weak var _webView: UIWebView!
-    private var wkWebView: WKWebView?
+    fileprivate var wkWebView: WKWebView?
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = NSURLRequest(URL: NSBundle.mainBundle().URLForResource("two_buses", withExtension: "html")!)
+        let request = URLRequest(url: Bundle.main.url(forResource: "two_buses", withExtension: "html")!)
         let action = {(bus: EventBus) in
             bus.post("AnEvent")
         }
@@ -27,7 +27,7 @@ public class TwoBusController: UIViewController {
             Caravel.get(self, name: "FooBus", wkWebView: self.wkWebView!, draft: draft1, whenReady: action)
             Caravel.get(self, name: "BarBus", wkWebView: self.wkWebView!, draft: draft2, whenReady: action)
             
-            self.wkWebView!.loadRequest(request)
+            self.wkWebView!.load(request)
         } else {
             Caravel.get(self, name: "FooBus", webView: _webView, whenReady: action)
             Caravel.get(self, name: "BarBus", webView: _webView, whenReady: action)

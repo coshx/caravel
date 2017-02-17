@@ -4,15 +4,15 @@
  Manages the different Caravel instances and ensures they are all singletons
  */
 internal class CaravelFactory {
-    private static let defaultBusLock = NSObject()
-    private static var defaultBus: Caravel?
+    fileprivate static let defaultBusLock = NSObject()
+    fileprivate static var defaultBus: Caravel?
 
-    private static let creationLock = NSObject()
+    fileprivate static let creationLock = NSObject()
     // A lock per bus. Uses lock above when initializing
-    private static var busLocks: [String: NSObject] = [:]
-    private static var buses: [String: Caravel] = [:]
+    fileprivate static var busLocks: [String: NSObject] = [:]
+    fileprivate static var buses: [String: Caravel] = [:]
 
-    private static func getLock(name: String) -> NSObject {
+    fileprivate static func getLock(_ name: String) -> NSObject {
         if let o = busLocks[name] {
             return o
         } else {
@@ -53,7 +53,7 @@ internal class CaravelFactory {
         }
     }
 
-    internal static func get(name: String) -> Caravel {
+    internal static func get(_ name: String) -> Caravel {
         if name == Caravel.DefaultBusName {
             return getDefault()
         } else {

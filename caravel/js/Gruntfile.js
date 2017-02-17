@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var version = 'sea-shell-newt-v1.1.1';
+    var version = 'sea-shell-newt-v1.2.0';
 
     // Project configuration
     grunt.initConfig({
@@ -61,4 +61,3 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['coffeelint', 'coffee']);
     grunt.registerTask('release', ['default', 'uglify']);
 };
-

@@ -20,25 +20,25 @@ import WebKit
 
  Main class of the library. Dispatches events among buses.
  */
-public class Caravel {
-    private let busLock = NSObject()
+open class Caravel {
+    fileprivate let busLock = NSObject()
     internal static let DefaultBusName = "default"
 
-    private var secretName: String
-    private var buses: [EventBus]
+    fileprivate var secretName: String
+    fileprivate var buses: [EventBus]
 
     internal init(name: String) {
         self.secretName = name
         self.buses = []
     }
 
-    private func lockBuses(@noescape action: () -> Void) {
+    fileprivate func lockBuses(_ action: @escaping () -> Void) {
         synchronized(busLock) {
             action()
         }
     }
 
-    private func addBus(bus: EventBus, whenReady: (EventBus) -> Void, inBackground: Bool) {
+    fileprivate func addBus(_ bus: EventBus, whenReady: @escaping (EventBus) -> Void, inBackground: Bool) {
         self.lockBuses { self.buses.append(bus) }
 
         if inBackground {
@@ -58,19 +58,19 @@ public class Caravel {
                         toRemove.append(i)
                         b.notifyAboutCleaning()
                     }
-                    i++
+                    i += 1
                 }
 
                 i = 0
                 for j in toRemove {
-                    self.buses.removeAtIndex(j - i)
-                    i++
+                    self.buses.remove(at: j - i)
+                    i += 1
                 }
             }
         }
     }
 
-    private func addBus(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void, inBackground: Bool) {
+    fileprivate func addBus(_ subscriber: AnyObject, webView: UIWebView, whenReady: @escaping (EventBus) -> Void, inBackground: Bool) {
         // Test first if an existing bus matching provided pair already exists
         objc_sync_enter(busLock)
         for b in self.buses {
@@ -90,7 +90,7 @@ public class Caravel {
         self.addBus(bus, whenReady: whenReady, inBackground: inBackground)
     }
 
-    private func addBus(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void, inBackground: Bool) {
+    fileprivate func addBus(_ subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: @escaping (EventBus) -> Void, inBackground: Bool) {
         // Test first if an existing bus matching provided pair already exists
         objc_sync_enter(busLock)
         for b in self.buses {
@@ -110,13 +110,13 @@ public class Caravel {
         self.addBus(bus, whenReady: whenReady, inBackground: inBackground)
     }
 
-    private static func testSubscriber(subscriber: AnyObject, target: AnyObject) throws {
+    fileprivate static func testSubscriber(_ subscriber: AnyObject, target: AnyObject) throws {
         if subscriber.hash == target.hash {
-            throw CaravelError.SubscriberIsSameThanTarget
+            throw CaravelError.subscriberIsSameThanTarget
         }
     }
 
-    internal func post<T>(eventName: String, eventData: T?) {
+    internal func post<T>(_ eventName: String, eventData: T?) {
         background {
             var data: String?
             var toRun: String?
@@ -130,12 +130,12 @@ public class Caravel {
             toRun = "Caravel."
 
             if self.secretName == Caravel.DefaultBusName {
-                toRun!.appendContentsOf("getDefault()")
+                toRun!.append("getDefault()")
             } else {
-                toRun!.appendContentsOf("get(\"\(self.secretName)\")")
+                toRun!.append("get(\"\(self.secretName)\")")
             }
 
-            toRun!.appendContentsOf(".raise(\"\(eventName)\", \(data!))")
+            toRun!.append(".raise(\"\(eventName)\", \(data!))")
 
             self.lockBuses {
                 for b in self.buses {
@@ -145,21 +145,21 @@ public class Caravel {
         }
     }
 
-    internal func deleteBus(bus: EventBus) {
+    internal func deleteBus(_ bus: EventBus) {
         self.lockBuses {
             var i = 0
 
             for b in self.buses {
                 if b == bus {
-                    self.buses.removeAtIndex(i)
+                    self.buses.remove(at: i)
                     return
                 }
-                i++
+                i += 1
             }
         }
     }
 
-    internal func dispatch(busName: String, eventName: String, eventData: AnyObject?) {
+    internal func dispatch(_ busName: String, eventName: String, eventData: AnyObject?) {
         if busName != self.name {
             // Different buses can use the same web view so same proxy
             // If not a potential receiver, ignore event
@@ -183,7 +183,7 @@ public class Caravel {
         }
     }
 
-    internal func dispatch(busName: String, eventName: String, rawEventData: String?) {
+    internal func dispatch(_ busName: String, eventName: String, rawEventData: String?) {
         if busName != self.name {
             return
         }
@@ -199,7 +199,7 @@ public class Caravel {
     /**
      Current name
      */
-    public var name: String {
+    open var name: String {
         return self.secretName
     }
 
@@ -212,7 +212,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
+    open static func getDefault(_ subscriber: AnyObject, webView: UIWebView, whenReady: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
         try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
@@ -228,7 +228,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func getDefault(subscriber: AnyObject, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
+    open static func getDefault(_ subscriber: AnyObject, webView: UIWebView, whenReadyOnMain: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
         try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
@@ -245,7 +245,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReady: (EventBus) -> Void) -> Caravel {
+    open static func get(_ subscriber: AnyObject, name: String, webView: UIWebView, whenReady: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
         try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReady, inBackground: true)
@@ -262,7 +262,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func get(subscriber: AnyObject, name: String, webView: UIWebView, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
+    open static func get(_ subscriber: AnyObject, name: String, webView: UIWebView, whenReadyOnMain: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
         try! testSubscriber(subscriber, target: webView)
         d.addBus(subscriber, webView: webView, whenReady: whenReadyOnMain, inBackground: false)
@@ -276,7 +276,7 @@ public class Caravel {
 
      - returns: Bus draft
      */
-    public static func getDraft(configuration: WKWebViewConfiguration) -> EventBus.Draft {
+    open static func getDraft(_ configuration: WKWebViewConfiguration) -> EventBus.Draft {
         return EventBus.buildDraft(configuration)
     }
 
@@ -290,7 +290,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
+    open static func getDefault(_ subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
         try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
@@ -307,7 +307,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func getDefault(subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
+    open static func getDefault(_ subscriber: AnyObject, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.getDefault()
         try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)
@@ -325,7 +325,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: (EventBus) -> Void) -> Caravel {
+    open static func get(_ subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReady: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
         try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReady, inBackground: true)
@@ -343,7 +343,7 @@ public class Caravel {
 
      - returns: Current instance
      */
-    public static func get(subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: (EventBus) -> Void) -> Caravel {
+    open static func get(_ subscriber: AnyObject, name: String, wkWebView: WKWebView, draft: EventBus.Draft, whenReadyOnMain: @escaping (EventBus) -> Void) -> Caravel {
         let d = CaravelFactory.get(name)
         try! testSubscriber(subscriber, target: wkWebView)
         d.addBus(subscriber, wkWebView: wkWebView, draft: draft, whenReady: whenReadyOnMain, inBackground: false)

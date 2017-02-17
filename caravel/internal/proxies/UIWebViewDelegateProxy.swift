@@ -6,14 +6,14 @@ import UIKit
  Saves current webview delegate (if any) and dispatches events to subscribers
  */
 internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
-    private static let subscriberLock = NSObject()
+    fileprivate static let subscriberLock = NSObject()
     
-    private var originalDelegate: UIWebViewDelegate?
+    fileprivate var originalDelegate: UIWebViewDelegate?
     
     /**
      All the subscribers
      */
-    private lazy var subscribers: [IUIWebViewObserver] = []
+    fileprivate lazy var subscribers: [IUIWebViewObserver] = []
     
     init(webView: UIWebView) {
         self.originalDelegate = webView.delegate
@@ -23,11 +23,11 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         webView.delegate = self
     }
     
-    private func lockSubscribers(@noescape action: () -> Void) {
+    fileprivate func lockSubscribers(_ action: () -> Void) {
         synchronized(UIWebViewDelegateProxy.subscriberLock, action: action)
     }
     
-    private func iterateOverDelegates(callback: (IUIWebViewObserver) -> Void) {
+    fileprivate func iterateOverDelegates(_ callback: (IUIWebViewObserver) -> Void) {
         self.lockSubscribers {
             for e in self.subscribers {
                 callback(e)
@@ -35,7 +35,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         }
     }
     
-    func subscribe(subscriber: IUIWebViewObserver) {
+    func subscribe(_ subscriber: IUIWebViewObserver) {
         lockSubscribers {
             for s in self.subscribers {
                 if s.hash == subscriber.hash {
@@ -47,15 +47,15 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         }
     }
     
-    func unsubscribe(subscriber: IUIWebViewObserver) {
+    func unsubscribe(_ subscriber: IUIWebViewObserver) {
         lockSubscribers {
             var i = 0
             for e in self.subscribers {
                 if e.hash == subscriber.hash {
-                    self.subscribers.removeAtIndex(i)
+                    self.subscribers.remove(at: i)
                     return
                 }
-                i++
+                i += 1
             }
         }
     }
@@ -64,25 +64,25 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         return self.subscribers.count > 0
     }
     
-    func deactivate(webView: UIWebView) {
+    func deactivate(_ webView: UIWebView) {
         webView.delegate = self.originalDelegate
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         self.originalDelegate?.webView?(webView, didFailLoadWithError: error)
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var shouldLoad = true // Default behavior: execute URL
-        let original = self.originalDelegate?.webView?(webView, shouldStartLoadWithRequest: request, navigationType: navigationType)
+        let original = self.originalDelegate?.webView?(webView, shouldStartLoadWith: request, navigationType: navigationType)
         
         if let b = original {
             shouldLoad = shouldLoad && b
         }
         
-        if let scheme: String = request.URL?.scheme {
+        if let scheme: String = request.url?.scheme {
             if scheme == "caravel" {
-                let args = ArgumentParser.parse(request.URL!.query!)
+                let args = ArgumentParser.parse(request.url!.query!)
                 
                 iterateOverDelegates {e in
                     e.onMessage(args.busName, eventName: args.eventName, rawEventData: args.eventData)
@@ -95,11 +95,11 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         return shouldLoad
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         self.originalDelegate?.webViewDidFinishLoad?(webView)
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         self.originalDelegate?.webViewDidStartLoad?(webView)
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9494EA701E57ABBC005844E5 /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9494EA6F1E57ABBC005844E5 /* Caravel.framework */; };
+		9494EA711E57ABBC005844E5 /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9494EA6F1E57ABBC005844E5 /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A71E82911BFD0FC00078C5A0 /* ThreadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */; };
 		A71E82931BFD13300078C5A0 /* threading.js in Resources */ = {isa = PBXBuildFile; fileRef = A71E82921BFD13300078C5A0 /* threading.js */; };
 		A71E82951BFD14490078C5A0 /* threading.html in Resources */ = {isa = PBXBuildFile; fileRef = A71E82941BFD14490078C5A0 /* threading.html */; };
@@ -41,8 +43,6 @@
 		A7AC9F2A1B349BB40041EB0B /* caravel.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A7AC9F291B349BB40041EB0B /* caravel.min.js */; };
 		A7C869061B18CEF30070AF5A /* basic_triggering.html in Resources */ = {isa = PBXBuildFile; fileRef = A7C869051B18CEF30070AF5A /* basic_triggering.html */; };
 		A7C869081B18CF450070AF5A /* basic_triggering.js in Resources */ = {isa = PBXBuildFile; fileRef = A7C869071B18CF450070AF5A /* basic_triggering.js */; };
-		A7DB0FF21C44582A002EA3FC /* Caravel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; };
-		A7DB0FF31C44582A002EA3FC /* Caravel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A7BC5DC31C09507100C0230A /* Caravel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7DC081B1B18C73500D98DA5 /* BasicTriggeringController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */; };
 		A7F1DE291B18045C001E9B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE281B18045C001E9B94 /* AppDelegate.swift */; };
 		A7F1DE2B1B18045C001E9B94 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F1DE2A1B18045C001E9B94 /* MainController.swift */; };
@@ -63,13 +63,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A7DB0FF41C44582A002EA3FC /* Embed Frameworks */ = {
+		9494EA721E57ABBC005844E5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A7DB0FF31C44582A002EA3FC /* Caravel.framework in Embed Frameworks */,
+				9494EA711E57ABBC005844E5 /* Caravel.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9494EA6F1E57ABBC005844E5 /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Caravel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71E82901BFD0FC00078C5A0 /* ThreadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadingController.swift; sourceTree = "<group>"; };
 		A71E82921BFD13300078C5A0 /* threading.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = threading.js; path = js/threading.js; sourceTree = "<group>"; };
 		A71E82941BFD14490078C5A0 /* threading.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = threading.html; path = html/threading.html; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		A79762941B199541006D94CB /* event_data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = event_data.js; path = js/event_data.js; sourceTree = "<group>"; };
 		A79762961B19954A006D94CB /* event_data.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = event_data.html; path = html/event_data.html; sourceTree = "<group>"; };
 		A7AC9F291B349BB40041EB0B /* caravel.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = caravel.min.js; path = caravel/js/caravel.min.js; sourceTree = SOURCE_ROOT; };
-		A7BC5DC31C09507100C0230A /* Caravel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Caravel.framework; path = "/Users/acadet/Library/Developer/Xcode/DerivedData/caravel-dlpamqduufdwsvhblzaeqpmtdyag/Build/Products/Debug-iphoneos/Caravel.framework"; sourceTree = "<absolute>"; };
 		A7C869051B18CEF30070AF5A /* basic_triggering.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = basic_triggering.html; path = html/basic_triggering.html; sourceTree = "<group>"; };
 		A7C869071B18CF450070AF5A /* basic_triggering.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = basic_triggering.js; path = js/basic_triggering.js; sourceTree = "<group>"; };
 		A7DC081A1B18C73500D98DA5 /* BasicTriggeringController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTriggeringController.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7DB0FF21C44582A002EA3FC /* Caravel.framework in Frameworks */,
+				9494EA701E57ABBC005844E5 /* Caravel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +184,7 @@
 		A7F1DE1A1B18045C001E9B94 = {
 			isa = PBXGroup;
 			children = (
-				A7BC5DC31C09507100C0230A /* Caravel.framework */,
+				9494EA6F1E57ABBC005844E5 /* Caravel.framework */,
 				A7F1DE251B18045C001E9B94 /* caravel-test */,
 				A7F1DE3B1B18045C001E9B94 /* caravel-testTests */,
 				A7F1DE241B18045C001E9B94 /* Products */,
@@ -262,7 +262,7 @@
 				A7F1DE1F1B18045C001E9B94 /* Sources */,
 				A7F1DE201B18045C001E9B94 /* Frameworks */,
 				A7F1DE211B18045C001E9B94 /* Resources */,
-				A7DB0FF41C44582A002EA3FC /* Embed Frameworks */,
+				9494EA721E57ABBC005844E5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,9 +304,12 @@
 				TargetAttributes = {
 					A7F1DE221B18045C001E9B94 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = YNH9MQQ87M;
+						LastSwiftMigration = 0820;
 					};
 					A7F1DE371B18045C001E9B94 = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0820;
 						TestTargetID = A7F1DE221B18045C001E9B94;
 					};
 				};
@@ -519,12 +522,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YNH9MQQ87M;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/build/Debug-iphoneos";
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -532,12 +537,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YNH9MQQ87M;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/build/Debug-iphoneos";
 				INFOPLIST_FILE = "caravel-test/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -557,6 +564,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};
 			name = Debug;
@@ -573,6 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coshx.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/caravel-test.app/caravel-test";
 			};
 			name = Release;

@@ -7,7 +7,7 @@ class TwoBucketController: BaseController {
     @IBOutlet weak var webView1: UIWebView!
     @IBOutlet weak var webView2: UIWebView!
     
-    private var isOtherOneReady = false
+    fileprivate var isOtherOneReady = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -3,17 +3,17 @@ import UIKit
 import Caravel
 import WebKit
 
-public class BaseController: UIViewController {
+open class BaseController: UIViewController {
     static var isUsingWKWebView = false
     
-    private lazy var wkWebViews = [WKWebView]()
-    private lazy var wkWebViewConfigurations = [WKWebViewConfiguration]()
+    fileprivate lazy var wkWebViews = [WKWebView]()
+    fileprivate lazy var wkWebViewConfigurations = [WKWebViewConfiguration]()
     
     func getWKWebView() -> WKWebView {
         return wkWebViews[0]
     }
     
-    func getWKWebView(index: Int) -> WKWebView {
+    func getWKWebView(_ index: Int) -> WKWebView {
         return wkWebViews[index]
     }
     
@@ -21,14 +21,14 @@ public class BaseController: UIViewController {
         return wkWebViewConfigurations[0]
     }
     
-    func getWKWebViewConfiguration(index: Int) -> WKWebViewConfiguration {
+    func getWKWebViewConfiguration(_ index: Int) -> WKWebViewConfiguration {
         return wkWebViewConfigurations[index]
     }
     
-    func setUp(page: String, webView: UIWebView) -> (Void -> Void, EventBus.Draft?) {
+    func setUp(_ page: String, webView: UIWebView) -> ((Void) -> Void, EventBus.Draft?) {
         var draft: EventBus.Draft?
-        var action: (Void -> Void)?
-        let request = NSURLRequest(URL: NSBundle.mainBundle().URLForResource(page, withExtension: "html")!)
+        var action: ((Void) -> Void)?
+        let request = URLRequest(url: Bundle.main.url(forResource: page, withExtension: "html")!)
         
         if BaseController.isUsingWKWebView {
             let config = WKWebViewConfiguration()
@@ -40,7 +40,7 @@ public class BaseController: UIViewController {
             webView.removeFromSuperview()
             self.view.addSubview(view)
             
-            action = {view.loadRequest(request)}
+            action = {view.load(request)}
         } else {
             action = {webView.loadRequest(request)}
         }

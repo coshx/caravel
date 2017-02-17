@@ -12,12 +12,12 @@ class MainController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTypeChange(sender: AnyObject) {
+    @IBAction func onTypeChange(_ sender: AnyObject) {
         let control = sender as! UISegmentedControl
         BaseController.isUsingWKWebView = control.selectedSegmentIndex == 1
     }
     
-    @IBAction func unwind(sender: UIStoryboardSegue) {
+    @IBAction func unwind(_ sender: UIStoryboardSegue) {
         
     }
 }

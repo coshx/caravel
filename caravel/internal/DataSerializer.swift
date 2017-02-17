@@ -7,7 +7,7 @@ import Foundation
  */
 internal class DataSerializer {
     
-    internal static func serialize<T>(input: T) throws -> String {
+    internal static func serialize<T>(_ input: T) throws -> String {
         var output: String?
         
         if let b = input as? Bool {
@@ -20,36 +20,36 @@ internal class DataSerializer {
             output = "\(d)"
         } else if var s = input as? String {
             // As this string is going to be unwrapped from quotes, when passed to JS, all quotes need to be escaped
-            s = s.stringByReplacingOccurrencesOfString("\"", withString: "\\\"", options: NSStringCompareOptions(), range: nil)
-            s = s.stringByReplacingOccurrencesOfString("'", withString: "\'", options: NSStringCompareOptions(), range: nil)
+            s = s.replacingOccurrences(of: "\"", with: "\\\"", options: NSString.CompareOptions(), range: nil)
+            s = s.replacingOccurrences(of: "'", with: "\'", options: NSString.CompareOptions(), range: nil)
             output = "\"\(s)\""
         } else if let a = input as? NSArray {
             // Array and Dictionary are serialized to JSON.
             // They should wrap only "basic" data (same types than supported ones)
-            let json = try! NSJSONSerialization.dataWithJSONObject(a, options: NSJSONWritingOptions())
-            output = NSString(data: json, encoding: NSUTF8StringEncoding)! as String
+            let json = try! JSONSerialization.data(withJSONObject: a, options: JSONSerialization.WritingOptions())
+            output = NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String
         } else if let d = input as? NSDictionary {
-            let json = try! NSJSONSerialization.dataWithJSONObject(d, options: NSJSONWritingOptions())
-            output = NSString(data: json, encoding: NSUTF8StringEncoding)! as String
+            let json = try! JSONSerialization.data(withJSONObject: d, options: JSONSerialization.WritingOptions())
+            output = NSString(data: json, encoding: String.Encoding.utf8.rawValue)! as String
         } else {
-            throw CaravelError.SerializationUnsupportedData
+            throw CaravelError.serializationUnsupportedData
         }
         
         return output!
     }
     
-    internal static func deserialize(input: String) -> AnyObject {
+    internal static func deserialize(_ input: String) -> AnyObject {
         if input.characters.count > 0 {
             if (input.first == "[" && input.last == "]") || (input.first == "{" && input.last == "}") {
                 // Array or Dictionary, matching JSON format
-                let json = input.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
-                return try! NSJSONSerialization.JSONObjectWithData(json, options: NSJSONReadingOptions())
+                let json = input.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+                return try! JSONSerialization.jsonObject(with: json, options: JSONSerialization.ReadingOptions()) as AnyObject
             }
             
             if input == "true" {
-                return true
+                return true as AnyObject
             } else if input == "false" {
-                return false
+                return false as AnyObject
             }
             
             var isNumber = true
@@ -64,13 +64,13 @@ internal class DataSerializer {
             
             if isNumber {
                 if let i = Int(input) {
-                    return i
+                    return i as AnyObject
                 } else {
-                    return (input as NSString).doubleValue
+                    return (input as NSString).doubleValue as AnyObject
                 }
             }
         }
         
-        return input
+        return input as AnyObject
     }
 }
