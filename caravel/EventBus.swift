@@ -148,7 +148,7 @@ open class EventBus: NSObject, IUIWebViewObserver, IWKWebViewObserver {
     internal func forwardToJS(_ toRun: String) {
         main {
             if self.isUsingWebView() {
-                self.webView?.stringByEvaluatingJavaScript(from: toRun)
+                _ = self.webView?.stringByEvaluatingJavaScript(from: toRun)
             } else {
                 self.wkWebViewPair?.webView?.evaluateJavaScript(toRun, completionHandler: nil)
             }

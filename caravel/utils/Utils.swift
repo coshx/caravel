@@ -9,7 +9,7 @@ internal func main(_ action: @escaping () -> Void) {
 }
     
 internal func background(_ action: @escaping () -> Void) {
-    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+    DispatchQueue.global(qos: .default).async {
         action()
     }
 }
