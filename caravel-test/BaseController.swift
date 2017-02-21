@@ -27,7 +27,7 @@ open class BaseController: UIViewController {
     
     func setUp(_ page: String, webView: UIWebView) -> ((Void) -> Void, EventBus.Draft?) {
         var draft: EventBus.Draft?
-        var action: ((Void) -> Void)?
+        var action: (Void) -> Void
         let request = URLRequest(url: Bundle.main.url(forResource: page, withExtension: "html")!)
         
         if BaseController.isUsingWKWebView {
@@ -45,6 +45,6 @@ open class BaseController: UIViewController {
             action = {webView.loadRequest(request)}
         }
         
-        return (action!, draft)
+        return (action, draft)
     }
 }

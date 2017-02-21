@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     'use strict';
 
-    var version = 'sea-shell-newt-v1.2.0';
+    var version = 'sea-shell-newt-v1.2.1';
 
     // Project configuration
     grunt.initConfig({
