@@ -39,8 +39,8 @@ class TwoBucketController: BaseController {
         }
         
         if BaseController.isUsingWKWebView {
-            Caravel.getDefault(self, wkWebView: getWKWebView(0), draft: tuple1.1!, whenReady: action1)
-            Caravel.getDefault(self, wkWebView: getWKWebView(1), draft: tuple2.1!, whenReady: action2)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(0), draft: tuple1.1!, whenReady: action1)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(1), draft: tuple2.1!, whenReady: action2)
         } else {
             Caravel.getDefault(self, webView: webView1, whenReady: action1)
             Caravel.getDefault(self, webView: webView2, whenReady: action2)

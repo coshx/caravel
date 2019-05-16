@@ -18,7 +18,7 @@ open class InitializationController: BaseController {
         }
         
         if BaseController.isUsingWKWebView {
-            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
         } else {
             Caravel.getDefault(self, webView: _webView, whenReady: action)
         }
@@ -26,7 +26,7 @@ open class InitializationController: BaseController {
         tuple.0()
         
         if BaseController.isUsingWKWebView {
-            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action2)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action2)
         } else {
             Caravel.getDefault(self, webView: _webView, whenReady: action2)
         }

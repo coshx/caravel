@@ -21,7 +21,7 @@ open class EventNameController: BaseController {
         }
         
         if BaseController.isUsingWKWebView {
-            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
         } else {
             Caravel.getDefault(self, webView: _webView, whenReady: action)
         }
