@@ -27,7 +27,7 @@ class BenchmarkController: UIViewController {
             webView.removeFromSuperview()
             self.view.addSubview(self.wkWebView!)
             
-            Caravel.getDefault(self, wkWebView: self.wkWebView!, draft: draft, whenReady: action)
+            Caravel.getDefaultReady(self, wkWebView: self.wkWebView!, draft: draft, whenReady: action)
             
             self.wkWebView!.load(request)
         } else {

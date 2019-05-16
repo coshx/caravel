@@ -25,9 +25,9 @@ open class BaseController: UIViewController {
         return wkWebViewConfigurations[index]
     }
     
-    func setUp(_ page: String, webView: UIWebView) -> ((Void) -> Void, EventBus.Draft?) {
+    func setUp(_ page: String, webView: UIWebView) -> (() -> Void, EventBus.Draft?) {
         var draft: EventBus.Draft?
-        var action: (Void) -> Void
+        var action: () -> Void
         let request = URLRequest(url: Bundle.main.url(forResource: page, withExtension: "html")!)
         
         if BaseController.isUsingWKWebView {

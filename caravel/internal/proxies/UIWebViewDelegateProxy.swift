@@ -72,7 +72,7 @@ internal class UIWebViewDelegateProxy: NSObject, UIWebViewDelegate {
         self.originalDelegate?.webView?(webView, didFailLoadWithError: error)
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         var shouldLoad = true // Default behavior: execute URL
         let original = self.originalDelegate?.webView?(webView, shouldStartLoadWith: request, navigationType: navigationType)
         

@@ -40,7 +40,7 @@ class UnregistrationController: BaseController {
         }
         
         if BaseController.isUsingWKWebView {
-            Caravel.getDefault(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
+            Caravel.getDefaultReady(self, wkWebView: getWKWebView(), draft: tuple.1!, whenReady: action)
         } else {
             Caravel.getDefault(self, webView: webView, whenReady: action)
         }
@@ -59,7 +59,7 @@ class UnregistrationController: BaseController {
         }
     }
     
-    func unsubscribe() {
+    @objc func unsubscribe() {
         self.bus!.unregister()
         self.timer?.invalidate()
         self.timer = nil

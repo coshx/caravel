@@ -18,7 +18,7 @@ internal class UIWebViewDelegateProxyMediator {
     }
 
     static func subscribe(_ webView: UIWebView, observer: IUIWebViewObserver) {
-        let action: (Void) -> Bool = {
+        let action: () -> Bool = {
             for (k, v) in proxies {
                 if k == webView.hash {
                     v.subscribe(observer)

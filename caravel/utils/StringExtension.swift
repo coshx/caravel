@@ -3,7 +3,7 @@ import Foundation
 internal extension String {
     
     var length: Int {
-        return self.characters.count
+        return self.count
     }
     
     var first: String? {
@@ -23,7 +23,7 @@ internal extension String {
     }
     
     subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
+        return self[self.index(self.startIndex, offsetBy: i)]
     }
     
     subscript (i: Int) -> String {
@@ -31,6 +31,6 @@ internal extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        return substring(with: (characters.index(startIndex, offsetBy: r.lowerBound) ..< characters.index(startIndex, offsetBy: r.upperBound)))
+        return substring(with: (index(startIndex, offsetBy: r.lowerBound) ..< index(startIndex, offsetBy: r.upperBound)))
     }
 }
