@@ -59,7 +59,7 @@ class UnregistrationController: BaseController {
         }
     }
     
-    func unsubscribe() {
+    @objc func unsubscribe() {
         self.bus!.unregister()
         self.timer?.invalidate()
         self.timer = nil

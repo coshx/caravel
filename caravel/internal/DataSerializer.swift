@@ -39,7 +39,7 @@ internal class DataSerializer {
     }
     
     internal static func deserialize(_ input: String) -> AnyObject {
-        if input.characters.count > 0 {
+        if input.count > 0 {
             if (input.first == "[" && input.last == "]") || (input.first == "{" && input.last == "}") {
                 // Array or Dictionary, matching JSON format
                 let json = input.data(using: String.Encoding.utf8, allowLossyConversion: false)!
@@ -53,7 +53,7 @@ internal class DataSerializer {
             }
             
             var isNumber = true
-            for i in 0..<input.characters.count {
+            for i in 0..<input.count {
                 if Int(input[i]) != nil || input[i] == "." || input[i] == "," {
                     // Do nothing
                 } else {
